@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\App\img1.PNG" />
+    <None Remove="Images\App\Swiftlly_transparent_FullName.png" />
+    <None Remove="Images\App\Swiftlly_transparent_Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\App\img1.PNG" />
+    <Resource Include="Images\App\Swiftlly_transparent_FullName.png" />
+    <Resource Include="Images\App\Swiftlly_transparent_Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\Uploads\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+
+</Project>

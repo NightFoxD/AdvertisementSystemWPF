@@ -1,0 +1,19 @@
+﻿<Application x:Class="ASProjektWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ASProjektWPF"
+             StartupUri="Login.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ProfileCancelButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ProfileEditButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ProfileSaveButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ProfileTextBox.xaml"/>
+                <ResourceDictionary Source="Theme/TaskBarButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

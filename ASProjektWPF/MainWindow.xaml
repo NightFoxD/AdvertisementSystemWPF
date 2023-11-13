@@ -1,0 +1,65 @@
+﻿<Window x:Class="ASProjektWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASProjektWPF"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="White"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="450" Width="800">
+    <Border x:Name="Brd_Main">
+        <Grid Background="#f1f1f1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.ColumnSpan="2" Background="White">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="/Images/App/Swiftlly_transparent_Logo.png" Stretch="Fill" MouseDown="SP_MouseDown"/>
+                    <TextBlock Grid.Column="1" Text="Swiftly" VerticalAlignment="Center" Background="Transparent" MouseDown="SP_MouseDown"/>
+                    <Button Grid.Column="2" Content="🗕" Click="Btn_MinimalizeApp_Clicked" Style="{StaticResource TasakBarButton}"/>
+                    <Button Grid.Column="3" Content="&#x25A2;" Click="Btn_FullscreanApp_Clicked" Style="{StaticResource TasakBarButton}"/>
+                    <Button x:Name="Btn_CloseApp" Grid.Column="4" Content="&#x2715;" Click="Btn_CloseApp_Clicked" Style="{StaticResource TasakBarButton}"/>
+                </Grid>
+            </Border>
+            <Image Grid.Row="1" Source="/images/app/Swiftlly_transparent_FullName.png" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Grid Grid.Row="2" Background="#e6e6e6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <StackPanel>
+                    <RadioButton x:Name="RB_Register" Content="Zarejestruj się" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"  Command="{Binding RegisterViewCommand}"/>
+                    <RadioButton x:Name="RB_Login" Content="Zaloguj sie" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Command="{Binding LoginViewCommand}"/>
+                    <RadioButton x:Name="RB_Profil" Content="Profil" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_Register_Click" Command="{Binding ProfileViewCommand}"/>
+                    <RadioButton Content="Home" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" IsChecked="True" Command="{Binding HomeViewCommand}"/>
+                    <RadioButton Content="Discovery" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Command="{Binding View2Command}"/>
+                    <RadioButton Content="Features" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Command="{Binding View3Command}"/>
+                </StackPanel>
+
+                <Button Grid.Row="1" x:Name="Btn_LogOut" Content="Wyloguj się"/>
+            </Grid>
+            <Frame x:Name="Page" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" />
+        </Grid>
+    </Border>
+</Window>
