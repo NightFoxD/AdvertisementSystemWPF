@@ -39,17 +39,17 @@
                         <Button Content="dodaj" HorizontalAlignment="Left" Margin="0,5,0,0" Background="White" Foreground="#a4a4a4" Style="{StaticResource ProfileEditButtonTheme}"/>
                     </StackPanel>
                     <Label x:Name="Lbl_Name" Visibility="Collapsed" Content="Imię:" Grid.Column="1" Grid.Row="0"/>
-                    <TextBox Text="Imię" Grid.Column="1" Grid.Row="1" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtB_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                     <Label x:Name="Lbl_Surname" Visibility="Collapsed" Content="Nazwisko:" Grid.Column="2" Grid.Row="0"/>
-                    <TextBox Text="Nazwisko" Grid.Column="2" Grid.Row="1" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtB_Surname" Grid.Column="2" Grid.Row="1" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                     <Label x:Name="Lbl_CurrentOccupation" Visibility="Collapsed" Content="Aktualne stanowisko:" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
-                    <TextBox Text="Aktualane stanowisko" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtB_CurrentOccupation" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                     <Label x:Name="Lbl_Country" Visibility="Collapsed" Content="Państwo:" Grid.Column="1" Grid.Row="4"/>
                     <ComboBox x:Name="CB_City" Grid.Column="1" Grid.Row="5" Margin="0,0,10,0">
                         <ComboBoxItem Content="Sth"/>
                     </ComboBox>
                     <Label x:Name="Lbl_City" Visibility="Collapsed" Content="Miasto:" Grid.Column="2" Grid.Row="4"/>
-                    <TextBox Text="Miasto" Grid.Column="2" Grid.Row="5" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtB_City" Grid.Column="2" Grid.Row="5" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                     <Button x:Name="Btn_UserData_Edit" Content="Edytuj" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Foreground="#a4a4a4" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_UserData_Edit_Click"/>
                     <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                         <Button Visibility="Hidden" x:Name="Btn_UserData_Cancel"  Content="Anuluj" Margin="3" Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_UserData_Cancel_Click"/>

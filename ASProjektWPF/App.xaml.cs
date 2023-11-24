@@ -16,7 +16,7 @@ namespace ASProjektWPF
     public partial class App : Application
     {
         static DataAccess? Database;
-
+        
         public static DataAccess DataAccess
         {
             get
@@ -28,5 +28,6 @@ namespace ASProjektWPF
                 return Database;
             }
         }
+        
     }
 }

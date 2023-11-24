@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASProjektWPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,35 @@ namespace ASProjektWPF.Pages
     public partial class Profil : Page
     {
         Frame CurrentPage;
-        public Profil(Frame CurrentPage)
+        UserData LoginUserData;
+        User LoginUserInformation;
+
+        public Profil(Frame CurrentPage, UserData LoginUserData)
         {
             InitializeComponent();
             this.CurrentPage = CurrentPage;
             CheckUserLanguage();
             CheckUserSkills();
             CheckUserLinks();
+            this.LoginUserData = LoginUserData;
+            GetUserData();
+        }
+        public void CheckUserInformation()
+        {
+            TxtB_Name.Text = LoginUserInformation.Name;
+            TxtB_Surname.Text = LoginUserInformation.Surname;
+            TxtB_City.Text = LoginUserInformation.City;
+            TxtB_CurrentOccupation.Text = LoginUserInformation.CurrentOccupation;
+            TxtB_PhoneNumber.Text = LoginUserInformation.TelephoneNumber;
+            
+        }
+        public async void GetUserData()
+        {
+            LoginUserInformation = await App.DataAccess.GetUserInformations(LoginUserData);
+        }
+        public void Refresh()
+        {
+
         }
         public void CheckUserLanguage()
         {

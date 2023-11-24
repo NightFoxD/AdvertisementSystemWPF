@@ -5,12 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Swiftlly_transparent_Logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\App\img1.PNG" />
     <None Remove="Images\App\Swiftlly_transparent_FullName.png" />
     <None Remove="Images\App\Swiftlly_transparent_Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Swiftlly_transparent_Logo.ico" />
   </ItemGroup>
 
   <ItemGroup>

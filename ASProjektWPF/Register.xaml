@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ASProjektWPF"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="NoResize"
         Background="White"
         AllowsTransparency="True"
         Title="Register" Height="450" Width="800">

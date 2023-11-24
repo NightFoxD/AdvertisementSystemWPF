@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ASProjektWPF"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="NoResize"
         Background="White"
         AllowsTransparency="True"
         Title="MainWindow" Height="450" Width="800">
@@ -46,20 +47,23 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <RadioButton x:Name="RB_Register" Content="Zarejestruj się" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"  Command="{Binding RegisterViewCommand}"/>
-                    <RadioButton x:Name="RB_Login" Content="Zaloguj sie" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Command="{Binding LoginViewCommand}"/>
-                    <RadioButton x:Name="RB_Profil" Content="Profil" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_Register_Click" Command="{Binding ProfileViewCommand}"/>
-                    <RadioButton Content="Home" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" IsChecked="True" Command="{Binding HomeViewCommand}"/>
-                    <RadioButton Content="Discovery" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Command="{Binding View2Command}"/>
-                    <RadioButton Content="Features" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Command="{Binding View3Command}"/>
+                    <RadioButton x:Name="RB_Register" Content="Zarejestruj się" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
+                    <RadioButton x:Name="RB_Login" Content="Zaloguj sie" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
+                    <RadioButton x:Name="RB_Profil" Content="Profil" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_Register_Click"/>
+                    <RadioButton Content="Home" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" IsChecked="True" Click="RG_Home_Click"/>
+                    <RadioButton Content="Discovery" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
+                    <RadioButton Content="Features" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
                 </StackPanel>
-
-                <Button Grid.Row="1" x:Name="Btn_LogOut" Content="Wyloguj się"/>
+                <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                    <Button  Click="Btn_LogOut" Content="Wyloguj się"/>
+                    <Button  Click="Btn_ShowUsers" Content="Lista urzytkownikow"/>
+                </StackPanel>
+               
             </Grid>
-            <Frame x:Name="Page" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" />
+            <Frame x:Name="Page" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" />
         </Grid>
     </Border>
 </Window>

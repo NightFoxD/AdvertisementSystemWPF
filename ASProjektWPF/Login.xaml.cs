@@ -23,7 +23,6 @@ namespace ASProjektWPF
     /// </summary>
     public partial class Login : Window
     {
-        DataAccess Database = new DataAccess(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "AdvirtisementSystemWPF.db3"));
         UserData LoginUserData;
         public Login()
         {
@@ -67,13 +66,17 @@ namespace ASProjektWPF
         {
             Application.Current.Shutdown();
         }
+        private void Btn_Register_Clicked(object sender, RoutedEventArgs e)
+        {
+            (new Register()).Show();
+            this.Close();
+        }
 
         private void Btn_Login_Clicked(object sender, RoutedEventArgs e)
         {
             LoginUserData.Login = TxtB_Login.Text;
             LoginUserData.Password = PsB_Password.Password;
-            MessageBox.Show(TxtB_Login.Text);
-            if (Database.SearchUser(TxtB_Login.Text))
+            if (App.DataAccess.SearchUser(TxtB_Login.Text))
             {
                 var MainWindow = new MainWindow(TxtB_Login.Text);
                 MainWindow.Show();
@@ -83,7 +86,12 @@ namespace ASProjektWPF
             {
                 MessageBox.Show("Podano niepoprawne dane");
             }
-            
         }
+        private void Btn_GoToApp_Clicked(object sender, RoutedEventArgs e)
+        {
+            (new MainWindow()).Show();
+            this.Close();
+        }
+        
     }
 }

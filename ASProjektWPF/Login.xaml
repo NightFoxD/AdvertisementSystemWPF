@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ASProjektWPF"
         mc:Ignorable="d"
-         WindowStyle="None"
+        WindowStyle="None"
+        ResizeMode="NoResize"
         Background="White"
         AllowsTransparency="True"
         Title="Login" Height="450" Width="800">
@@ -54,7 +55,12 @@
                 <Label Grid.Row="1" Content="Haslo:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <PasswordBox x:Name="PsB_Password" Grid.Column="1" Grid.Row="1" Password=""/>
                 <CheckBox x:Name="Cb_RememberMe" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Zapamiętaj mnie"/>
-                <Button Content="Zaloguj się" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Login_Clicked"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+                    <Button Content="Zaloguj się"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Login_Clicked"/>
+                    <Button Content="Wejdz do aplikacji bez zalogowania"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_GoToApp_Clicked"/>
+                    <Button Content="Zarejestruj się" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Register_Clicked"/>
+                </StackPanel>
+
             </Grid>
         </Border>
     </Grid>

@@ -24,21 +24,24 @@ namespace ASProjektWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        DataAccess Database = new DataAccess(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "AdvirtisementSystemWPF.db3"));
         UserData LoggedUserData;
         public MainWindow()
         {
             InitializeComponent();
+            RB_Profil.Visibility = Visibility.Collapsed;
         }
         public MainWindow(string Login)
         {
             InitializeComponent();
             GetUser(Login);
-            MessageBox.Show(Login);
+            RB_Register.Visibility = Visibility.Collapsed;
+            RB_Login.Visibility = Visibility.Collapsed;
         }
+        
         public async void GetUser(string Login)
         {
-            LoggedUserData = await Database.GetUserFromLogin(Login);
+            LoggedUserData = await App.DataAccess.GetUserFromLogin(Login);
+
         }
         private void SP_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -80,7 +83,26 @@ namespace ASProjektWPF
 
         private void RB_Register_Click(object sender, RoutedEventArgs e)
         {
-            Page.Navigate(new Profil(Page));
+            Page.Navigate(new Profil(Page,LoggedUserData));
+            
+        }
+        private void RG_Home_Click(object sender, RoutedEventArgs e)
+        {
+            Page.Navigate(new Home(Page));
+
+        }
+        
+        private void Btn_ShowUsers(object sender, RoutedEventArgs e)
+        {
+            (new UsersInfo()).Show();
+            
+
+        }
+
+        private void Btn_LogOut(object sender, RoutedEventArgs e)
+        {
+            (new Login()).Show();
+            this.Close();
         }
     }
 }

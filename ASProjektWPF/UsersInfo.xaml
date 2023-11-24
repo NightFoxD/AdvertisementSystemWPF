@@ -1,0 +1,40 @@
+﻿<Window x:Class="ASProjektWPF.UsersInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASProjektWPF"
+        mc:Ignorable="d"
+        Title="UsersInfo" Height="450" Width="800">
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Button Content="refresh" Click="Refresh"/>
+            <Button Content="Usun userdata" Click="Btn_DelUserData_Clicked"/>
+            <DataGrid x:Name="DG_UserData" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="UserDataID" Binding="{Binding UserDataID}"/>
+                    <DataGridTextColumn Header="AccountTypeID" Binding="{Binding AccountTypeID}"/>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun User" Click="Btn_DelUser_Clicked"/>
+            <DataGrid x:Name="DG_User" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="UserID" Binding="{Binding UserID}"/>
+                    <DataGridTextColumn Header="UserDataID" Binding="{Binding UserDataID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
+                    <DataGridTextColumn Header="BirthDate" Binding="{Binding BirthDate}"/>
+                    <DataGridTextColumn Header="TelephoneNumber" Binding="{Binding TelephoneNumber}"/>
+                    <DataGridTextColumn Header="Pfp" Binding="{Binding Pfp}"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="CurrentOccupation" Binding="{Binding CurrentOccupation}"/>
+                    <DataGridTextColumn Header="Summary" Binding="{Binding Summary}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+    </ScrollViewer>
+</Window>

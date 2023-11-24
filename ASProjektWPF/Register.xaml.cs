@@ -23,7 +23,6 @@ namespace ASProjektWPF
     /// </summary>
     public partial class Register : Window
     {
-        DataAccess Database = new DataAccess(Path.Combine(Directory.GetCurrentDirectory(), "AdvirtisementSystemWPF.db3"));
         public Register()
         {
             InitializeComponent();
@@ -66,13 +65,17 @@ namespace ASProjektWPF
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void Btn_Register_Click(object sender, RoutedEventArgs e)
+        private async void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
             UserData NewUserData = new UserData();
             NewUserData.Login = TxB_Login.Text;
             NewUserData.Password = PsB_Password_1.Password;
             NewUserData.AccountTypeID = 1;
-            Database.InsertUserData(NewUserData);
+            await App.DataAccess.InsertUserData(NewUserData);
+            NewUserData = await App.DataAccess.GetUserFromLogin(NewUserData.Login);
+            App.DataAccess.InserUser(NewUserData);
+            (new Login()).Show();
+            this.Close();
         }
     }
 }
