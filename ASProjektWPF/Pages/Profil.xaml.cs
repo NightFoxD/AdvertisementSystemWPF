@@ -29,7 +29,7 @@ namespace ASProjektWPF.Pages
         Frame CurrentPage;
         UserData userData;
         User user;
-        Experience experience;
+        List<Experience> experienceList = new List<Experience>();
         List<string> countries = new List<string>();
         List<string> months = new List<string>();
         List<string> days = new List<string>();
@@ -48,6 +48,7 @@ namespace ASProjektWPF.Pages
             }
             CheckAll();
             LoadInformations();
+            LV_UserExperience.ItemsSource = experienceList;
         }
         private List<string> GetListOfCountries()
         {
@@ -68,7 +69,7 @@ namespace ASProjektWPF.Pages
         public async void GetUserData()
         {
             user = await App.DataAccess.GetUserInformations(userData);
-            //experience = await App.DataAccess.GetExperienceList().Result.Where(item => item.UserID == this.user.UserID).First;
+            experienceList = await App.DataAccess.GetExperienceList(user);
         }
         public void LoadInformations()
         {
@@ -129,17 +130,6 @@ namespace ASProjektWPF.Pages
                 Lbl_CurrentOccupation.Visibility = Visibility.Collapsed;
             }
         }
-        //public void VisibleCollapseContactData(bool VisCol)
-        //{
-        //    if (VisCol)
-        //    {
-        //        TxtB_PhoneNumber.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        TxtB_PhoneNumber.Visibility = Visibility.Collapsed;
-        //    }
-        //}
         public void ColEditButton(Button edit, Button cancel, Button save)
         {
             edit.Visibility = Visibility.Collapsed;
@@ -311,52 +301,47 @@ namespace ASProjektWPF.Pages
             EnDis_TB_ContactData(false);
            // VisibleCollapseContactData(false);
         }
-        public void EnDis_TB_ExperienceWorktData(bool value)
+        public void EnDis_TB_ExperienceWorktData(bool value, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
         {
             if (value)
             {
-                TxtB_Position.IsEnabled = true;
-                TxtB_Lokalization.IsEnabled = true;
-                TxtB_Company.IsEnabled = true;
-                CB_StartPayment_Month.IsEnabled = true;
-                CB_StartPayment_Year.IsEnabled = true;
-                CB_EndPayment_month.IsEnabled = true;
-                CB_EndPayment_year.IsEnabled = true;
-                TxtB_Responsibilities.IsEnabled = true;
+                position.IsEnabled = true;
+                Localization.IsEnabled = true;
+                Company.IsEnabled = true;
+                startPaymentDate.IsEnabled = true;
+                endPaymentDate.IsEnabled = true;
+                responsibilities.IsEnabled = true;
             }
             else
             {
-                TxtB_Position.IsEnabled = false;
-                TxtB_Lokalization.IsEnabled = false;
-                TxtB_Company.IsEnabled = false;
-                CB_StartPayment_Month.IsEnabled = false;
-                CB_StartPayment_Year.IsEnabled = false;
-                CB_EndPayment_month.IsEnabled = false;
-                CB_EndPayment_year.IsEnabled = false;
-                TxtB_Responsibilities.IsEnabled = false;
+                position.IsEnabled = false;
+                Localization.IsEnabled = false;
+                Company.IsEnabled = false;
+                startPaymentDate.IsEnabled = false;
+                endPaymentDate.IsEnabled = false;
+                responsibilities.IsEnabled = false;
             }
         }
-        private void Load_ExperienceWork_Form()
+        
+        private void Load_OneExperienceWork_Form(Experience ex,TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
         {
-            TxtB_Position.IsEnabled = false;
-            TxtB_Lokalization.IsEnabled = false;
-            TxtB_Company.IsEnabled = false;
-            CB_StartPayment_Month.IsEnabled = false;
-            CB_StartPayment_Year.IsEnabled = false;
-            CB_EndPayment_month.IsEnabled = false;
-            CB_EndPayment_year.IsEnabled = false;
-            TxtB_Responsibilities.IsEnabled = false;
+            position.Text = ex.Position;
+            Localization.Text = ex.Localization;
+            Company.Text = ex.Company;
+            startPaymentDate.SelectedDate = ex.StartPayment;
+            endPaymentDate.SelectedDate = ex.StartPayment;
+            responsibilities.Text = ex.Responsibilities;
         }
-        private void Update_ExperienceWork_Form()
+        private void Update_OneExperienceWork_Form(Experience ex, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
         {
-            TxtB_Position.IsEnabled = false;
-            TxtB_Lokalization.IsEnabled = false;
-            TxtB_Company.IsEnabled = false;
-            CB_StartPayment_Month.IsEnabled = false;
-            CB_StartPayment_Year.IsEnabled = false;
-            CB_EndPayment_month.IsEnabled = false;
-            CB_EndPayment_year.IsEnabled = false;
-            TxtB_Responsibilities.IsEnabled = false;
+            ex.Position = position.Text;
+            ex.Localization = Localization.Text;
+            ex.Company = Company.Text;
+            ex.StartPayment = startPaymentDate.SelectedDate;
+            ex.StartPayment = endPaymentDate.SelectedDate;
+            ex.Responsibilities = responsibilities.Text;
+            App.DataAccess.Update_Experience(ex);
+            experienceList[experienceList.FindIndex(item => item.ExperienceID == ex.ExperienceID)] = ex;
         }
         private void Btn_ExperienceWork_AddNew_Click(object sender, RoutedEventArgs e)
         {

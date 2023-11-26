@@ -157,15 +157,20 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<Experience>().ToListAsync();
         }
-        //public Task<List<Experience>> GetUserExperience(int id)
-        //{
-        //    return Task.FromResult(_database.Table<Experience>().Where(experience => experience.UserID == id).ToListAsync().Result.First());
-        //}
-        public Task Add_Experience(Experience experience)
+        public Task<List<Experience>> GetExperienceList(User user)
         {
-            return _database.InsertAsync(experience);
+            return _database.Table<Experience>().Where(experience=> experience.UserID == user.UserID).ToListAsync();
         }
-        public Task Update_Experience(Education experience)
+        public Task<Experience> GetUserExperience(int id)
+        {
+            return Task.FromResult(_database.Table<Experience>().Where(experience => experience.UserID == id).ToListAsync().Result.First());
+        }
+        public void Add_Experience(Experience experience,User user)
+        {
+            experience.UserID = user.UserID;
+            _database.InsertAsync(experience);
+        }
+        public Task Update_Experience(Experience experience)
         {
             return _database.UpdateAsync(experience);
         }

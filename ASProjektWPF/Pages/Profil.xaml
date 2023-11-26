@@ -156,21 +156,11 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="od"/>
-                                <ComboBox x:Name="CB_StartPayment_Month" SelectedIndex="0">
-                                    <ComboBoxItem>(miesiąc)</ComboBoxItem>
-                                </ComboBox>
-                                <ComboBox x:Name="CB_StartPayment_Year" SelectedIndex="0">
-                                    <ComboBoxItem>(rok)</ComboBoxItem>
-                                </ComboBox>
+                                <DatePicker x:Name="DP_startPaymentDate"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                                 <Label Content="Do"/>
-                                <ComboBox x:Name="CB_EndPayment_month" SelectedIndex="0">
-                                    <ComboBoxItem>(miesiąc)</ComboBoxItem>
-                                </ComboBox>
-                                <ComboBox x:Name="CB_EndPayment_year" SelectedIndex="0">
-                                    <ComboBoxItem>(rok)</ComboBoxItem>
-                                </ComboBox>
+                                <DatePicker x:Name="DP_endPaymentDate"/>
                             </StackPanel>
                         </StackPanel>
                         <Label Grid.Column="0" Grid.Row="4" Content="Obowiącki"/>
@@ -180,6 +170,54 @@
                             <Button x:Name="Btn_ExperienceWork_Save" Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_ExperienceWork_Save_Click"/>
                         </StackPanel>
                     </Grid>
+                    <ListView x:Name="LV_UserExperience">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock x:Name="sdf" Text="Historia zatrudnienia to podstawowa informacja, na bazie której pracodawca oceni Twoje kompetencje. Koniecznie uzupełnij informacje o stanowiskach na których pracowałeś i opisz dokładnie wykonywane obowiązki." TextWrapping="Wrap" Padding="10"/>
+                                    <Grid Visibility="Collapsed">
+                                        <Grid.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Margin" Value="0,0,10,10"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" Content="Stanowisko"/>
+                                        <TextBox x:Name="TxtB_Possition" Grid.Column="1" Grid.Row="0" Text="{Binding Position}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
+                                        <Label Grid.Column="0" Grid.Row="1" Content="Lokalizacja"/>
+                                        <TextBox x:Name="TxtB_Lokaslization" Grid.Column="1" Grid.Row="1" Text="{Binding Localization}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
+                                        <Label Grid.Column="0" Grid.Row="2" Content="Nazwa firmy"/>
+                                        <TextBox x:Name="TxtB_Csompany" Grid.Column="1" Grid.Row="2" Text="{Binding Company}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
+                                        <Label Grid.Column="0" Grid.Row="3" Content="Okres"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">
+                                            <Label Content="Od"/>
+                                            <DatePicker SelectedDate="{Binding StartPayment}"/>
+                                            <Label Content="Do"/>
+                                            <DatePicker SelectedDate="{Binding EndPayment}"/>
+                                        </StackPanel>
+                                        <Label Grid.Column="0" Grid.Row="4" Content="Obowiącki"/>
+                                        <TextBox x:Name="TxtB_Respasonsibilities" Text="{Binding Responsibilities}" Grid.Column="1" Grid.Row="4" Height="100" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                                            <Button x:Name="Btn_ExperienceWork_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_ExperienceWork_Cancel_Click"/>
+                                            <Button x:Name="Btn_ExperienceWork_Save" Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_ExperienceWork_Save_Click"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </Border>
             <!--llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
