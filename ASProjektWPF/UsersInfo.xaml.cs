@@ -56,5 +56,145 @@ namespace ASProjektWPF
             App.DataAccess.DelUser((User)DG_User.SelectedItem);
             GetInformations();
         }
+        private void Btn_DelAccountType_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_AccountType.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_AccountType((AccountType)DG_AccountType.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelAnnouncment_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Announcment.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Announcment((Announcment)DG_Announcment.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelApplication_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Application.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Application((Models.Application)DG_Application.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelCategory_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Category.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Category((Category)DG_Category.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelCompany_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Company.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Company((Company)DG_Company.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelCourse_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Course.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Course((Course)DG_Course.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelEducation_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Education.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Education((Education)DG_Education.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelExperience_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Experience.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Experience((Experience)DG_Experience.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelLanguage_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Language.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Language((Language)DG_Language.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelLink_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Link.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Link((Link)DG_Link.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelSaved_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Saved.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Saved((Saved)DG_Saved.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelSkill_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_Skill.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_Skills((Skill)DG_Skill.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelSubCategory_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_SubCategory.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_SubCategory((SubCategory)DG_SubCategory.SelectedItem);
+            GetInformations();
+        }
+        private void Btn_DelWorkingDays_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (DG_WorkingDays.SelectedItem == null)
+            {
+                MessageBox.Show("Nie zaznaczonno");
+                return;
+            }
+            App.DataAccess.Delete_WorkingDays((WorkingDays)DG_WorkingDays.SelectedItem);
+            GetInformations();
+        }
     }
 }

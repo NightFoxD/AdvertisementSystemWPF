@@ -12,7 +12,7 @@ namespace ASProjektWPF.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ExperienceID { get; set; }
-        public int? User { get; set; }
+        public int? UserID { get; set; }
         [MaxLength(75)]
         public string? Position { get; set; }
         [MaxLength(50)]

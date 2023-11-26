@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Theme/ProfileEditButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProfileSaveButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProfileTextBox.xaml"/>
+                <ResourceDictionary Source="Theme/ProfileTextBoxBorder.xaml"/>
                 <ResourceDictionary Source="Theme/TaskBarButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>

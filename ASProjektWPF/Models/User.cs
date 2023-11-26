@@ -20,10 +20,12 @@ namespace ASProjektWPF.Models
         public string? Surname { get; set; }
         public DateTime? BirthDate { get; set; }
         [MaxLength(9)]
-        public string? TelephoneNumber { get; set; }
+        public int TelephoneNumber { get; set; }
         public string? Pfp { get; set; }
         [MaxLength(50)]
         public string? City { get; set; }
+        [MaxLength(50)]
+        public string? Country { get; set; }
         [MaxLength(50)]
         public string? CurrentOccupation { get; set; }
         public string? Summary { get; set; }

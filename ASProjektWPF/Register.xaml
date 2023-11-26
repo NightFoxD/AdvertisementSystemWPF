@@ -56,7 +56,6 @@
                 <Label Grid.Row="2" Content="Powtórz haslo:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBox x:Name="PsB_Password_2" Grid.Column="1" Grid.Row="2" />
                 <Button Content="Zarejestruj się" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Register_Click"/>
-
             </Grid>
         </Border>
     </Grid>

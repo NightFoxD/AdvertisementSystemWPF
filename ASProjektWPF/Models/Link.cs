@@ -12,7 +12,6 @@ namespace ASProjektWPF.Models
     {
         [PrimaryKey, AutoIncrement]
         public int LinkID { get; set; }
-        [ForeignKey(nameof(User))]
         public int? User { get; set; }
         [MaxLength(50)]
         public string? Name { get; set; }

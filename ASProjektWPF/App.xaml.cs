@@ -28,6 +28,5 @@ namespace ASProjektWPF
                 return Database;
             }
         }
-        
     }
 }

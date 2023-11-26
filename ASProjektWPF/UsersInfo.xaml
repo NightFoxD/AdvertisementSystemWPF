@@ -29,9 +29,162 @@
                     <DataGridTextColumn Header="BirthDate" Binding="{Binding BirthDate}"/>
                     <DataGridTextColumn Header="TelephoneNumber" Binding="{Binding TelephoneNumber}"/>
                     <DataGridTextColumn Header="Pfp" Binding="{Binding Pfp}"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}"/>
                     <DataGridTextColumn Header="City" Binding="{Binding City}"/>
                     <DataGridTextColumn Header="CurrentOccupation" Binding="{Binding CurrentOccupation}"/>
                     <DataGridTextColumn Header="Summary" Binding="{Binding Summary}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <Button Content="Usun AccountType" Click="Btn_DelAccountType_Clicked"/>
+            <DataGrid x:Name="DG_AccountType" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="AccountTypeID" Binding="{Binding AccountTypeID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Announcment" Click="Btn_DelAnnouncment_Clicked"/>
+            <DataGrid x:Name="DG_Announcment" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="AnnouncmentID" Binding="{Binding AnnouncmentID}"/>
+                    <DataGridTextColumn Header="CompanyID" Binding="{Binding CompanyID}"/>
+                    <DataGridTextColumn Header="CategoryID" Binding="{Binding CategoryID}"/>
+                    <DataGridTextColumn Header="SubCategoryID" Binding="{Binding SubCategoryID}"/>
+                    <DataGridTextColumn Header="PositionName" Binding="{Binding PositionName}"/>
+                    <DataGridTextColumn Header="PositionLevel" Binding="{Binding PositionLevel}"/>
+                    <DataGridTextColumn Header="ContractType" Binding="{Binding ContractType}"/>
+                    <DataGridTextColumn Header="WorkingTime" Binding="{Binding WorkingTime}"/>
+                    <DataGridTextColumn Header="WorkType" Binding="{Binding WorkType}"/>
+                    <DataGridTextColumn Header="WorkHours" Binding="{Binding WorkHours}"/>
+                    <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"/>
+                    <DataGridTextColumn Header="Responsibilities" Binding="{Binding Responsibilities}"/>
+                    <DataGridTextColumn Header="Requirements" Binding="{Binding Requirements}"/>
+                    <DataGridTextColumn Header="Benefits" Binding="{Binding Benefits}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Application" Click="Btn_DelApplication_Clicked"/>
+            <DataGrid x:Name="DG_Application" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ApplicationID" Binding="{Binding ApplicationID}"/>
+                    <DataGridTextColumn Header="AnnouncmentID" Binding="{Binding AnnouncmentID}"/>
+                    <DataGridTextColumn Header="UserID" Binding="{Binding UserID}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Category" Click="Btn_DelCategory_Clicked"/>
+            <DataGrid x:Name="DG_Category" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="CategoryID" Binding="{Binding CategoryID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Company" Click="Btn_DelCompany_Clicked"/>
+            <DataGrid x:Name="DG_Company" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="CompanyID" Binding="{Binding CompanyID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Adress" Binding="{Binding Adress}"/>
+                    <DataGridTextColumn Header="LocalizationLink" Binding="{Binding LocalizationLink}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Course" Click="Btn_DelCourse_Clicked"/>
+            <DataGrid x:Name="DG_Course" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="CourseID" Binding="{Binding CourseID}"/>
+                    <DataGridTextColumn Header="UserID" Binding="{Binding UserID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Organizer" Binding="{Binding Organizer}"/>
+                    <DataGridTextColumn Header="StartPeriod" Binding="{Binding StartPeriod}"/>
+                    <DataGridTextColumn Header="EndPeriod" Binding="{Binding EndPeriod}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Education" Click="Btn_DelEducation_Clicked"/>
+            <DataGrid x:Name="DG_Education" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="EducationID" Binding="{Binding EducationID}"/>
+                    <DataGridTextColumn Header="ShoolName" Binding="{Binding ShoolName}"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="Level" Binding="{Binding Level}"/>
+                    <DataGridTextColumn Header="Direction" Binding="{Binding Direction}"/>
+                    <DataGridTextColumn Header="StartPeriod" Binding="{Binding StartPeriod}"/>
+                    <DataGridTextColumn Header="EndPeriod" Binding="{Binding EndPeriod}"/>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Experience" Click="Btn_DelExperience_Clicked"/>
+            <DataGrid x:Name="DG_Experience" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ExperienceID" Binding="{Binding ExperienceID}"/>
+                    <DataGridTextColumn Header="User" Binding="{Binding User}"/>
+                    <DataGridTextColumn Header="Position" Binding="{Binding Position}"/>
+                    <DataGridTextColumn Header="Company" Binding="{Binding Company}"/>
+                    <DataGridTextColumn Header="Localization" Binding="{Binding Localization}"/>
+                    <DataGridTextColumn Header="StartPayment" Binding="{Binding StartPayment}"/>
+                    <DataGridTextColumn Header="EndPayment" Binding="{Binding EndPayment}"/>
+                    <DataGridTextColumn Header="Responsibilities" Binding="{Binding Responsibilities}"/>
+                   
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Language" Click="Btn_DelLanguage_Clicked"/>
+            <DataGrid x:Name="DG_Language" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="LanguageID" Binding="{Binding LanguageID}"/>
+                    <DataGridTextColumn Header="UserID" Binding="{Binding UserID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Level" Binding="{Binding Level}"/>
+                  
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Link" Click="Btn_DelLink_Clicked"/>
+            <DataGrid x:Name="DG_Link" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="LinkID" Binding="{Binding LinkID}"/>
+                    <DataGridTextColumn Header="User" Binding="{Binding User}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Saved" Click="Btn_DelSaved_Clicked"/>
+            <DataGrid x:Name="DG_Saved" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="SavedID" Binding="{Binding SavedID}"/>
+                    <DataGridTextColumn Header="Company" Binding="{Binding Company}"/>
+                    <DataGridTextColumn Header="User" Binding="{Binding User}"/>
+                
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun Skill" Click="Btn_DelSkill_Clicked"/>
+            <DataGrid x:Name="DG_Skill" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="SkillID" Binding="{Binding SkillID}"/>
+                    <DataGridTextColumn Header="UserID" Binding="{Binding UserID}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                   
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun SubCategory" Click="Btn_DelSubCategory_Clicked"/>
+            <DataGrid x:Name="DG_SubCategory" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="SubCategoryID" Binding="{Binding SubCategoryID}"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                   
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Usun WorkingDays" Click="Btn_DelWorkingDays_Clicked"/>
+            <DataGrid x:Name="DG_WorkingDays" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="WorkingDaysID" Binding="{Binding WorkingDaysID}"/>
+                    <DataGridTextColumn Header="AnnouncmentID" Binding="{Binding AnnouncmentID}"/>
+                    <DataGridTextColumn Header="Monday" Binding="{Binding Monday}"/>
+                    <DataGridTextColumn Header="Tuesday" Binding="{Binding Tuesday}"/>
+                    <DataGridTextColumn Header="Wednesday" Binding="{Binding Wednesday}"/>
+                    <DataGridTextColumn Header="Thursday" Binding="{Binding Thursday}"/>
+                    <DataGridTextColumn Header="Friday" Binding="{Binding Friday}"/>
+                    <DataGridTextColumn Header="Saturday" Binding="{Binding Saturday}"/>
+                    <DataGridTextColumn Header="Sunday" Binding="{Binding Sunday}"/>
+
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

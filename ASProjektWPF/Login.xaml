@@ -47,7 +47,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
                 <Label Content="Login:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -55,7 +55,7 @@
                 <Label Grid.Row="1" Content="Haslo:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <PasswordBox x:Name="PsB_Password" Grid.Column="1" Grid.Row="1" Password=""/>
                 <CheckBox x:Name="Cb_RememberMe" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Zapamiętaj mnie"/>
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Vertical" Grid.Row="3" Grid.ColumnSpan="2">
                     <Button Content="Zaloguj się"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Login_Clicked"/>
                     <Button Content="Wejdz do aplikacji bez zalogowania"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_GoToApp_Clicked"/>
                     <Button Content="Zarejestruj się" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Register_Clicked"/>

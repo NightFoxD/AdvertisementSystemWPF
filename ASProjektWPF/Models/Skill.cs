@@ -11,6 +11,7 @@ namespace ASProjektWPF.Models
     {
         [PrimaryKey, AutoIncrement]
         public int SkillID { get; set; }
+        public int UserID { get; set; }
         public string? Name { get; set; }
     }
 }

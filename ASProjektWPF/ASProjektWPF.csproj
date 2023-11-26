@@ -26,11 +26,12 @@
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\Uploads\" />
     <Folder Include="Files\" />
+    <Folder Include="Images\Uploads\" />
   </ItemGroup>
 
 </Project>
