@@ -28,8 +28,22 @@ namespace ASProjektWPF
         }
         public async void GetInformations()
         {
-            DG_UserData.ItemsSource = await App.DataAccess.GetUserDataList();
+            DG_AccountType.ItemsSource = await App.DataAccess.GetAccountTypeList();
+            DG_Announcment.ItemsSource = await App.DataAccess.GetAnnouncmentList();
+            DG_Application.ItemsSource = await App.DataAccess.GetApplicationList();
+            DG_Category.ItemsSource = await App.DataAccess.GetCategoryList();
+            DG_Company.ItemsSource = await App.DataAccess.GetCompanyList();
+            DG_Education.ItemsSource = await App.DataAccess.GetEducationList();
+            DG_Experience.ItemsSource = await App.DataAccess.GetExperienceList();
+            DG_Language.ItemsSource = await App.DataAccess.GetLanguageList();
+            DG_Link.ItemsSource = await App.DataAccess.GetLinkList();
+            DG_Saved.ItemsSource = await App.DataAccess.GetSavedList();
+            DG_Skill.ItemsSource = await App.DataAccess.GetSkillList();
+            DG_SubCategory.ItemsSource = await App.DataAccess.GetSubcategoryList();
             DG_User.ItemsSource = await App.DataAccess.GetUserList();
+            DG_UserData.ItemsSource = await App.DataAccess.GetUserDataList();
+            DG_WorkingDays.ItemsSource = await App.DataAccess.GetWorkingDaysList();
+            
         }
 
         private void Refresh(object sender, RoutedEventArgs e)

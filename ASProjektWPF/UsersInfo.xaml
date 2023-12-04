@@ -115,7 +115,7 @@
             <DataGrid x:Name="DG_Experience" AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ExperienceID" Binding="{Binding ExperienceID}"/>
-                    <DataGridTextColumn Header="User" Binding="{Binding User}"/>
+                    <DataGridTextColumn Header="User" Binding="{Binding UserID}"/>
                     <DataGridTextColumn Header="Position" Binding="{Binding Position}"/>
                     <DataGridTextColumn Header="Company" Binding="{Binding Company}"/>
                     <DataGridTextColumn Header="Localization" Binding="{Binding Localization}"/>

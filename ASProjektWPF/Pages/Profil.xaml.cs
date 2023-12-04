@@ -48,7 +48,6 @@ namespace ASProjektWPF.Pages
             }
             CheckAll();
             LoadInformations();
-            LV_UserExperience.ItemsSource = experienceList;
         }
         private List<string> GetListOfCountries()
         {
@@ -69,7 +68,7 @@ namespace ASProjektWPF.Pages
         public async void GetUserData()
         {
             user = await App.DataAccess.GetUserInformations(userData);
-            experienceList = await App.DataAccess.GetExperienceList(user);
+            experienceList = App.DataAccess.GetExperienceList(user);
         }
         public void LoadInformations()
         {
@@ -78,6 +77,7 @@ namespace ASProjektWPF.Pages
             EnDis_TB_UserInformatoins(false);
             Load_ContactData_Form();
             EnDis_TB_ContactData(false);
+            Load_UserExperienceWorkList();
         }
         public void CheckAll()
         {
@@ -301,6 +301,10 @@ namespace ASProjektWPF.Pages
             EnDis_TB_ContactData(false);
            // VisibleCollapseContactData(false);
         }
+        public void Load_UserExperienceWorkList()
+        {
+            LV_UserExperience.ItemsSource = experienceList;
+        }
         public void EnDis_TB_ExperienceWorktData(bool value, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
         {
             if (value)
@@ -323,29 +327,28 @@ namespace ASProjektWPF.Pages
             }
         }
         
-        private void Load_OneExperienceWork_Form(Experience ex,TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
+        //private void Load_OneExperienceWork_Form(Experience ex,TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
+        //{
+        //    position.Text = ex.Position;
+        //    Localization.Text = ex.Localization;
+        //    Company.Text = ex.Company;
+        //    startPaymentDate.SelectedDate = ex.StartPayment;
+        //    endPaymentDate.SelectedDate = ex.StartPayment;
+        //    responsibilities.Text = ex.Responsibilities;
+        //}
+        //private void Update_OneExperienceWork_Form(Experience ex, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
+        //{
+        //    ex.Position = position.Text;
+        //    ex.Localization = Localization.Text;
+        //    ex.Company = Company.Text;
+        //    ex.StartPayment = startPaymentDate.SelectedDate;
+        //    ex.StartPayment = endPaymentDate.SelectedDate;
+        //    ex.Responsibilities = responsibilities.Text;
+        //    App.DataAccess.Update_Experience(ex);
+        //    experienceList[experienceList.FindIndex(item => item.ExperienceID == ex.ExperienceID)] = ex;
+        //}
+        private void Btn_ExperienceWork_AddNew_Form_Click(object sender, RoutedEventArgs e)
         {
-            position.Text = ex.Position;
-            Localization.Text = ex.Localization;
-            Company.Text = ex.Company;
-            startPaymentDate.SelectedDate = ex.StartPayment;
-            endPaymentDate.SelectedDate = ex.StartPayment;
-            responsibilities.Text = ex.Responsibilities;
-        }
-        private void Update_OneExperienceWork_Form(Experience ex, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
-        {
-            ex.Position = position.Text;
-            ex.Localization = Localization.Text;
-            ex.Company = Company.Text;
-            ex.StartPayment = startPaymentDate.SelectedDate;
-            ex.StartPayment = endPaymentDate.SelectedDate;
-            ex.Responsibilities = responsibilities.Text;
-            App.DataAccess.Update_Experience(ex);
-            experienceList[experienceList.FindIndex(item => item.ExperienceID == ex.ExperienceID)] = ex;
-        }
-        private void Btn_ExperienceWork_AddNew_Click(object sender, RoutedEventArgs e)
-        {
-
             G_ExperienceWork.Visibility = Visibility.Visible;
             TxtB_ExperienceWork_Info.Visibility = Visibility.Collapsed;
         }
@@ -356,13 +359,31 @@ namespace ASProjektWPF.Pages
             TxtB_ExperienceWork_Info.Visibility = Visibility.Visible;
         }
 
-        private void Btn_ExperienceWork_Save_Click(object sender, RoutedEventArgs e)
+        private void Btn_ExperienceWork_AddNew_Click(object sender, RoutedEventArgs e)
         {
+            Experience newExperience = new Experience();
             G_ExperienceWork.Visibility = Visibility.Collapsed;
             TxtB_ExperienceWork_Info.Visibility = Visibility.Visible;
+            newExperience.Position = TxtB_Position.Text;
+            newExperience.Localization = TxtB_Lokalization.Text;
+            newExperience.Company = TxtB_Company.Text;
+            newExperience.StartPayment = DP_startPaymentDate.SelectedDate;
+            newExperience.EndPayment = DP_endPaymentDate.SelectedDate;
+            newExperience.Responsibilities = TxtB_Responsibilities.Text;
+            TxtB_Position.Text ="";
+            TxtB_Lokalization.Text = "";
+            TxtB_Company.Text = "";
+            DP_startPaymentDate.SelectedDate = null;
+            DP_endPaymentDate.SelectedDate = null;
+            TxtB_Responsibilities.Text = "";
+            App.DataAccess.Add_Experience(newExperience,user);
+            Load_UserExperienceWorkList();
         }
+        private void Btn_ExperienceWork_Update_Click(object sender, RoutedEventArgs e)
+        {
 
-        private void Btn_Experience_AddNew_Click(object sender, RoutedEventArgs e)
+        }
+            private void Btn_Experience_AddNew_Click(object sender, RoutedEventArgs e)
         {
             G_Experience.Visibility = Visibility.Visible;
             TxtB_Experience_Info.Visibility = Visibility.Collapsed;
