@@ -31,10 +31,6 @@ namespace ASProjektWPF.Pages
         UserData userData;
         User user;
         List<string> countries = new List<string>();
-        List<string> months = new List<string>();
-        List<string> days = new List<string>();
-        List<string> years = new List<string>();
-        List<string> imagesToDel = new List<string>(); 
         public Profil(Frame CurrentPage, UserData LoginUserData)
         {
             InitializeComponent();
@@ -46,7 +42,6 @@ namespace ASProjektWPF.Pages
             {
                 CB_Country.Items.Add(country);
             }
-            CheckAll();
             LoadInformations();
         }
         
@@ -79,26 +74,8 @@ namespace ASProjektWPF.Pages
             EnDis_TB_ContactData(false);
             Load_UserExperienceWorkList();
             Load_UserEducationList();
-        }
-        public void CheckAll()
-        {
-            CheckUserSkills();
-            CheckUserLinks();
-        }
-        
-        public void CheckUserSkills()
-        {
-            if (Lv_UserSkills.Items.Count == 0)
-            {
-                Lv_UserSkills.Visibility = Visibility.Collapsed;
-            }
-        }
-        public void CheckUserLinks()
-        {
-            if (Lv_UserLinks.Items.Count == 0)
-            {
-                Lv_UserLinks.Visibility = Visibility.Collapsed;
-            }
+            Load_UserLanguageList();
+            Load_UserLinkList();
         }
         public void VisibleCollapseUserData(bool VisCol)
         {
@@ -293,7 +270,7 @@ namespace ASProjektWPF.Pages
         public async void Load_UserExperienceWorkList()
         {
             LV_UserExperience.ItemsSource = await App.DataAccess.GetExperienceList(user);
-            if ( LV_UserExperience.ItemsSource is null || LV_UserExperience.Items.Count<1)
+            if (LV_UserExperience.ItemsSource is null || LV_UserExperience.Items.Count < 1)
             {
                 TxtB_ExperienceWork_Info.Visibility = Visibility.Visible;
             }
@@ -326,7 +303,6 @@ namespace ASProjektWPF.Pages
         private void Btn_ExperienceWork_AddNew_Form_Click(object sender, RoutedEventArgs e)
         {
             G_ExperienceWork.Visibility = Visibility.Visible;
-            TxtB_ExperienceWork_Info.Visibility = Visibility.Collapsed;
             Load_UserExperienceWorkList();
         }
 
@@ -442,25 +418,39 @@ namespace ASProjektWPF.Pages
         }
         private async void Load_UserLanguageList()
         {
-
+            LV_UserLeagueList.ItemsSource = await App.DataAccess.GetLanguageList(user);
+            if (LV_UserLeagueList.ItemsSource is null || LV_UserLeagueList.Items.Count < 1)
+            {
+                Lb_LanguageInfo.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Lb_LanguageInfo.Visibility = Visibility.Collapsed;
+            }
         }
         private void Btn_Language_AddForm_Click(object sender, RoutedEventArgs e)
         {
             SP_Language_Add.Visibility = Visibility.Visible;
             Btn_Language_Edit.Visibility = Visibility.Collapsed;
-            Lb_LanguageInfo.Visibility = Visibility.Collapsed;
+            Load_UserLanguageList();
         }
 
         private void Btn_Language_Cancel_Click(object sender, RoutedEventArgs e)
         {
             SP_Language_Add.Visibility = Visibility.Collapsed;
             Btn_Language_Edit.Visibility = Visibility.Visible;
+            Load_UserLanguageList();
         }
 
         private void Btn_Language_Add_Click(object sender, RoutedEventArgs e)
         {
             SP_Language_Add.Visibility = Visibility.Collapsed;
             Btn_Language_Edit.Visibility = Visibility.Visible;
+            Language newLanguage = new Language();
+            newLanguage.Name = CB_LanguageSelected.Text;
+            newLanguage.Level = CB_LanguageLevel.Text;
+            App.DataAccess.Add_Language(newLanguage,user);
+            Load_UserLanguageList();
         }
         private void Btn_Language_Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -473,25 +463,66 @@ namespace ASProjektWPF.Pages
             {
                 App.DataAccess.Delete_Language(deleteLanguage);
             }
+            Load_UserLanguageList();
         }
         private void Btn_Language_Edit_Click(object sender, RoutedEventArgs e)
         {
-            Education? updateEducation = ((Button)sender).CommandParameter as Education;
-            if (updateEducation == null)
+            Language? updateLanguage = ((Button)sender).CommandParameter as Language;
+            if (updateLanguage == null)
             {
                 MessageBox.Show("error", "Wystąpił błąd!");
             }
             else
             {
-                CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateEducation));
+                CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateLanguage));
+            }
+        }
+        private async void Load_UserSkillList()
+        {
+            IC_UserSkills.ItemsSource = await App.DataAccess.GetSkillList(user);
+            if (IC_UserSkills.ItemsSource is null || LV_UserLeagueList.Items.Count < 1)
+            {
+                Lb_LanguageInfo.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Lb_LanguageInfo.Visibility = Visibility.Collapsed;
             }
         }
         private void Btn_UserSkillsAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            Skill newSkill = new Skill();
+            newSkill.Name = TxtB_SkillName.Text;
+            App.DataAccess.Add_Skills(newSkill,user);
+            TxtB_SkillName.Text = "";
+            Load_UserSkillList();
         }
-
-        private void Btn_Link_Add_Click(object sender, RoutedEventArgs e)
+        private void Btn_Skill_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Skill? deleteSkill = ((Button) sender).CommandParameter as Skill;
+            if (deleteSkill == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                App.DataAccess.Delete_Skills(deleteSkill);
+            }
+            Load_UserSkillList();
+        }
+        private async void Load_UserLinkList()
+        {
+            Lv_UserLinknList.ItemsSource = await App.DataAccess.GetLinkList(user);
+            if (Lv_UserLinknList.ItemsSource is null || Lv_UserLinknList.Items.Count < 1)
+            {
+                Tb_Link_Info.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Tb_Link_Info.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void Btn_Link_AddForm_Click(object sender, RoutedEventArgs e)
         {
             G_AddLink.Visibility = Visibility.Visible;
             Tb_Link_Info.Visibility = Visibility.Collapsed;
@@ -499,30 +530,43 @@ namespace ASProjektWPF.Pages
         private void Btn_Link_Cancel_Click(object sender, RoutedEventArgs e)
         {
             G_AddLink.Visibility = Visibility.Collapsed;
-            if (Lv_UserLinks.Items.Count != 0)
-            {
-                Tb_Link_Info.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Tb_Link_Info.Visibility = Visibility.Visible;
-            }
+            Load_UserLinkList();
         }
 
-        private void Btn_Link_Save_Click(object sender, RoutedEventArgs e)
+        private void Btn_Link_AddNew_Click(object sender, RoutedEventArgs e)
         {
             G_AddLink.Visibility = Visibility.Collapsed;
-            if (Lv_UserLinks.Items.Count != 0)
+            Link newLink = new Link();
+            newLink.Name = TxtB_URL.Text;
+            newLink.Type = CB_Type.Text;
+            App.DataAccess.Add_Link(newLink,user);
+            Load_UserLinkList();
+        }
+        private void Btn_Link_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Link? deleteLink = ((Button)sender).CommandParameter as Link;
+            if (deleteLink == null)
             {
-                Tb_Link_Info.Visibility = Visibility.Collapsed;
+                MessageBox.Show("error", "Wystąpił błąd!");
             }
             else
             {
-                Tb_Link_Info.Visibility = Visibility.Visible;
+                App.DataAccess.Delete_Link(deleteLink);
             }
-            CheckUserLinks();
+            Load_UserLinkList();
         }
-
+        private void Btn_Link_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Link? updateLink = ((Button)sender).CommandParameter as Link;
+            if (updateLink == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateLink));
+            }
+        }
         private void Btn_AddPfp_Click(object sender, RoutedEventArgs e)
         {
             Picture newPfp = PictureControl.GetPicture("Uploads");

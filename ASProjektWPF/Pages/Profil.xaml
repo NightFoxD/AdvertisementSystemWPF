@@ -388,13 +388,13 @@
                             </Grid.RowDefinitions>
                             <Label Content="Języki"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                                <Button x:Name="Btn_Language_Edit" Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Language_Edit_Click"/>
+                                <Button x:Name="Btn_Language_Edit" Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Language_AddForm_Click"/>
                             </StackPanel>
                         </Grid>
                     </Border>
 
                     <Border Padding="5">
-                        <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical">
                             <TextBlock x:Name="Lb_LanguageInfo" TextWrapping="Wrap" Text="Określ jakie języki znasz najlepiej i wskaż poziom ich znajomości. Pamiętaj, że możesz zostać poproszony o zaprezentowanie znajomości języka na rozmowie kwalifikacyjnej."/>
                             <StackPanel x:Name="SP_Language_Add" Visibility="Collapsed">
                                 <Grid>
@@ -415,10 +415,10 @@
                                 </Grid>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                                     <Button x:Name="Btn_Language_Cancel" Content="Annuluj" HorizontalAlignment="Right" Background="White" Foreground="gray" VerticalAlignment="Center" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Language_Cancel_Click"/>
-                                    <Button x:Name="Btn_Language_Save" Content="Zapisz" HorizontalAlignment="Right" Background="#414141" Foreground="White" VerticalAlignment="Center" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Language_Save_Click"/>
+                                    <Button x:Name="Btn_Language_Add" Content="Dodaj" HorizontalAlignment="Right" Background="#414141" Foreground="White" VerticalAlignment="Center" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Language_Add_Click"/>
                                 </StackPanel>
                             </StackPanel>
-                            <ListView>
+                            <ListView x:Name="LV_UserLeagueList" Background="Transparent" BorderThickness="0">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="IsHitTestVisible" Value="True"/>
@@ -435,7 +435,27 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        
+                                        <Border  BorderBrush="#bfbfbf" Background="#dadada" BorderThickness="1" Margin="4" CornerRadius="5">
+                                            <StackPanel Margin="10">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                        <TextBlock Text="{Binding Name, StringFormat='{}{0}:'}" Foreground="Black" />
+                                                        <TextBlock Text="{Binding Level}" Foreground="Black" />
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                        <Button Content="Usuń" HorizontalAlignment="Right" Background="White" Foreground="Red" Margin="0,0,10,0" Style="{StaticResource ProfileDeleteButtonTheme}" Click="Btn_Language_Delete_Click" CommandParameter="{Binding .}"/>
+                                                        <Button Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="Gray" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Language_Edit_Click" CommandParameter="{Binding .}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Border>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -466,12 +486,36 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBox Text="Nazwa umiejętności, np. Microsoft World" Style="{StaticResource  ProfileTextBox}"/>
+                                <TextBox x:Name="TxtB_SkillName" Text="" Style="{StaticResource  ProfileTextBox}"/>
                                 <Button Grid.Column="1" Content="Dodaj" Foreground="White" Background="#414141" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_UserSkillsAdd_Click"/>
                             </Grid>
-                            <ListView x:Name="Lv_UserSkills">
+                            <WrapPanel Background="Transparent">
+                                <ItemsControl x:Name="IC_UserSkills">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="50"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border BorderBrush="Black" BorderThickness="1">
+                                                    <TextBlock Text="{Binding Name}" Padding="5"/>
+                                                </Border>
+                                                <Button x:Name="Btn_Skill_Delete" Grid.Column="1" Content="Usuń" Background="White" Foreground="Red" Margin="0,0,10,0" Style="{StaticResource ProfileDeleteButtonTheme}" Click="Btn_Skill_Delete_Click" CommandParameter="{Binding .}"/>
+                                            </Grid>
 
-                            </ListView>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </WrapPanel>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -495,7 +539,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Label Content="Linki"/>
-                            <Button x:Name="Btn_Link_Add" Grid.Column="1" Content="Dodaj nowy" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Link_Add_Click"/>
+                            <Button x:Name="Btn_Link_AddForm" Grid.Column="1" Content="Dodaj nowy" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Link_AddForm_Click"/>
                         </Grid>
                     </Border>
                     <Border Padding="5">
@@ -513,21 +557,59 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Label Content="Adres URL"/>
-                                <TextBox Grid.Column="1" Text="Adres URL" Style="{StaticResource ProfileTextBox}"/>
+                                <TextBox x:Name="TxtB_URL" Grid.Column="1" Text="Adres URL" Style="{StaticResource ProfileTextBox}"/>
                                 <Label Grid.Row="1" Content="Typ linku"/>
-                                <ComboBox Grid.Column="1" Grid.Row="1" SelectedIndex="0">
+                                <ComboBox x:Name="CB_Type" Grid.Column="1" Grid.Row="1" SelectedIndex="0">
                                     <ComboBoxItem>(Wybierz)</ComboBoxItem>
+                                    <ComboBoxItem>(Wybierz)2</ComboBoxItem>
                                 </ComboBox>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" >
                                     <Button x:Name="Btn_Link_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Link_Cancel_Click"/>
-                                    <Button x:Name="Btn_Link_Save" Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Link_Save_Click"/>
+                                    <Button x:Name="Btn_Link_Add" Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Link_AddNew_Click"/>
                                 </StackPanel>
                             </Grid>
-                            <ListView x:Name="Lv_UserLinks">
-
-                            </ListView>
+                            <ListView x:Name="Lv_UserLinknList" Background="Transparent" BorderThickness="0">
+                                <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="IsHitTestVisible" Value="True"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ListViewItem">
+                                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <ContentPresenter/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border  BorderBrush="#bfbfbf" Background="#dadada" BorderThickness="1" Margin="4" CornerRadius="5">
+                                                <StackPanel Margin="10">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="100"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                            <TextBlock Text="{Binding Type, StringFormat='{}{0}:'}" Foreground="Black" />
+                                                            <TextBlock Text="{Binding Name}" Foreground="Black" />
+                                                        </StackPanel>
+                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                        <Button Content="Usuń" HorizontalAlignment="Right" Background="White" Foreground="Red" Margin="0,0,10,0" Style="{StaticResource ProfileDeleteButtonTheme}" Click="Btn_Link_Delete_Click" CommandParameter="{Binding .}"/>
+                                                        <Button Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="Gray" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Link_Edit_Click" CommandParameter="{Binding .}"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                         </StackPanel>
-
                     </Border>
                 </StackPanel>
             </Border>

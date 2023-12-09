@@ -37,6 +37,16 @@ namespace ASProjektWPF.Pages
                 item = (Education)updateItem;
                 G_Education.DataContext = ((Education)item);
                 G_Education.Visibility = Visibility.Visible;
+            }else if(updateItem.GetType() == typeof(Language))
+            {
+                item = (Language)updateItem;
+                G_Language.DataContext = ((Language)item);
+                G_Language.Visibility = Visibility.Visible;
+            }else if(updateItem.GetType() == typeof(Link))
+            {
+                item = (Link)updateItem;
+                G_Link.DataContext = ((Link)item);
+                G_Link.Visibility = Visibility.Visible;
             }
             
         }
@@ -54,7 +64,7 @@ namespace ASProjektWPF.Pages
                 ((Experience)item).StartPayment = DP_StartPayment.SelectedDate;
                 ((Experience)item).EndPayment = DP_EndPayment.SelectedDate;
                 ((Experience)item).Responsibilities = TxtB_Responsibilities.Text;
-                App.DataAccess.Update_Experience(((Experience)item));
+                App.DataAccess.Update_Experience((Experience)item);
             }else if (item.GetType() == typeof(Education))
             {
                 ((Education)item).ShoolName = TxtB_Education_ShoolName.Text;
@@ -62,7 +72,17 @@ namespace ASProjektWPF.Pages
                 ((Education)item).Direction = TxtB_Education_Direction.Text;
                 ((Education)item).StartPeriod = DP_Education_StartPeriod.SelectedDate;
                 ((Education)item).EndPeriod = DP_Education_EndPeriod.SelectedDate;
-                App.DataAccess.Update_Education(((Education)item));
+                App.DataAccess.Update_Education((Education)item);
+            }else if(item.GetType() == typeof(Experience))
+            {
+                ((Language)item).Name = CB_LanguageSelected.Text;
+                ((Language)item).Level = CB_LanguageLevel.Text;
+                App.DataAccess.Update_Language((Language)item);
+            }else if(item.GetType() == typeof(Link))
+            {
+                ((Link)item).Name = TxtB_URL.Text;
+                ((Link)item).Type = CB_Type.Text;
+                App.DataAccess.Update_Link((Link)item);
             }
             currentPage.GoBack();
         }

@@ -144,22 +144,22 @@ namespace ASProjektWPF.Classes
         {
             return Task.FromResult(_database.Table<Education>().Where(item => item.UserID == user.UserID).ToListAsync().Result);
         }
-        public Task Add_Education(Education education)
+        public int Add_Education(Education education)
         {
-            return _database.InsertAsync(education);
+            return _database.InsertAsync(education).Result;
         }
-        public Task<int> Add_Education(Education education, User user)
+        public int Add_Education(Education education, User user)
         {
             education.UserID = user.UserID;
-            return _database.InsertAsync(education);
+            return _database.InsertAsync(education).Result;
         }
         public Task Update_Education(Education education)
         {
             return _database.UpdateAsync(education);
         }
-        public Task Delete_Education(Education education)
+        public int Delete_Education(Education education)
         {
-            return _database.DeleteAsync(education);
+            return _database.DeleteAsync(education).Result;
         }
         //--------- Experience ---------//
         public Task<List<Experience>> GetExperienceList()
@@ -174,52 +174,70 @@ namespace ASProjektWPF.Classes
         {
             return Task.FromResult(_database.Table<Experience>().Where(experience => experience.UserID == id).ToListAsync().Result.First());
         }
-        public Task<int> Add_Experience(Experience experience,User user)
+        public int Add_Experience(Experience experience,User user)
         {
             experience.UserID = user.UserID;
-            return _database.InsertAsync(experience);
+            return _database.InsertAsync(experience).Result;
         }
         public Task Update_Experience(Experience experience)
         {
             return _database.UpdateAsync(experience);
         }
-        public Task Delete_Experience(Experience experience)
+        public int Delete_Experience(Experience experience)
         {
-            return _database.DeleteAsync(experience);
+            return _database.DeleteAsync(experience).Result;
         }
         //--------- Language ---------//
         public Task<List<Language>> GetLanguageList()
         {
             return _database.Table<Language>().ToListAsync();
         }
-        public Task Add_Language(Language language)
+        public Task<List<Language>> GetLanguageList(User user)
         {
-            return _database.InsertAsync(language);
+            return Task.FromResult(_database.Table<Language>().Where(item => item.UserID == user.UserID).ToListAsync().Result);
+        }
+        public int Add_Language(Language language)
+        {
+            return _database.InsertAsync(language).Result;
+        }
+        public int Add_Language(Language language,User user)
+        {
+            language.UserID = user.UserID;
+            return _database.InsertAsync(language).Result;
         }
         public Task Update_Language(Language language)
         {
             return _database.UpdateAsync(language);
         }
-        public Task Delete_Language(Language language)
+        public int Delete_Language(Language language)
         {
-            return _database.DeleteAsync(language);
+            return _database.DeleteAsync(language).Result;
         }
         //--------- Link ---------//
         public Task<List<Link>> GetLinkList()
         {
             return _database.Table<Link>().ToListAsync();
         }
+        public Task<List<Link>> GetLinkList(User user)
+        {
+            return Task.FromResult(_database.Table<Link>().Where(item => item.User == user.UserID).ToListAsync().Result);
+        }
         public Task Add_Link(Link link)
         {
             return _database.InsertAsync(link);
+        }
+        public int Add_Link(Link link,User user)
+        {
+            link.User = user.UserID;
+            return _database.InsertAsync(link).Result;
         }
         public Task Update_Link(Link link)
         {
             return _database.UpdateAsync(link);
         }
-        public Task Delete_Link(Link link)
+        public int Delete_Link(Link link)
         {
-            return _database.DeleteAsync(link);
+            return _database.DeleteAsync(link).Result;
         }
         //--------- Saved ---------//
         public Task<List<Saved>> GetSavedList()
@@ -243,9 +261,18 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<Skill>().ToListAsync();
         }
-        public Task Add_Skills(Skill skill)
+        public Task<List<Skill>> GetSkillList(User user)
         {
-            return _database.InsertAsync(skill);
+            return Task.FromResult(_database.Table<Skill>().Where(item => item.UserID == user.UserID).ToListAsync().Result);
+        }
+        public int Add_Skills(Skill skill)
+        {
+            return _database.InsertAsync(skill).Result;
+        }
+        public int Add_Skills(Skill skill,User user)
+        {
+            skill.UserID = user.UserID;
+            return _database.InsertAsync(skill).Result;
         }
         public Task Update_Skills(Skill skill)
         {
