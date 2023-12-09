@@ -34,6 +34,7 @@ namespace ASProjektWPF
         {
             InitializeComponent();
             GetUser(Login);
+            
             RB_Register.Visibility = Visibility.Collapsed;
             RB_Login.Visibility = Visibility.Collapsed;
         }

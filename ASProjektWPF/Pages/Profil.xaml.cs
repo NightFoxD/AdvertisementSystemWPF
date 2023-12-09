@@ -29,7 +29,6 @@ namespace ASProjektWPF.Pages
         Frame CurrentPage;
         UserData userData;
         User user;
-        List<Experience> experienceList = new List<Experience>();
         List<string> countries = new List<string>();
         List<string> months = new List<string>();
         List<string> days = new List<string>();
@@ -49,6 +48,7 @@ namespace ASProjektWPF.Pages
             CheckAll();
             LoadInformations();
         }
+        
         private List<string> GetListOfCountries()
         {
             List<string> countries = new List<string>();
@@ -68,7 +68,6 @@ namespace ASProjektWPF.Pages
         public async void GetUserData()
         {
             user = await App.DataAccess.GetUserInformations(userData);
-            experienceList = App.DataAccess.GetExperienceList(user);
         }
         public void LoadInformations()
         {
@@ -301,9 +300,9 @@ namespace ASProjektWPF.Pages
             EnDis_TB_ContactData(false);
            // VisibleCollapseContactData(false);
         }
-        public void Load_UserExperienceWorkList()
+        public async void Load_UserExperienceWorkList()
         {
-            LV_UserExperience.ItemsSource = experienceList;
+            LV_UserExperience.ItemsSource = await App.DataAccess.GetExperienceList(user);
         }
         public void EnDis_TB_ExperienceWorktData(bool value, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
         {
@@ -326,27 +325,6 @@ namespace ASProjektWPF.Pages
                 responsibilities.IsEnabled = false;
             }
         }
-        
-        //private void Load_OneExperienceWork_Form(Experience ex,TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
-        //{
-        //    position.Text = ex.Position;
-        //    Localization.Text = ex.Localization;
-        //    Company.Text = ex.Company;
-        //    startPaymentDate.SelectedDate = ex.StartPayment;
-        //    endPaymentDate.SelectedDate = ex.StartPayment;
-        //    responsibilities.Text = ex.Responsibilities;
-        //}
-        //private void Update_OneExperienceWork_Form(Experience ex, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
-        //{
-        //    ex.Position = position.Text;
-        //    ex.Localization = Localization.Text;
-        //    ex.Company = Company.Text;
-        //    ex.StartPayment = startPaymentDate.SelectedDate;
-        //    ex.StartPayment = endPaymentDate.SelectedDate;
-        //    ex.Responsibilities = responsibilities.Text;
-        //    App.DataAccess.Update_Experience(ex);
-        //    experienceList[experienceList.FindIndex(item => item.ExperienceID == ex.ExperienceID)] = ex;
-        //}
         private void Btn_ExperienceWork_AddNew_Form_Click(object sender, RoutedEventArgs e)
         {
             G_ExperienceWork.Visibility = Visibility.Visible;
@@ -379,11 +357,85 @@ namespace ASProjektWPF.Pages
             App.DataAccess.Add_Experience(newExperience,user);
             Load_UserExperienceWorkList();
         }
-        private void Btn_ExperienceWork_Update_Click(object sender, RoutedEventArgs e)
+        private void Btn_ExperienceWork_Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            Experience? deleteExperience = ((Button)sender).CommandParameter as Experience;
+            if (deleteExperience == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                App.DataAccess.Delete_Experience(deleteExperience);
+            }
+            Load_UserExperienceWorkList();
         }
-            private void Btn_Experience_AddNew_Click(object sender, RoutedEventArgs e)
+        private void Btn_ExperienceWork_EditAccExperience_Click(object sender, RoutedEventArgs e)
+        {
+            Button editButton = (Button)sender;
+            Grid gridItem = (Grid)editButton.Tag;
+
+            if (gridItem != null)
+            {
+                gridItem.Visibility = Visibility.Collapsed;
+
+                Grid gridItemForm = (Grid)gridItem.Tag;
+                if (gridItemForm != null)
+                {
+                    gridItemForm.Visibility = Visibility.Visible;
+                }
+            }
+        }
+        private void Btn_ExperienceWork_Form_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Button cancelButton = (Button)sender;
+            Grid gridItemForm = (Grid)cancelButton.Tag;
+
+            if (gridItemForm != null)
+            {
+                gridItemForm.Visibility = Visibility.Collapsed;
+
+                Grid gridItem = (Grid)gridItemForm.Tag;
+                if (gridItem != null)
+                {
+                    gridItem.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void Btn_ExperienceWork_Form_Update_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanel editPanel = FindVisualChild<StackPanel>(sender as DependencyObject, "EditPanel");
+            if (editPanel != null)
+            {
+                TextBox positionTextBox = FindVisualChild<TextBox>(editPanel, "TxtB_Possition");
+                if (positionTextBox != null)
+                {
+                    string positionValue = positionTextBox.Text;
+                }
+            }
+        }
+        private T FindVisualChild<T>(DependencyObject parent, string name) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is T && (child as FrameworkElement).Name == name)
+                {
+                    return child as T;
+                }
+                else
+                {
+                    T result = FindVisualChild<T>(child, name);
+                    if (result != null)
+                        return result;
+                }
+            }
+
+            return null;
+        }
+        private void Btn_Experience_AddNew_Click(object sender, RoutedEventArgs e)
         {
             G_Experience.Visibility = Visibility.Visible;
             TxtB_Experience_Info.Visibility = Visibility.Collapsed;
