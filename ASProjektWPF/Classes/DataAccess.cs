@@ -140,8 +140,17 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<Education>().ToListAsync();
         }
+        public Task<List<Education>> GetEducationList(User user)
+        {
+            return Task.FromResult(_database.Table<Education>().Where(item => item.UserID == user.UserID).ToListAsync().Result);
+        }
         public Task Add_Education(Education education)
         {
+            return _database.InsertAsync(education);
+        }
+        public Task<int> Add_Education(Education education, User user)
+        {
+            education.UserID = user.UserID;
             return _database.InsertAsync(education);
         }
         public Task Update_Education(Education education)

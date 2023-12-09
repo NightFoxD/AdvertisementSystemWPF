@@ -23,7 +23,7 @@ namespace ASProjektWPF
             {
                 if (Database == null)
                 {
-                    Database = new DataAccess(Path.Combine(Directory.GetCurrentDirectory(), "AdvirtisementSystemWPF31.db3"));
+                    Database = new DataAccess(Path.Combine(Directory.GetCurrentDirectory(), "Advi4rtisementSystemWPF31.db3"));
                 }
                 return Database;
             }

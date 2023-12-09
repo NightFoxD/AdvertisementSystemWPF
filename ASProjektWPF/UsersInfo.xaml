@@ -103,7 +103,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="EducationID" Binding="{Binding EducationID}"/>
                     <DataGridTextColumn Header="ShoolName" Binding="{Binding ShoolName}"/>
-                    <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="UserID" Binding="{Binding UserID}"/>
                     <DataGridTextColumn Header="Level" Binding="{Binding Level}"/>
                     <DataGridTextColumn Header="Direction" Binding="{Binding Direction}"/>
                     <DataGridTextColumn Header="StartPeriod" Binding="{Binding StartPeriod}"/>

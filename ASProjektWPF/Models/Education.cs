@@ -11,10 +11,9 @@ namespace ASProjektWPF.Models
     {
         [PrimaryKey, AutoIncrement]
         public int EducationID { get; set; }
+        public int UserID { get; set; }
         [MaxLength(50)]
         public string? ShoolName { get; set; }
-        [MaxLength(50)]
-        public string? City { get; set; }
         [MaxLength(50)]
         public string? Level { get; set; }
         [MaxLength(75)]

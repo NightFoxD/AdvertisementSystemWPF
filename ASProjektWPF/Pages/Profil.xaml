@@ -101,7 +101,6 @@
                 </StackPanel>
             </Border>
             <!--llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
-
             <Border Margin="0,10,0,0" CornerRadius="5">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
@@ -124,7 +123,6 @@
                             <Button x:Name="Btn_ExperienceWork_AddNew" Grid.Column="1" Content="dodaj nowy" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_ExperienceWork_AddNew_Form_Click"/>
                         </Grid>
                     </Border>
-
                     <TextBlock x:Name="TxtB_ExperienceWork_Info" Text="Historia zatrudnienia to podstawowa informacja, na bazie której pracodawca oceni Twoje kompetencje. Koniecznie uzupełnij informacje o stanowiskach na których pracowałeś i opisz dokładnie wykonywane obowiązki." TextWrapping="Wrap" Padding="10"/>
                     <Grid x:Name="G_ExperienceWork" Visibility="Collapsed">
                         <Grid.Resources >
@@ -188,7 +186,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="#bfbfbf" Background="#dadada" BorderThickness="1" Margin="4" CornerRadius="5">
                                     <StackPanel Margin="10">
-                                        <Grid x:Name="Grid_Item" Tag="{Binding ElementName=Grid_Item_Form}">
+                                        <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
@@ -216,52 +214,13 @@
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Orientation="Horizontal">
                                                 <Button Content="Usuń" HorizontalAlignment="Right" Background="White" Foreground="Red" Margin="0,0,10,0" Style="{StaticResource ProfileDeleteButtonTheme}" Click="Btn_ExperienceWork_Delete_Click" CommandParameter="{Binding .}"/>
-                                                <Button Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="Gray" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_ExperienceWork_EditAccExperience_Click"/>
+                                                <Button Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="Gray" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_ExperienceWork_EditAccExperience_Click" CommandParameter="{Binding .}"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="1" Orientation="Horizontal">
                                                 <TextBlock Text="{Binding Company}"/>
                                                 <TextBlock Text="{Binding Localization, StringFormat=' ({0})'}" Foreground="Gray"/>
                                             </StackPanel>
                                             <TextBlock Text="{Binding Responsibilities}" Grid.ColumnSpan="3" Grid.Row="2"/>
-                                        </Grid>
-                                        <Grid x:Name="Grid_Item_Form" Visibility="Collapsed">
-                                            <Grid.Resources>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="Margin" Value="0,0,10,10"/>
-                                                </Style>
-                                            </Grid.Resources>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="100"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <Label Grid.Column="0" Grid.Row="0" Content="Stanowisko"/>
-                                            <TextBox  Grid.Column="1" Grid.Row="0" Text="{Binding Position}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
-                                            <Label Grid.Column="0" Grid.Row="1" Content="Lokalizacja"/>
-                                            <TextBox  Grid.Column="1" Grid.Row="1" Text="{Binding Localization}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
-                                            <Label Grid.Column="0" Grid.Row="2" Content="Nazwa firmy"/>
-                                            <TextBox  Grid.Column="1" Grid.Row="2" Text="{Binding Company}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
-                                            <Label Grid.Column="0" Grid.Row="3" Content="Okres"/>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3">
-                                                <Label Content="Od"/>
-                                                <DatePicker SelectedDate="{Binding StartPayment}"/>
-                                                <Label Content="Do"/>
-                                                <DatePicker SelectedDate="{Binding EndPayment}"/>
-                                            </StackPanel>
-                                            <Label Grid.Column="0" Grid.Row="4" Content="Obowiącki"/>
-                                            <TextBox  Text="{Binding Responsibilities}" Grid.Column="1" Grid.Row="4" Height="100" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                                <Button Content="Anuluj" Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_ExperienceWork_Form_Cancel_Click" Tag="{Binding ElementName=Grid_Item}"/>
-                                                <Button Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_ExperienceWork_Form_Update_Click" CommandParameter="{Binding .}"/>
-                                            </StackPanel>
                                         </Grid>
                                     </StackPanel>
                                 </Border>
@@ -289,11 +248,11 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Label Content="Wykształcenie"/>
-                            <Button x:Name="Btn_Experience_AddNew" Grid.Column="1" Content="dodaj nowy" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Experience_AddNew_Click"/>
+                            <Button x:Name="Btn_Education_AddNewForm" Grid.Column="1" Content="dodaj nowy" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Education_AddNewForm_Click"/>
                         </Grid>
                     </Border>
-                    <TextBlock x:Name="TxtB_Experience_Info" Text="Historia zatrudnienia to podstawowa informacja, na bazie której pracodawca oceni Twoje kompetencje. Koniecznie uzupełnij informacje o stanowiskach na których pracowałeś i opisz dokładnie wykonywane obowiązki." TextWrapping="Wrap" Padding="10"/>
-                    <Grid x:Name="G_Experience" Visibility="Collapsed">
+                    <TextBlock x:Name="TxtB_Education_Info" Text="Historia zatrudnienia to podstawowa informacja, na bazie której pracodawca oceni Twoje kompetencje. Koniecznie uzupełnij informacje o stanowiskach na których pracowałeś i opisz dokładnie wykonywane obowiązki." TextWrapping="Wrap" Padding="10"/>
+                    <Grid x:Name="G_Education" Visibility="Collapsed">
                         <Grid.Resources >
                             <Style TargetType="Border">
                                 <Setter Property="Margin" Value="0,0,10,10" />
@@ -313,17 +272,15 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="Nazwa szkoły"/>
-                        <TextBox Grid.Column="1" Grid.Row="0" Text="Nazwa szkoły" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
+                        <TextBox x:Name="TxtB_Education_ShoolName" Grid.Column="1" Grid.Row="0" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
                         <Label Grid.Column="0" Grid.Row="1" Content="Poziom wykrztałcenia"/>
-                        <ComboBox SelectedIndex="0" Grid.Column="1" Grid.Row="1">
+                        <ComboBox x:Name="CB_Education_Level" SelectedIndex="0" Grid.Column="1" Grid.Row="1">
                             <ComboBoxItem>Sth</ComboBoxItem>
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="2" Content="Kierunek"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" Text="Kierunek" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
-                        <Label Grid.Column="0" Grid.Row="3" Content="Specjalizacja"/>
-                        <TextBox Grid.Column="1" Grid.Row="3" Text="Specjalizacja" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
-                        <Label Grid.Column="0" Grid.Row="4" Content="Okres"/>
-                        <Grid Grid.Column="1" Grid.Row="4">
+                        <TextBox x:Name="TxtB_Education_Direction" Grid.Column="1" Grid.Row="2" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
+                        <Label Grid.Column="0" Grid.Row="3" Content="Okres"/>
+                        <Grid Grid.Column="1" Grid.Row="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -333,28 +290,77 @@
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="od"/>
-                                <ComboBox SelectedIndex="0">
-                                    <ComboBoxItem>(miesiąc)</ComboBoxItem>
-                                </ComboBox>
-                                <ComboBox SelectedIndex="0">
-                                    <ComboBoxItem>(rok)</ComboBoxItem>
-                                </ComboBox>
+                                <DatePicker x:Name="DP_Education_StartPeriod"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Grid.Column="1">
                                 <Label Content="Do"/>
-                                <ComboBox SelectedIndex="0">
-                                    <ComboBoxItem>(miesiąc)</ComboBoxItem>
-                                </ComboBox>
-                                <ComboBox SelectedIndex="0">
-                                    <ComboBoxItem>(rok)</ComboBoxItem>
-                                </ComboBox>
+                                <DatePicker x:Name="DP_Education_EndPeriod"/>
                             </StackPanel>
                         </Grid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                            <Button x:Name="Btn_Experience_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Experience_Cancel_Click"/>
-                            <Button x:Name="Btn_Experience_Save" Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Experience_Save_Click"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                            <Button x:Name="Btn_Education_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Education_Cancel_Click"/>
+                            <Button x:Name="Btn_Education_AddNew" Content="Dodaj" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Experience_AddNew_Click"/>
                         </StackPanel>
                     </Grid>
+                    <ListView x:Name="Lv_UserEducationList" Background="Transparent" BorderThickness="0">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="IsHitTestVisible" Value="True"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border  BorderBrush="#bfbfbf" Background="#dadada" BorderThickness="1" Margin="4" CornerRadius="5">
+                                    <StackPanel Margin="10">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="100"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <TextBlock Text="{Binding ShoolName}" Foreground="Black" />
+                                                <TextBlock Text="{Binding StartPeriod,StringFormat=' / {0:MMMM yyyy} - ', ConverterCulture='pl-PL'}" Foreground="Gray"/>
+                                                <TextBlock Foreground="Gray">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Text" Value="{Binding EndPeriod, StringFormat='{}{0:MMMM yyyy}', ConverterCulture='pl-PL'}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding EndPeriod,StringFormat='{}{0:}'}" Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="Obecnie"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <Button Content="Usuń" HorizontalAlignment="Right" Background="White" Foreground="Red" Margin="0,0,10,0" Style="{StaticResource ProfileDeleteButtonTheme}" Click="Btn_Education_Delete_Click" CommandParameter="{Binding .}"/>
+                                                <Button Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="Gray" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Education_Edit_Click" CommandParameter="{Binding .}"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Direction}"/>
+                                                <TextBlock Text="{Binding Level, StringFormat=' ({0})'}" Foreground="Gray"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </Border>
             <!--kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk-->
@@ -412,11 +418,27 @@
                                     <Button x:Name="Btn_Language_Save" Content="Zapisz" HorizontalAlignment="Right" Background="#414141" Foreground="White" VerticalAlignment="Center" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Language_Save_Click"/>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel x:Name="SP_UserLanguage">
-                                <ListView x:Name="Lv_UserLanguages">
-
-                                </ListView>
-                            </StackPanel>
+                            <ListView>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="IsHitTestVisible" Value="True"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackPanel>
                     </Border>
                 </StackPanel>

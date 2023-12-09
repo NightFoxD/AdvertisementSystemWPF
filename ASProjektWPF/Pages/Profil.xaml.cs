@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.Drawing;
+using System.Reflection;
 
 namespace ASProjektWPF.Pages
 {
@@ -77,25 +78,14 @@ namespace ASProjektWPF.Pages
             Load_ContactData_Form();
             EnDis_TB_ContactData(false);
             Load_UserExperienceWorkList();
+            Load_UserEducationList();
         }
         public void CheckAll()
         {
-            CheckUserLanguage();
             CheckUserSkills();
             CheckUserLinks();
         }
-        public void CheckUserLanguage()
-        {
-            if (Lv_UserLanguages.Items.Count == 0)
-            {
-                SP_UserLanguage.Visibility = Visibility.Collapsed;
-                Lb_LanguageInfo.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Lb_LanguageInfo.Visibility = Visibility.Collapsed;
-            }
-        }
+        
         public void CheckUserSkills()
         {
             if (Lv_UserSkills.Items.Count == 0)
@@ -303,6 +293,14 @@ namespace ASProjektWPF.Pages
         public async void Load_UserExperienceWorkList()
         {
             LV_UserExperience.ItemsSource = await App.DataAccess.GetExperienceList(user);
+            if ( LV_UserExperience.ItemsSource is null || LV_UserExperience.Items.Count<1)
+            {
+                TxtB_ExperienceWork_Info.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TxtB_ExperienceWork_Info.Visibility = Visibility.Collapsed;
+            }
         }
         public void EnDis_TB_ExperienceWorktData(bool value, TextBox position, TextBox Localization, TextBox Company, DatePicker startPaymentDate, DatePicker endPaymentDate, TextBox responsibilities)
         {
@@ -329,19 +327,19 @@ namespace ASProjektWPF.Pages
         {
             G_ExperienceWork.Visibility = Visibility.Visible;
             TxtB_ExperienceWork_Info.Visibility = Visibility.Collapsed;
+            Load_UserExperienceWorkList();
         }
 
         private void Btn_ExperienceWork_Cancel_Click(object sender, RoutedEventArgs e)
         {
             G_ExperienceWork.Visibility = Visibility.Collapsed;
-            TxtB_ExperienceWork_Info.Visibility = Visibility.Visible;
+            Load_UserExperienceWorkList() ;
         }
 
         private void Btn_ExperienceWork_AddNew_Click(object sender, RoutedEventArgs e)
         {
             Experience newExperience = new Experience();
             G_ExperienceWork.Visibility = Visibility.Collapsed;
-            TxtB_ExperienceWork_Info.Visibility = Visibility.Visible;
             newExperience.Position = TxtB_Position.Text;
             newExperience.Localization = TxtB_Lokalization.Text;
             newExperience.Company = TxtB_Company.Text;
@@ -372,88 +370,81 @@ namespace ASProjektWPF.Pages
         }
         private void Btn_ExperienceWork_EditAccExperience_Click(object sender, RoutedEventArgs e)
         {
-            Button editButton = (Button)sender;
-            Grid gridItem = (Grid)editButton.Tag;
-
-            if (gridItem != null)
+            Experience? updateExperience = ((Button)sender).CommandParameter as Experience;
+            if (updateExperience == null)
             {
-                gridItem.Visibility = Visibility.Collapsed;
-
-                Grid gridItemForm = (Grid)gridItem.Tag;
-                if (gridItemForm != null)
-                {
-                    gridItemForm.Visibility = Visibility.Visible;
-                }
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateExperience));
             }
         }
-        private void Btn_ExperienceWork_Form_Cancel_Click(object sender, RoutedEventArgs e)
+        public async void Load_UserEducationList()
         {
-            Button cancelButton = (Button)sender;
-            Grid gridItemForm = (Grid)cancelButton.Tag;
-
-            if (gridItemForm != null)
+            Lv_UserEducationList.ItemsSource = await App.DataAccess.GetEducationList(user);
+            if (Lv_UserEducationList.ItemsSource is null || Lv_UserEducationList.Items.Count < 1)
             {
-                gridItemForm.Visibility = Visibility.Collapsed;
-
-                Grid gridItem = (Grid)gridItemForm.Tag;
-                if (gridItem != null)
-                {
-                    gridItem.Visibility = Visibility.Visible;
-                }
+                TxtB_Education_Info.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TxtB_Education_Info.Visibility = Visibility.Collapsed;
             }
         }
-
-        private void Btn_ExperienceWork_Form_Update_Click(object sender, RoutedEventArgs e)
+        private void Btn_Education_AddNewForm_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel editPanel = FindVisualChild<StackPanel>(sender as DependencyObject, "EditPanel");
-            if (editPanel != null)
-            {
-                TextBox positionTextBox = FindVisualChild<TextBox>(editPanel, "TxtB_Possition");
-                if (positionTextBox != null)
-                {
-                    string positionValue = positionTextBox.Text;
-                }
-            }
+            G_Education.Visibility = Visibility.Visible;
+            TxtB_Education_Info.Visibility = Visibility.Collapsed;
+            Load_UserEducationList();
         }
-        private T FindVisualChild<T>(DependencyObject parent, string name) where T : DependencyObject
+        private void Btn_Education_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
-
-                if (child is T && (child as FrameworkElement).Name == name)
-                {
-                    return child as T;
-                }
-                else
-                {
-                    T result = FindVisualChild<T>(child, name);
-                    if (result != null)
-                        return result;
-                }
-            }
-
-            return null;
+            G_Education.Visibility = Visibility.Collapsed;
+            Load_UserEducationList();
         }
         private void Btn_Experience_AddNew_Click(object sender, RoutedEventArgs e)
         {
-            G_Experience.Visibility = Visibility.Visible;
-            TxtB_Experience_Info.Visibility = Visibility.Collapsed;
+            G_Education.Visibility = Visibility.Collapsed;
+            Education newEducation = new Education();
+            newEducation.ShoolName = TxtB_Education_ShoolName.Text;
+            newEducation.Level = CB_Education_Level.Text;
+            newEducation.Direction = TxtB_Education_Direction.Text;
+            newEducation.StartPeriod = DP_Education_StartPeriod.SelectedDate;
+            newEducation.EndPeriod = DP_Education_EndPeriod.SelectedDate;
+            App.DataAccess.Add_Education(newEducation,user);
+            Load_UserEducationList();
         }
-
-        private void Btn_Experience_Save_Click(object sender, RoutedEventArgs e)
+        private void Btn_Education_Delete_Click(object sender, RoutedEventArgs e)
         {
-            G_Experience.Visibility = Visibility.Collapsed;
-            TxtB_Experience_Info.Visibility = Visibility.Visible;
+            Education? updateEducation = ((Button)sender).CommandParameter as Education;
+            if (updateEducation == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                App.DataAccess.Delete_Education(updateEducation);
+            }
+            Load_UserEducationList();
         }
-
-        private void Btn_Experience_Cancel_Click(object sender, RoutedEventArgs e)
+        private void Btn_Education_Edit_Click(object sender, RoutedEventArgs e)
         {
-            G_Experience.Visibility = Visibility.Collapsed;
-            TxtB_Experience_Info.Visibility = Visibility.Visible;
+            Education? updateEducation = ((Button)sender).CommandParameter as Education;
+            if (updateEducation == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateEducation));
+            }
         }
+        private async void Load_UserLanguageList()
+        {
 
-        private void Btn_Language_Edit_Click(object sender, RoutedEventArgs e)
+        }
+        private void Btn_Language_AddForm_Click(object sender, RoutedEventArgs e)
         {
             SP_Language_Add.Visibility = Visibility.Visible;
             Btn_Language_Edit.Visibility = Visibility.Collapsed;
@@ -466,13 +457,35 @@ namespace ASProjektWPF.Pages
             Btn_Language_Edit.Visibility = Visibility.Visible;
         }
 
-        private void Btn_Language_Save_Click(object sender, RoutedEventArgs e)
+        private void Btn_Language_Add_Click(object sender, RoutedEventArgs e)
         {
             SP_Language_Add.Visibility = Visibility.Collapsed;
             Btn_Language_Edit.Visibility = Visibility.Visible;
-            CheckUserLanguage();
         }
-
+        private void Btn_Language_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Language? deleteLanguage = ((Button)sender).CommandParameter as Language;
+            if (deleteLanguage == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                App.DataAccess.Delete_Language(deleteLanguage);
+            }
+        }
+        private void Btn_Language_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Education? updateEducation = ((Button)sender).CommandParameter as Education;
+            if (updateEducation == null)
+            {
+                MessageBox.Show("error", "Wystąpił błąd!");
+            }
+            else
+            {
+                CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateEducation));
+            }
+        }
         private void Btn_UserSkillsAdd_Click(object sender, RoutedEventArgs e)
         {
 
