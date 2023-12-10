@@ -388,7 +388,7 @@
                             </Grid.RowDefinitions>
                             <Label Content="Języki"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                                <Button x:Name="Btn_Language_Edit" Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Language_AddForm_Click"/>
+                                <Button x:Name="Btn_Language_Edit" Content="Dodaj" HorizontalAlignment="Right" Background="White" Foreground="#a4a4a4" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Language_AddForm_Click"/>
                             </StackPanel>
                         </Grid>
                     </Border>
