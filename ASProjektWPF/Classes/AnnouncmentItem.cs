@@ -1,36 +1,25 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace ASProjektWPF.Models
+namespace ASProjektWPF.Classes
 {
-    public class Announcment
+    public class AnnouncmentItem
     {
-        [PrimaryKey, AutoIncrement]
         public int AnnouncmentID { get; set; }
         public int? CompanyID { get; set; }
         public int? CategoryID { get; set; }
         public int? SubCategoryID { get; set; }
-        [MaxLength(50)]
         public string? Name { get; set; }
-        [MaxLength(50)]
-        public string? PfpSource { get; set; }
-        [MaxLength(50)]
+        public ImageSource? PfpSource { get; set; }
         public string? PositionName { get; set; }
-        [MaxLength(50)]
         public string? PositionLevel { get; set; }
-        [MaxLength(50)]
         public string? ContractType { get; set; }
-        [MaxLength(50)]
         public string? WorkingTime { get; set; }
-        [MaxLength(50)]
         public string? WorkType { get; set; }
-        [MaxLength(50)]
         public string? WorkHours { get; set; }
         public DateTime? EndDate { get; set; }
         public string? Responsibilities { get; set; }

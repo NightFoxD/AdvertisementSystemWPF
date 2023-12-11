@@ -17,6 +17,7 @@ namespace ASProjektWPF.Classes
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<AccountType>().Wait();
+
             _database.CreateTableAsync<Announcment>().Wait();
             _database.CreateTableAsync<Models.Application>().Wait();
             _database.CreateTableAsync<Category>().Wait();

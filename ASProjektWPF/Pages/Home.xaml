@@ -5,10 +5,197 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ASProjektWPF.Pages"
       mc:Ignorable="d" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
 
-    <Grid>
-        <Label Content="Text"/>
-    </Grid>
+    <ScrollViewer>
+        <StackPanel Margin="0,120,0,120">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,120,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Padding="10" BorderThickness="1" Background="White" CornerRadius="5">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.ColumnSpan="3" BorderBrush="Black" Background="#dadada" BorderThickness="1,1,0,1" CornerRadius="5,0,0,5">
+                                <TextBox x:Name="SearchBar" Background="#dadada" BorderThickness="0" Margin="3,0,0,0" VerticalContentAlignment="Center"/>
+                            </Border>
+                            <Border Grid.Column="3" BorderBrush="Black" Background="#dadada" BorderThickness="1">
+                                <ComboBox BorderThickness="0" BorderBrush="#dadada" Background="#dadada">
+                                    <ComboBoxItem>
+
+                                    </ComboBoxItem>
+                                </ComboBox>
+                            </Border>
+                            <Border Grid.Column="4" BorderBrush="Black" Background="#dadada" BorderThickness="0,1,1,1" CornerRadius="0,5,5,0">
+                                <TextBox x:Name="Localization" Background="#dadada" BorderThickness="0" Padding="10" Margin="0,0,3,0" VerticalContentAlignment="Center"/>
+                            </Border>
+                            <Border Grid.Row="1" Margin="0,10,0,0" Padding="10">
+                                <Grid>
+                                    <Button x:Name="Btn_PositionLevel" Content="Poziom stanowiska" Click="Button_Click"/>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Padding="10">
+                                <Grid>
+                                    <Button x:Name="Btn_ContractType" Content="Rodzaj umowy" Click="Button_Click"/>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="2" Margin="0,10,0,0" Padding="10">
+                                <Grid>
+                                    <Button x:Name="Btn_WorkTime" Content="Wymiar pracy" Click="Button_Click"/>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Padding="10">
+                                <Button x:Name="Btn_WorkType" Content="Tryb pracy" Padding="5" Click="Button_Click"/>
+                            </Border>
+                            <Button Grid.Row="1" Grid.Column="4" Content="Szukaj" Margin="10" Padding="10" Click="Button_Click"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Border Grid.Column="1" BorderThickness="1" Background="White" CornerRadius="10" Margin="10,0,0,0" Padding="1" Grid.ColumnSpan="2">
+                    <ScrollViewer MaxHeight="300" Padding="10">
+                        <ItemsControl x:Name="IC_ItemsToChecked" Margin="15,0,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Padding="5" Margin="5">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox IsChecked="{Binding Checked}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Name}" Padding="5" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Count,StringFormat='({0})'}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+
+            </Grid>
+            <StackPanel Margin="0,120,0,0">
+                <TextBlock Text="Strefa ofert" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="5"/>
+                <TextBlock Text="Klikaj w oferty, które Cię interesują. Dzięki temu wyświetlimy Ci lepiej dopasowane ogłoszenia." FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Grid Margin="0,50,0,0" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Margin="150,0,150,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Content="Najnowsze oferty" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_1"/>
+                        <Button Grid.Column="1" Content="Ostation oglądane" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_2"/>
+                        <Button Grid.Column="2" Content="Superoferty" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_3"/>
+                    </Grid>
+                </Border>
+                <WrapPanel Grid.Row="1" MaxWidth="1400">
+                    <ItemsControl x:Name="Announcments">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black"  Margin="5">
+                                    <Button Padding="10" Background="Transparent" BorderThickness="0" CommandParameter="{Binding .}">
+                                        <Button.Content>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="50"/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                                <Image Source="Images/App/DefaultPfp.png" Grid.Row="1"/>
+                                                <StackPanel Grid.Column="1" Grid.Row="1">
+                                                    <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
+                                                    <TextBlock Text="{Binding City}" FontSize="10"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </WrapPanel>
+                <Button Grid.Row="2" HorizontalAlignment="Center" Content="Pokaz wiecej"/>
+            </Grid>
+            <StackPanel Margin="0,50,0,0">
+                <TextBlock Text="Pracodawcy, których warto znać" FontWeight="Bold" HorizontalAlignment="Center" FontSize="30" Margin="0,0,0,30"/>
+                <ScrollViewer x:Name="imageScrollView" HorizontalScrollBarVisibility="hidden"  VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" MaxWidth="800">
+                    <StackPanel Orientation="Horizontal">
+                        <ItemsControl x:Name="sadf">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black" Width="400" Height="300" Margin="5">
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image Source="Images/App/DefaultPfp.png" Margin="1" VerticalAlignment="Top"/>
+                                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="75" VerticalAlignment="Center"/>
+                                            <Button Content="Zobacz profil" Margin="10,40,10,10" Padding="10" FontSize="20" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Button Content="Poprzedni" Click="PreviousButtonClick"/>
+                    <Button Content="Następny" Click="NextButtonClick"/>
+                </StackPanel>
+            </StackPanel>
+            
+        </StackPanel>
+        
+       
+    </ScrollViewer>
 </Page>
