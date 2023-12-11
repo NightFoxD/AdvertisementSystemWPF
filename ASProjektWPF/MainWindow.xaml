@@ -54,8 +54,7 @@
                     <RadioButton x:Name="RB_Login" Content="Zaloguj sie" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
                     <RadioButton x:Name="RB_Profil" Content="Profil" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_Register_Click"/>
                     <RadioButton Content="Home" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" IsChecked="True" Click="RG_Home_Click"/>
-                    <RadioButton Content="Discovery" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
-                    <RadioButton Content="Features" Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
+                    <RadioButton Content="Stwórz ogłoszenie " Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
                     <Button  Click="Btn_LogOut" Content="Wyloguj się"/>
