@@ -30,7 +30,24 @@ namespace ASProjektWPF.Pages
         List<CheckedItem> workTypes = new List<CheckedItem>
         {
             new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
+
+        };
+        List<CheckedItem> workTypes2 = new List<CheckedItem>
+        {
+            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
             new CheckedItem { Checked = false, Name = "2",Count = 10},
+        };
+        List<CheckedItem> workTypes3 = new List<CheckedItem>
+        {
+            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
+            new CheckedItem { Checked = false, Name = "2",Count = 10},
+            new CheckedItem { Checked = true, Name = "3", Count = 10},
+        };
+        List<CheckedItem> workTypes4 = new List<CheckedItem>
+        {
+            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
+            new CheckedItem { Checked = false, Name = "2",Count = 10},
+            new CheckedItem { Checked = true, Name = "3", Count = 10},
             new CheckedItem { Checked = true, Name = "3", Count = 10},
             new CheckedItem { Checked = true, Name = "3", Count = 10},
             new CheckedItem { Checked = true, Name = "3", Count = 10},
@@ -76,6 +93,10 @@ namespace ASProjektWPF.Pages
             page = CurrentPage;
             Announcments.ItemsSource = list;
             sadf.ItemsSource = list;
+            if (IC_ItemsToChecked.Items.Count <= 0)
+                BR_Items.Visibility = Visibility.Collapsed;
+            else
+                BR_Items.Visibility = Visibility.Visible;
         }
         public List<CheckedItem> GetCheckedTypeWork()
         {
@@ -96,31 +117,40 @@ namespace ASProjektWPF.Pages
             switch (btnContent)
             {
                 case "Btn_PositionLevel":
-                    checkedItems_PositionLevel = GetCheckedTypeWork();
+                    
                     list = checkedItems_PositionLevel;
                     IC_ItemsToChecked.ItemsSource = workTypes;
+                    checkedItems_PositionLevel = GetCheckedTypeWork();
                     break;
                 case "Btn_ContractType":
-                    checkedItems_ContractTypes = GetCheckedTypeWork();
+                    
                     list = checkedItems_ContractTypes;
-                    IC_ItemsToChecked.ItemsSource = list2;
+                    IC_ItemsToChecked.ItemsSource = workTypes2;
+                    checkedItems_ContractTypes = GetCheckedTypeWork();
                     break;
                 case "Btn_WorkTime":
-                    checkedItems_WorkTime = GetCheckedTypeWork();
+                    
                     list = checkedItems_WorkTime;
-                    IC_ItemsToChecked.ItemsSource = list3;
+                    IC_ItemsToChecked.ItemsSource = workTypes3;
+                    checkedItems_WorkTime = GetCheckedTypeWork();
                     break;
                 case "Btn_WorkType":
-                    checkedItems_WorkType = GetCheckedTypeWork();
+                    
                     list = checkedItems_WorkType;
-                    IC_ItemsToChecked.ItemsSource = list4;
+                    IC_ItemsToChecked.ItemsSource = workTypes4;
+                    checkedItems_WorkType = GetCheckedTypeWork();
                     break;
                 default:
-                    checkedItems_WorkType = GetCheckedTypeWork();
+                    
                     list = checkedItems_WorkType;
                     IC_ItemsToChecked.ItemsSource = workTypes;
+                    checkedItems_WorkType = GetCheckedTypeWork();
                     break;
             }
+            if (IC_ItemsToChecked.Items.Count <= 0)
+                BR_Items.Visibility = Visibility.Collapsed;
+            else
+                BR_Items.Visibility = Visibility.Visible;
             string txt = "";
             foreach(CheckedItem item in list)
             {

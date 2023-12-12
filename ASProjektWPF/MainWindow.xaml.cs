@@ -28,13 +28,14 @@ namespace ASProjektWPF
         public MainWindow()
         {
             InitializeComponent();
+            Page.Navigate(new Home(Page));
             RB_Profil.Visibility = Visibility.Collapsed;
         }
         public MainWindow(string Login)
         {
             InitializeComponent();
             GetUser(Login);
-            
+            Page.Navigate(new Home(Page));
             RB_Register.Visibility = Visibility.Collapsed;
             RB_Login.Visibility = Visibility.Collapsed;
         }

@@ -79,8 +79,8 @@
                         </Grid>
                     </Border>
                 </Grid>
-                <Border Grid.Column="1" BorderThickness="1" Background="White" CornerRadius="10" Margin="10,0,0,0" Padding="1" Grid.ColumnSpan="2">
-                    <ScrollViewer MaxHeight="300" Padding="10">
+                <Border x:Name="BR_Items" Grid.Column="1" BorderThickness="1" Background="White" CornerRadius="10" Margin="10,0,0,0" Padding="1" Grid.ColumnSpan="2">
+                    <ScrollViewer MaxHeight="300" Padding="10" VerticalScrollBarVisibility="Auto">
                         <ItemsControl x:Name="IC_ItemsToChecked" Margin="15,0,0,0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
