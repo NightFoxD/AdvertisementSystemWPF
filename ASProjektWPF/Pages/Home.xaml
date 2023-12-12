@@ -59,23 +59,23 @@
                             </Border>
                             <Border Grid.Row="1" Margin="0,10,0,0" Padding="10">
                                 <Grid>
-                                    <Button x:Name="Btn_PositionLevel" Content="Poziom stanowiska" Click="Button_Click"/>
+                                    <Button x:Name="Btn_PositionLevel" Content="Poziom stanowiska" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
                                 </Grid>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Padding="10">
                                 <Grid>
-                                    <Button x:Name="Btn_ContractType" Content="Rodzaj umowy" Click="Button_Click"/>
+                                    <Button x:Name="Btn_ContractType" Content="Rodzaj umowy" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
                                 </Grid>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="2" Margin="0,10,0,0" Padding="10">
                                 <Grid>
-                                    <Button x:Name="Btn_WorkTime" Content="Wymiar pracy" Click="Button_Click"/>
+                                    <Button x:Name="Btn_WorkTime" Content="Wymiar pracy" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
                                 </Grid>
                             </Border>
                             <Border Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Padding="10">
-                                <Button x:Name="Btn_WorkType" Content="Tryb pracy" Padding="5" Click="Button_Click"/>
+                                <Button x:Name="Btn_WorkType" Content="Tryb pracy" Padding="5" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
                             </Border>
-                            <Button Grid.Row="1" Grid.Column="4" Content="Szukaj" Margin="10" Padding="10" Click="Button_Click"/>
+                            <Button Grid.Row="1" Grid.Column="4" Content="Szukaj" Margin="10" Padding="10" Style="{StaticResource SearchButton}" Click="Button_Click"/>
                         </Grid>
                     </Border>
                 </Grid>
@@ -96,7 +96,6 @@
                         </ItemsControl>
                     </ScrollViewer>
                 </Border>
-
             </Grid>
             <StackPanel Margin="0,120,0,0">
                 <TextBlock Text="Strefa ofert" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="5"/>
@@ -121,10 +120,9 @@
                         <Grid.RowDefinitions>
                             <RowDefinition />
                         </Grid.RowDefinitions>
-
-                        <Button Content="Najnowsze oferty" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_1"/>
-                        <Button Grid.Column="1" Content="Ostation oglądane" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_2"/>
-                        <Button Grid.Column="2" Content="Superoferty" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_3"/>
+                        <Button Content="Najnowsze oferty" Style="{StaticResource MenuOffertsButton}" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_1"/>
+                        <Button Grid.Column="1" Style="{StaticResource MenuOffertsButton}" Content="Ostation oglądane" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_2"/>
+                        <Button Grid.Column="2" Style="{StaticResource MenuOffertsButton}" Content="Superoferty" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_3"/>
                     </Grid>
                 </Border>
                 <WrapPanel Grid.Row="1" MaxWidth="1400">
@@ -162,7 +160,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </WrapPanel>
-                <Button Grid.Row="2" HorizontalAlignment="Center" Content="Pokaz wiecej"/>
+                <Button Grid.Row="2" HorizontalAlignment="Center" Background="#262626" Style="{StaticResource SearchButton}" Content="Pokaz wiecej"/>
             </Grid>
             <StackPanel Margin="0,50,0,0">
                 <TextBlock Text="Pracodawcy, których warto znać" FontWeight="Bold" HorizontalAlignment="Center" FontSize="30" Margin="0,0,0,30"/>
@@ -180,7 +178,7 @@
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <Image Source="Images/App/DefaultPfp.png" Margin="1" VerticalAlignment="Top"/>
                                             <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="75" VerticalAlignment="Center"/>
-                                            <Button Content="Zobacz profil" Margin="10,40,10,10" Padding="10" FontSize="20" VerticalAlignment="Center"/>
+                                            <Button Content="Zobacz profil" Background="#262626" Style="{StaticResource SearchButton}" Margin="10,40,10,10" Padding="10" FontSize="20" VerticalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
@@ -189,8 +187,9 @@
                     </StackPanel>
                 </ScrollViewer>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <Button Content="Poprzedni" Click="PreviousButtonClick"/>
-                    <Button Content="Następny" Click="NextButtonClick"/>
+
+                    <Button Content="Poprzedni" Click="PreviousButtonClick" Background="#262626" Style="{StaticResource SearchButton}" Margin="10"/>
+                    <Button Content="Następny" Click="NextButtonClick" Background="#262626" Style="{StaticResource SearchButton}" Margin="10"/>
                 </StackPanel>
             </StackPanel>
             

@@ -7,6 +7,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuSearchGroupButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuSearchButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuOffertsButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProfileCancelButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProfileEditButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProfileSaveButtonTheme.xaml"/>
