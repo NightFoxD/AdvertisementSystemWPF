@@ -19,8 +19,18 @@ namespace ASProjektWPF.Pages
     /// <summary>
     /// Interaction logic for Announcment_AddEdit.xaml
     /// </summary>
+    
     public partial class Announcment_AddEdit : Page
     {
+        class Item
+        {
+            public string Content { get; set; }
+            public Item(string content)
+            {
+                this.Content = content;
+            }
+        }
+        List<Item> itemsResponsibilities = new List<Item>() { };
         Announcment? addEditAnnouncment;
         Frame currentPage;
         public Announcment_AddEdit(Frame currentPage)
@@ -30,19 +40,19 @@ namespace ASProjektWPF.Pages
             Btn_AddUpdateAnnouncment.Content = "Dodaj ogłoszenie";
             foreach(var item in App.DataAccess.GetPositionLevelList())
             {
-                CmB_PositionLevel.Items.Add(item);
+                CmB_PositionLevel.Items.Add(item.Name);
             }
             foreach (var item in App.DataAccess.GetContractList())
             {
-                CmB_ContractType.Items.Add(item);
+                CmB_ContractType.Items.Add(item.Name);
             }
             foreach (var item in App.DataAccess.GetWorkTypeList())
             {
-                CmB_WorkType.Items.Add(item);
+                CmB_WorkType.Items.Add(item.Name);
             }
             foreach (var item in App.DataAccess.GetWorkTimeList())
             {
-                CmB_WorkTime.Items.Add(item);
+                CmB_WorkTime.Items.Add(item.Name);
             }
         }
         public Announcment_AddEdit(Frame currentPage, Announcment announcment)
@@ -52,7 +62,10 @@ namespace ASProjektWPF.Pages
             addEditAnnouncment = announcment;
             Btn_AddUpdateAnnouncment.Content = "Edytuj ogłoszenie";
         }
-
+        public void Refresh()
+        {
+            LV_Responsibilities.ItemsSource = itemsResponsibilities;
+        }
         private void Btn_AddUpdateAnnouncment_Click(object sender, RoutedEventArgs e)
         {
             if(addEditAnnouncment == null)
@@ -70,6 +83,22 @@ namespace ASProjektWPF.Pages
         private void Btn_Back_Click(object sender, RoutedEventArgs e)
         {
             currentPage.GoBack();
+        }
+
+        private void Btn_AddResponsible_Click(object sender, RoutedEventArgs e)
+        {
+            itemsResponsibilities.Add(new Item(TxtB_Responsibility_Content.Text));
+            TxtB_Responsibility_Content.Text = "";
+            LV_Responsibilities.ItemsSource = itemsResponsibilities;
+        }
+        private void Btn_DeleteItemResponsibiliti_Click(object sender, RoutedEventArgs e)
+        {
+            Item? delItem = ((Button)sender).CommandParameter as Item;
+            if (delItem != null)
+            {
+                itemsResponsibilities.Remove(delItem);
+            }
+            LV_Responsibilities.ItemsSource = itemsResponsibilities;
         }
     }
 }
