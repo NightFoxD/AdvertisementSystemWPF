@@ -1,0 +1,51 @@
+﻿<Page x:Class="ASProjektWPF.Pages.PositionLevel_Items"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ASProjektWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PositionLevel_Items">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="LV_Items" BorderThickness="0" Background="Transparent">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="IsHitTestVisible" Value="True"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding Content}"/>
+                        <Button Grid.Column="1" Content="Usuń" Click="Btn_DeleteItem_Click" CommandParameter="{Binding .}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="1">
+            <TextBlock x:Name="TB_Title"/>
+            <TextBox x:Name="Text_Item_Content"/>
+            <Button x:Name="Btn_AddItem" Content="Dodaj " HorizontalAlignment="Center" Padding="10" Margin="10" Click="Btn_AddItem_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>

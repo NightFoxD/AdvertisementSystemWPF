@@ -97,14 +97,17 @@ namespace ASProjektWPF
         private void Btn_ShowUsers(object sender, RoutedEventArgs e)
         {
             (new UsersInfo()).Show();
-            
-
         }
 
         private void Btn_LogOut(object sender, RoutedEventArgs e)
         {
             (new Login()).Show();
             this.Close();
+        }
+
+        private void RG_CompanyAccount_Click(object sender, RoutedEventArgs e)
+        {
+            Page.Navigate(new CommpanyAccountControl(Page));
         }
     }
 }

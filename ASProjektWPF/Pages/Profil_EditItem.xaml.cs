@@ -21,7 +21,7 @@ namespace ASProjektWPF.Pages
     /// </summary>
     public partial class Profil_EditItem : Page
     {
-        object item;
+        object? Item;
         Frame currentPage;
         public Profil_EditItem(Frame CurrentPage, object updateItem)
         {
@@ -29,23 +29,23 @@ namespace ASProjektWPF.Pages
             currentPage = CurrentPage;
             if(updateItem.GetType() == typeof(Experience))
             {
-                item = (Experience)updateItem;
-                Experience_Item.DataContext = (Experience)item;
+                Item = (Experience)updateItem;
+                Experience_Item.DataContext = (Experience)Item;
                 Experience_Item.Visibility = Visibility.Visible;
             }else if (updateItem.GetType() == typeof(Education))
             {
-                item = (Education)updateItem;
-                G_Education.DataContext = ((Education)item);
+                Item = (Education)updateItem;
+                G_Education.DataContext = ((Education)Item);
                 G_Education.Visibility = Visibility.Visible;
             }else if(updateItem.GetType() == typeof(Language))
             {
-                item = (Language)updateItem;
-                G_Language.DataContext = ((Language)item);
+                Item = (Language)updateItem;
+                G_Language.DataContext = ((Language)Item);
                 G_Language.Visibility = Visibility.Visible;
             }else if(updateItem.GetType() == typeof(Link))
             {
-                item = (Link)updateItem;
-                G_Link.DataContext = ((Link)item);
+                Item = (Link)updateItem;
+                G_Link.DataContext = ((Link)Item);
                 G_Link.Visibility = Visibility.Visible;
             }
             
@@ -53,36 +53,42 @@ namespace ASProjektWPF.Pages
         public void Btn_Form_Cancel_Click(object sender, EventArgs e)
         {
             currentPage.GoBack();
+            return;
         }
         public void Btn_Form_Update_Click(object sender, EventArgs e)
         {
-            if(item.GetType() == typeof(Experience))
+            if(Item == null)
             {
-                ((Experience)item).Position = TxtB_Position.Text;
-                ((Experience)item).Localization = TxtB_Localization.Text;
-                ((Experience)item).Company = TxtB_Company.Text;
-                ((Experience)item).StartPayment = DP_StartPayment.SelectedDate;
-                ((Experience)item).EndPayment = DP_EndPayment.SelectedDate;
-                ((Experience)item).Responsibilities = TxtB_Responsibilities.Text;
-                App.DataAccess.Update_Experience((Experience)item);
-            }else if (item.GetType() == typeof(Education))
+                currentPage.GoBack();
+                return;
+            }
+            if(Item.GetType() == typeof(Experience))
             {
-                ((Education)item).ShoolName = TxtB_Education_ShoolName.Text;
-                ((Education)item).Level = CB_Education_Level.Text;
-                ((Education)item).Direction = TxtB_Education_Direction.Text;
-                ((Education)item).StartPeriod = DP_Education_StartPeriod.SelectedDate;
-                ((Education)item).EndPeriod = DP_Education_EndPeriod.SelectedDate;
-                App.DataAccess.Update_Education((Education)item);
-            }else if(item.GetType() == typeof(Experience))
+                ((Experience)Item).Position = TxtB_Position.Text;
+                ((Experience)Item).Localization = TxtB_Localization.Text;
+                ((Experience)Item).Company = TxtB_Company.Text;
+                ((Experience)Item).StartPayment = DP_StartPayment.SelectedDate;
+                ((Experience)Item).EndPayment = DP_EndPayment.SelectedDate;
+                ((Experience)Item).Responsibilities = TxtB_Responsibilities.Text;
+                App.DataAccess.Update_Experience((Experience)Item);
+            }else if (Item.GetType() == typeof(Education))
             {
-                ((Language)item).Name = CB_LanguageSelected.Text;
-                ((Language)item).Level = CB_LanguageLevel.Text;
-                App.DataAccess.Update_Language((Language)item);
-            }else if(item.GetType() == typeof(Link))
+                ((Education)Item).ShoolName = TxtB_Education_ShoolName.Text;
+                ((Education)Item).Level = CB_Education_Level.Text;
+                ((Education)Item).Direction = TxtB_Education_Direction.Text;
+                ((Education)Item).StartPeriod = DP_Education_StartPeriod.SelectedDate;
+                ((Education)Item).EndPeriod = DP_Education_EndPeriod.SelectedDate;
+                App.DataAccess.Update_Education((Education)Item);
+            }else if(Item.GetType() == typeof(Experience))
             {
-                ((Link)item).Name = TxtB_URL.Text;
-                ((Link)item).Type = CB_Type.Text;
-                App.DataAccess.Update_Link((Link)item);
+                ((Language)Item).Name = CB_LanguageSelected.Text;
+                ((Language)Item).Level = CB_LanguageLevel.Text;
+                App.DataAccess.Update_Language((Language)Item);
+            }else if(Item.GetType() == typeof(Link))
+            {
+                ((Link)Item).Name = TxtB_URL.Text;
+                ((Link)Item).Type = CB_Type.Text;
+                App.DataAccess.Update_Link((Link)Item);
             }
             currentPage.GoBack();
         }

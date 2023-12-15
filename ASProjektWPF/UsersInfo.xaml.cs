@@ -31,7 +31,7 @@ namespace ASProjektWPF
             DG_AccountType.ItemsSource = await App.DataAccess.GetAccountTypeList();
             DG_Announcment.ItemsSource = await App.DataAccess.GetAnnouncmentList();
             DG_Application.ItemsSource = await App.DataAccess.GetApplicationList();
-            DG_Category.ItemsSource = await App.DataAccess.GetCategoryList();
+            DG_Category.ItemsSource = App.DataAccess.GetCategoryList();
             DG_Company.ItemsSource = await App.DataAccess.GetCompanyList();
             DG_Education.ItemsSource = await App.DataAccess.GetEducationList();
             DG_Experience.ItemsSource = await App.DataAccess.GetExperienceList();

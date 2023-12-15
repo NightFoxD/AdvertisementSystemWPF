@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\App\back.png" />
     <None Remove="Images\App\img1.PNG" />
     <None Remove="Images\App\Swiftlly_transparent_FullName.png" />
     <None Remove="Images\App\Swiftlly_transparent_Logo.png" />
@@ -16,6 +17,10 @@
 
   <ItemGroup>
     <Content Include="Swiftlly_transparent_Logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\App\back.png" />
   </ItemGroup>
 
   <ItemGroup>

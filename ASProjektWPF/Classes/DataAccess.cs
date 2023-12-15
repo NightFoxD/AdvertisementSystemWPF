@@ -17,22 +17,25 @@ namespace ASProjektWPF.Classes
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<AccountType>().Wait();
-
             _database.CreateTableAsync<Announcment>().Wait();
             _database.CreateTableAsync<Models.Application>().Wait();
             _database.CreateTableAsync<Category>().Wait();
             _database.CreateTableAsync<Company>().Wait();
+            _database.CreateTableAsync<ContractType>().Wait();
             _database.CreateTableAsync<Course>().Wait();
             _database.CreateTableAsync<Education>().Wait();
             _database.CreateTableAsync<Experience>().Wait();
             _database.CreateTableAsync<Language>().Wait();
             _database.CreateTableAsync<Link>().Wait();
+            _database.CreateTableAsync<PositionLevel>().Wait();
             _database.CreateTableAsync<Saved>().Wait();
             _database.CreateTableAsync<Skill>().Wait();
             _database.CreateTableAsync<SubCategory>().Wait();
             _database.CreateTableAsync<User>().Wait();
             _database.CreateTableAsync<UserData>().Wait();
             _database.CreateTableAsync<WorkingDays>().Wait();
+            _database.CreateTableAsync<WorkTime>().Wait();
+            _database.CreateTableAsync<WorkType>().Wait();
         }
         //--------- AccountType ---------//
         public Task<List<AccountType>> GetAccountTypeList()
@@ -86,13 +89,13 @@ namespace ASProjektWPF.Classes
             return _database.DeleteAsync(application);
         }
         //--------- Category ---------//
-        public Task<List<Category>> GetCategoryList()
+        public List<Category> GetCategoryList()
         {
-            return _database.Table<Category>().ToListAsync();
+            return _database.Table<Category>().ToListAsync().Result;
         }
-        public Task Add_Category(Category category)
+        public int Add_Category(Category category)
         {
-            return _database.InsertAsync(category);
+            return _database.InsertAsync(category).Result;
         }
         public Task Update_Category(Category category)
         {
@@ -118,6 +121,23 @@ namespace ASProjektWPF.Classes
         public Task Delete_Company(Company company)
         {
             return _database.DeleteAsync(company);
+        }
+        //--------- ContractType ---------//
+        public List<ContractType> GetContractList()
+        {
+            return _database.Table<ContractType>().ToListAsync().Result;
+        }
+        public int Add_ContractType(ContractType item)
+        {
+            return _database.InsertAsync(item).Result;
+        }
+        public int Update_ContractType(ContractType item)
+        {
+            return _database.UpdateAsync(item).Result;
+        }
+        public int Delete_ContractType(ContractType item)
+        {
+            return _database.DeleteAsync(item).Result;
         }
         //--------- Course ---------//
         public Task<List<Course>> GetCourseList()
@@ -239,6 +259,23 @@ namespace ASProjektWPF.Classes
         public int Delete_Link(Link link)
         {
             return _database.DeleteAsync(link).Result;
+        }
+        //--------- PositionLevel ---------//
+        public List<PositionLevel> GetPositionLevelList()
+        {
+            return _database.Table<PositionLevel>().ToListAsync().Result;
+        }
+        public int Add_PositionLevel(PositionLevel item)
+        {
+            return _database.InsertAsync(item).Result;
+        }
+        public int Update_PositionLevel(PositionLevel item)
+        {
+            return _database.UpdateAsync(item).Result;
+        }
+        public int Delete_PositionLevel(PositionLevel item)
+        {
+            return _database.DeleteAsync(item).Result;
         }
         //--------- Saved ---------//
         public Task<List<Saved>> GetSavedList()
@@ -376,6 +413,40 @@ namespace ASProjektWPF.Classes
         public Task Delete_WorkingDays(WorkingDays workingDays)
         {
             return _database.DeleteAsync(workingDays);
+        }
+        //--------- WorkTime ---------//
+        public List<WorkTime> GetWorkTimeList()
+        {
+            return _database.Table<WorkTime>().ToListAsync().Result;
+        }
+        public int Add_WorkTime(WorkTime item)
+        {
+            return _database.InsertAsync(item).Result;
+        }
+        public int Update_WorkTime(WorkTime item)
+        {
+            return _database.UpdateAsync(item).Result;
+        }
+        public int Delete_WorkTime(WorkTime item)
+        {
+            return _database.DeleteAsync(item).Result;
+        }
+        //--------- WorkType ---------//
+        public List<WorkType> GetWorkTypeList()
+        {
+            return _database.Table<WorkType>().ToListAsync().Result;
+        }
+        public int Add_WorkType(WorkType item)
+        {
+            return _database.InsertAsync(item).Result;
+        }
+        public int Update_WorkType(WorkType item)
+        {
+            return _database.UpdateAsync(item).Result;
+        }
+        public int Delete_WorkType(WorkType item)
+        {
+            return _database.DeleteAsync(item).Result;
         }
     }
 }
