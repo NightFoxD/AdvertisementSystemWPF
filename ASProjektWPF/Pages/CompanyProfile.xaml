@@ -11,9 +11,24 @@
     <ScrollViewer>
         <Grid HorizontalAlignment="Center">
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="5" Padding="10" Height="auto" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Btn_Back" Padding="10" Margin="10" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click">
+                    <Image Source="/Images/App/back.png" MaxHeight="20"/>
+                </Button>
+                <StackPanel x:Name="SP_CompanyMenu" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button x:Name="Btn_EditCompany" Content="Edytuj" Background="White" Foreground="#a9a9a9" Style="{StaticResource ProfileEditButtonTheme}"  Click="Btn_EditCompany_Click"/>
+                    <Button x:Name="Btn_SaveEditedCompany" Content="Zapisz" Background="White" Foreground="#a9a9a9" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_SaveCompany_Click"/>
+                </StackPanel>
+                
+            </Grid>
+            <Border Grid.Row="1" CornerRadius="5" Padding="10" Height="auto" Margin="0,10,0,0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -25,18 +40,23 @@
                     </Grid.ColumnDefinitions>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="auto"/>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
-                        <Border Grid.RowSpan="2" CornerRadius="15" Background="White" BorderBrush="#dadada" BorderThickness="0.7" Padding="10">
-                            <Image x:Name="I_ComapnyImage" Source="/Images/App/DefaultCompany.png"/>
-                        </Border>
-                        <Label x:Name="Lbl_Company" Content="HedgeServ" Grid.Column="1" FontSize="30" Margin="10,0,0,0"/>
-                        <Label x:Name="Lbl_Jobs" Content="10 job offerts"  FontSize="15" Grid.Column="1" Grid.Row="1" Margin="10"/>
+                        <StackPanel Grid.RowSpan="2">
+                            <Border CornerRadius="15" Background="White" BorderBrush="#dadada" BorderThickness="0.7" Padding="10">
+                                <Image x:Name="I_ComapnyImage" Source="/Images/App/DefaultCompany.png" Height="70"/>
+                            </Border>
+                            <Button x:Name="Btn_EditCompanyPfp" Visibility="Collapsed" Content="Edytuj zdjęcie" Background="White" Foreground="#a9a9a9" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_EditCompanyPfp_Click" Margin="0,10,0,0"/>
+                        </StackPanel>
+                       
+                        <Label x:Name="Lbl_Company" Grid.Column="1" FontSize="30" Margin="10,0,0,0"/>
+                        <TextBox x:Name="TxtB_CompanyEdit" Grid.Column="1" FontSize="30" Margin="10,0,0,0" Visibility="Collapsed"/>
+                        <Label x:Name="Lbl_Jobs"  FontSize="15" Grid.Column="1" Grid.Row="1" Margin="10"/>
                     </Grid>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                         <Border Background="White" BorderBrush="#dadada" BorderThickness="0.7" CornerRadius="5" Padding="40" Margin="10,0,10,0">
@@ -49,8 +69,9 @@
                                 <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
                                     <Image Source="/Images/App/pin.png" Height="40"/>
                                 </Border>
-                                <Label x:Name="Lbl_Localization" Grid.Row="1" Content="Lokalizacja"/>
-                                <Label x:Name="Lbl_Adress" Grid.Row="2" Content="Kraków"/>
+                                <Label x:Name="Lbl_Localization" Grid.Row="1" Content="Lokalizacja" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Lbl_Adress" Grid.Row="2" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="TxtB_Adress_Edit" Grid.Row="2" Visibility="Collapsed"/>
                             </Grid>
                         </Border>
                         <Border Background="White" BorderBrush="#dadada" BorderThickness="0.7" CornerRadius="5" Padding="40" Margin="10,0,10,0">
@@ -63,43 +84,54 @@
                                 <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
                                     <Image Source="/Images/App/email.png" Height="40"/>
                                 </Border>
-                                <Label Grid.Row="1" Content="Kontakt"/>
-                                <Label x:Name="Lbl_Email" Grid.Row="2" Content="email@gmail.com"/>
+                                <Label Grid.Row="1" Content="Kontakt" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Lbl_Email" Grid.Row="2" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="TxtB_Email_Edit" Grid.Row="2" Visibility="Collapsed"/>
                             </Grid>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Margin="0,30,0,0">
-                        <ListView x:Name="LV_ComapnyAnnouncments" Background="Transparent" BorderThickness="0">
-                            <ListViewItem>
+                        <ListView x:Name="LV_ComapnyAnnouncments" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="IsHitTestVisible" Value="True"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black"  Margin="5">
-                                        <Button Padding="10" Background="Transparent" BorderThickness="0" CommandParameter="{Binding .}" Click="Btn_GoToAnnouncment_Click">
-                                            <Button.Content>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="150"/>
-                                                        <ColumnDefinition Width="100"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="auto"/>
-                                                        <RowDefinition Height="50"/>
-                                                    </Grid.RowDefinitions>
-                                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
-                                                    <Image Source="Images/App/DefaultPfp.png" Grid.Row="1"/>
-                                                    <StackPanel Grid.Column="1" Grid.Row="1">
-                                                        <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
-                                                        <TextBlock Text="{Binding City}" FontSize="10"/>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Button.Content>
-                                        </Button>
+                                    <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black" Padding="20" Margin="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="100"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                            <Image Source="{Binding CompanyImage}" Grid.Row="1"/>
+                                            <StackPanel Grid.Column="1" Grid.Row="1">
+                                                <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
+                                                <TextBlock Text="{Binding City}" FontSize="10"/>
+                                            </StackPanel>
+                                            <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="10" Style="{StaticResource SearchButton}" Content="Zobacz" CommandParameter="{Binding .}" Click="Btn_GoToAnnouncment_Click"/>
+                                        </Grid>
                                     </Border>
-
                                 </DataTemplate>
-                            </ListViewItem>
+                            </ListView.ItemTemplate>
                         </ListView>
                     </StackPanel>
-                   
                 </Grid>
             </Border>
         </Grid>

@@ -29,10 +29,10 @@
                 <Border Background="White" CornerRadius="5,5,0,0" Padding="0,0,0,25" BorderBrush="#dadada" BorderThickness="0.5">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="150"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image x:Name="I_ComapnyImage" Source="{Binding CompanyImage}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
@@ -65,10 +65,7 @@
                             <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
                                 <Image Source="/Images/App/pin.png" Height="40"/>
                             </Border>
-                            <StackPanel Grid.Column="1">
-                                <Label Content="Opolska 112, Prądnik Czerwony, Kraków" FontSize="15"/>
-                                <Label Content="Kraków, małopolskie" FontSize="10"/>
-                            </StackPanel>
+                            <Label x:Name="Lbl_Adress" Grid.Column="1" FontSize="15" VerticalAlignment="Center"/>
                         </Grid>
                         <Grid Grid.Column="1" Grid.Row="0">
                             <Grid.RowDefinitions>
@@ -81,10 +78,7 @@
                             <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
                                 <Image Source="/Images/App/time.png" Height="40"/>
                             </Border>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <Label Content="ważna jeszcze 12 dni" FontSize="15"/>
-                                <Label Content="do: 28 gru 2023" FontSize="10"/>
-                            </StackPanel>
+                            <Label x:Name="Lbl_EndDate" VerticalAlignment="Center" Grid.Column="1" FontSize="15"/>
                         </Grid>
                         <Grid Grid.Column="0" Grid.Row="1">
                             <Grid.RowDefinitions>
@@ -98,7 +92,7 @@
                                 <Image Source="/Images/App/docs.png" Height="40"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <Label Content="umowa o staż / praktyki" FontSize="15"/>
+                                <Label x:Name="Lbl_Position" FontSize="15"/>
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Column="1" Grid.Row="1">
@@ -113,7 +107,7 @@
                                 <Image Source="/Images/App/clock.png" Height="40"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <Label Content="pełny etat" FontSize="15"/>
+                                <Label x:Name="Lbl_WorkTime" FontSize="15"/>
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Column="0" Grid.Row="2">
@@ -128,7 +122,7 @@
                                 <Image Source="/Images/App/position.png" Height="40"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <Label Content="praktykant / stażysta" FontSize="15"/>
+                                <Label x:Name="Lbl_PositionLevel" FontSize="15"/>
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Column="1" Grid.Row="2">
@@ -143,7 +137,7 @@
                                 <Image Source="/Images/App/work.png" Height="40"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <Label Content="praca stacjonarna, praca hybrydowa" FontSize="15"/>
+                                <Label x:Name="Lbl_WorkType" FontSize="15"/>
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Column="0" Grid.Row="3">

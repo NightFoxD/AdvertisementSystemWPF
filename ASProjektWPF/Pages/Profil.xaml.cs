@@ -27,9 +27,9 @@ namespace ASProjektWPF.Pages
     /// </summary>
     public partial class Profil : Page
     {
-        Frame CurrentPage;
-        UserData userData;
-        User user;
+        Frame? CurrentPage;
+        UserData? userData;
+        User? user;
         List<string> countries = new List<string>();
         public Profil(Frame CurrentPage, UserData LoginUserData)
         {
@@ -569,9 +569,13 @@ namespace ASProjektWPF.Pages
         }
         private void Btn_AddPfp_Click(object sender, RoutedEventArgs e)
         {
-            Picture newPfp = PictureControl.GetPicture("Uploads");
-            user.Pfp = newPfp.Name + newPfp.PictureFormat;
-            I_UserPfp.Source = new ImageSourceConverter().ConvertFromString("../../../Images/Uploads/" + user.Pfp) as ImageSource;
+            Picture newPfp = PictureControl.GetPicture();
+            if(user != null)
+            {
+                user.Pfp = newPfp.Name + newPfp.PictureFormat;
+                I_UserPfp.Source = new ImageSourceConverter().ConvertFromString("../../../Images/Uploads/" + user.Pfp) as ImageSource;
+            }
+
         }
 
     }

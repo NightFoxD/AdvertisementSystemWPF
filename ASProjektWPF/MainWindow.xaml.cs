@@ -46,6 +46,7 @@ namespace ASProjektWPF
             else
             {
                 Company = App.DataAccess.GetCompanyList(Login);
+                RB_Profil.Visibility= Visibility.Collapsed;
             }
             if(LoggedUserData != null)
             {
@@ -142,7 +143,7 @@ namespace ASProjektWPF
         {
             if (Company != null)
             {
-                Page.Navigate(new CompanyProfile(Page, Company));
+                Page.Navigate(new CompanyProfile(Page, Company,true));
             }
         }
     }

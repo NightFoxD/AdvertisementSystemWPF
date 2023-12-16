@@ -48,7 +48,7 @@
                                 <TextBox x:Name="SearchBar" Background="#dadada" BorderThickness="0" Margin="3,0,0,0" VerticalContentAlignment="Center"/>
                             </Border>
                             <Border Grid.Column="3" BorderBrush="Black" Background="#dadada" BorderThickness="1">
-                                <ComboBox x:Name="CmB_Category" VerticalContentAlignment="Center" BorderThickness="0" BorderBrush="#dadada" Background="#dadada"/>
+                                <ComboBox x:Name="CmB_Category" VerticalContentAlignment="Center" SelectedIndex="0" BorderThickness="0" BorderBrush="#dadada" Background="#dadada"/>
                             </Border>
                             <Border Grid.Column="4" BorderBrush="Black" Background="#dadada" BorderThickness="0,1,1,1" CornerRadius="0,5,5,0">
                                 <TextBox x:Name="Localization" Background="#dadada" BorderThickness="0" Padding="10" Margin="0,0,3,0" VerticalContentAlignment="Center"/>
@@ -131,26 +131,24 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black"  Margin="5">
-                                    <Button Padding="10" Background="Transparent" BorderThickness="0" CommandParameter="{Binding .}" Click="Btn_GoToAnnouncment_Click">
-                                        <Button.Content>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="150"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="auto"/>
-                                                    <RowDefinition Height="50"/>
-                                                </Grid.RowDefinitions>
-                                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
-                                                <Image Source="Images/App/DefaultPfp.png" Grid.Row="1"/>
-                                                <StackPanel Grid.Column="1" Grid.Row="1">
-                                                    <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
-                                                    <TextBlock Text="{Binding City}" FontSize="10"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Button.Content>
-                                    </Button>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                        <Image Source="{Binding CompanyImage}" Grid.Row="1"/>
+                                        <StackPanel Grid.Column="1" Grid.Row="1">
+                                            <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
+                                            <TextBlock Text="{Binding City}" FontSize="10"/>
+                                        </StackPanel>
+                                        <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="10" Style="{StaticResource SearchButton}" Content="Zobacz" CommandParameter="{Binding .}" Click="Btn_GoToAnnouncment_Click"/>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -174,7 +172,7 @@
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <Image Source="Images/App/DefaultPfp.png" Margin="1" VerticalAlignment="Top"/>
                                             <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="75" VerticalAlignment="Center"/>
-                                            <Button Content="Zobacz profil" Background="#262626" Style="{StaticResource SearchButton}" Margin="10,40,10,10" Padding="10" FontSize="20" VerticalAlignment="Center"/>
+                                            <Button Content="Zobacz profil" Background="#262626" Style="{StaticResource SearchButton}" Margin="10,40,10,10" Padding="10" FontSize="20" VerticalAlignment="Center" Click="Btn_GoToCompanyProfile_Click" CommandParameter="{Binding .}"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>

@@ -32,7 +32,7 @@ namespace ASProjektWPF.Pages
         }
         private void Refresh()
         {
-            LV_CompanyAnnouncment.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            LV_CompanyAnnouncment.ItemsSource = App.DataAccess.GetAnnouncmentList().Where(item=>item.CompanyID == Company.CompanyID);
         }
         private void Btn_DeleteAnnouncment_Clicked(object sender, RoutedEventArgs e)
         {

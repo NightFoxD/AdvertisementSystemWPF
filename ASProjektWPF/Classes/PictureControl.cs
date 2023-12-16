@@ -17,7 +17,7 @@ namespace ASProjektWPF.Classes
     {
         private static Picture Picture = new Picture();
         public static string path = "../../../Images/Uploads/";
-        public static Picture GetPicture(string Folder)
+        public static Picture GetPicture()
         {
             OpenFileDialog file = new OpenFileDialog();
             file.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.tif";

@@ -1,6 +1,7 @@
 ﻿using ASProjektWPF.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,9 @@ namespace ASProjektWPF.Classes
         public string? PositionName { get; set; }
         public string? PositionLevel { get; set; }
         public List<Item> ContractType = new List<Item> { };
-        public List<Item> WorkingTime = new List<Item> { };
-        public List<Item> WorkType = new List<Item> { };
-        public DateTime? StartDate { get; set; }
+        public string? WorkingTime { get; set; }
+        public string? WorkType { get; set; }
+public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public List<Item> Responsibilities = new List<Item> { };
         public List<Item> Requirements = new List<Item> { };
@@ -70,22 +71,9 @@ namespace ASProjektWPF.Classes
             {
                 ContractType.Add(new Item(itemRequirement));
             }
-            if (item.WorkingTime != null)
-            {
-                table = item.WorkingTime.Split(";");
-            }
-            foreach (var itemWorkingTime in table)
-            {
-                WorkingTime.Add(new Item(itemWorkingTime));
-            }
-            if (item.WorkType != null)
-            {
-                table = item.WorkType.Split(";");
-            }
-            foreach (var itemWorkType in table)
-            {
-                WorkType.Add(new Item(itemWorkType));
-            }
+            WorkingTime = item.WorkingTime;
+            WorkType = item.WorkType;
+           
             EndDate = item.EndDate;
             if (item.Responsibilities != null)
             {
@@ -114,20 +102,26 @@ namespace ASProjektWPF.Classes
             City = item.City;
             CompanyName = App.DataAccess.GetCompanyFromID(item.CompanyID).Name;
             Company = App.DataAccess.GetCompanyFromID(item.CompanyID);
-            try
+            ImageSource? pfp;
+
+            if (Company.CompanyImage == null)
             {
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri("../../../Images/Uploads/Company"+ App.DataAccess.GetCompanyFromID(item.CompanyID).CompanyImage, UriKind.Relative);
-                bitmapImage.EndInit();
-                CompanyImage = bitmapImage;
+                pfp = new ImageSourceConverter().ConvertFromString("../../../Images/App/DefaultCompany.png") as ImageSource;
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show("Error", "Wystapił błąd: " + ex);
-                CompanyImage = null;
+                if (!File.Exists("../../../Images/Uploads/" + Company.CompanyImage))
+                {
+                    pfp = new ImageSourceConverter().ConvertFromString("../../../Images/App/DefaultCompany.png") as ImageSource;
+                }
+                else
+                {
+                    pfp = new ImageSourceConverter().ConvertFromString("../../../Images/Uploads/" + Company.CompanyImage) as ImageSource;
+                }
+
             }
-            
+            CompanyImage = pfp;
+
         }
     }
 }

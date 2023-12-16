@@ -50,9 +50,18 @@ namespace ASProjektWPF.Pages
             this.Company = company;
             Initialie();
         }
+        public List<AnnouncmentItem> GetAnnouncmentAllInformations()
+        {
+            List<AnnouncmentItem> items = new List<AnnouncmentItem>();
+            foreach (var item in App.DataAccess.GetAnnouncmentList())
+            {
+                items.Add(new AnnouncmentItem(item));
+            }
+            return items;
+        }
         public void Initialie()
         {
-            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            Announcments.ItemsSource = GetAnnouncmentAllInformations();
             IC_Companies.ItemsSource = App.DataAccess.GetCompanyList();
             foreach (var item in App.DataAccess.GetCategoryList())
             {
@@ -78,7 +87,6 @@ namespace ASProjektWPF.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<CheckedItem> listFromDatabase = new List<CheckedItem>();
-            var list = checkedItems_WorkType;
             string? btnContent = ((Button)sender).Name;
             switch (btnContent)
             {
@@ -157,17 +165,17 @@ namespace ASProjektWPF.Pages
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            Announcments.ItemsSource = GetAnnouncmentAllInformations();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            Announcments.ItemsSource = GetAnnouncmentAllInformations();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            Announcments.ItemsSource = GetAnnouncmentAllInformations();
         }
         private void PreviousButtonClick(object sender, RoutedEventArgs e)
         {
@@ -183,13 +191,28 @@ namespace ASProjektWPF.Pages
 
         private void Btn_GoToAnnouncment_Click(object sender, RoutedEventArgs e)
         {
-            Announcment? item = ((Button)sender).CommandParameter as Announcment;
-            if (item != null && user != null)
+            AnnouncmentItem? tmpItem = ((Button)sender).CommandParameter as AnnouncmentItem;
+            if(tmpItem != null)
             {
-                CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, user, item));
-            } else if (item != null)
+                Announcment? item = tmpItem.Announcment;
+                if (item != null && user != null)
+                {
+                    CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, user, item));
+                }
+                else if (item != null)
+                {
+                    CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, item));
+                }
+            }
+           
+        }
+
+        private void Btn_GoToCompanyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            Company? item = ((Button)sender).CommandParameter as Company;
+            if(item != null)
             {
-                CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, item));
+                CurrentPage.Navigate(new CompanyProfile(CurrentPage,item, false));
             }
         }
     }

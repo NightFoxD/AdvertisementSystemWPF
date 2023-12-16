@@ -35,6 +35,16 @@ namespace ASProjektWPF.Pages
             LV_Responsibilities.ItemsSource = item.Responsibilities;
             LV_Requirements.ItemsSource = item.Requirements;
             IC_Benefits.ItemsSource = item.Benefits;
+            Lbl_Adress.Content = item.City;
+            DateTime? date = item.EndDate;
+            if (date != null)
+            {
+                Lbl_EndDate.Content = $"Do: {date.Value.Day}.{date.Value.Month}.{date.Value.Year}";
+            }
+            Lbl_Position.Content = item.PositionName;
+            Lbl_WorkTime.Content = item.WorkingTime;
+            Lbl_PositionLevel.Content = item.PositionLevel;
+            Lbl_WorkType.Content = item.WorkType;
             try
             {
                 if (App.DataAccess.GetApplicationList().Where(item => item.AnnouncmentID == announcment.AnnouncmentID).First().UserID == user.UserDataID)
@@ -57,7 +67,16 @@ namespace ASProjektWPF.Pages
             LV_Responsibilities.ItemsSource = item.Responsibilities;
             LV_Requirements.ItemsSource = item.Requirements;
             IC_Benefits.ItemsSource = item.Benefits;
-
+            Lbl_Adress.Content = item.City;
+            DateTime? date = item.EndDate;
+            if (date != null)
+            {
+                Lbl_EndDate.Content = $"Do: {date.Value.Day}.{date.Value.Month}.{date.Value.Year}";
+            }
+            Lbl_Position.Content = item.PositionName;
+            Lbl_WorkTime.Content = item.WorkingTime;
+            Lbl_PositionLevel.Content = item.PositionLevel;
+            Lbl_WorkType.Content = item.WorkType;
         }
         private void Btn_Back_Click(object sender, RoutedEventArgs e)
         {
