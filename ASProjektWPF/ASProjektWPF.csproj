@@ -12,9 +12,18 @@
     <None Remove="Images\App\back.png" />
     <None Remove="Images\App\benefit.png" />
     <None Remove="Images\App\checkmark.png" />
+    <None Remove="Images\App\clock.png" />
+    <None Remove="Images\App\DefaultCompany.png" />
+    <None Remove="Images\App\docs.png" />
+    <None Remove="Images\App\email.png" />
     <None Remove="Images\App\img1.PNG" />
+    <None Remove="Images\App\pin.png" />
+    <None Remove="Images\App\position.png" />
+    <None Remove="Images\App\recruitment.png" />
     <None Remove="Images\App\Swiftlly_transparent_FullName.png" />
     <None Remove="Images\App\Swiftlly_transparent_Logo.png" />
+    <None Remove="Images\App\time.png" />
+    <None Remove="Images\App\work.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,12 +34,21 @@
     <Resource Include="Images\App\benefit.png" />
     <Resource Include="Images\App\back.png" />
     <Resource Include="Images\App\checkmark.png" />
+    <Resource Include="Images\App\clock.png" />
+    <Resource Include="Images\App\DefaultCompany.png" />
+    <Resource Include="Images\App\docs.png" />
+    <Resource Include="Images\App\email.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\App\img1.PNG" />
+    <Resource Include="Images\App\pin.png" />
+    <Resource Include="Images\App\position.png" />
+    <Resource Include="Images\App\recruitment.png" />
     <Resource Include="Images\App\Swiftlly_transparent_FullName.png" />
     <Resource Include="Images\App\Swiftlly_transparent_Logo.png" />
+    <Resource Include="Images\App\time.png" />
+    <Resource Include="Images\App\work.png" />
   </ItemGroup>
 
   <ItemGroup>

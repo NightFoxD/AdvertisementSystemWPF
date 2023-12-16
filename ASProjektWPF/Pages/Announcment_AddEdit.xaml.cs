@@ -185,6 +185,7 @@ namespace ASProjektWPF.Pages
                 addEditAnnouncment.Requirements = string.Join(";", itemsRequirements.Select(item=>item.Content));
                 addEditAnnouncment.Benefits = string.Join(";", itemsBenefits.Select(item=>item.Content));
                 addEditAnnouncment.Responsibilities = string.Join(";", itemsResponsibilities.Select(item=>item.Content));
+                addEditAnnouncment.StartDate = DateTime.Now;
                 addEditAnnouncment.EndDate = DP_EndDate.SelectedDate;
                 addEditAnnouncment.City = TxtB_City.Text;
                 App.DataAccess.Add_Announcment(addEditAnnouncment);
@@ -203,6 +204,7 @@ namespace ASProjektWPF.Pages
                 addEditAnnouncment.Requirements = string.Join(";", itemsRequirements.Select(item => item.Content));
                 addEditAnnouncment.Benefits = string.Join(";", itemsBenefits.Select(item => item.Content));
                 addEditAnnouncment.Responsibilities = string.Join(";", itemsResponsibilities.Select(item => item.Content));
+                addEditAnnouncment.StartDate = DateTime.Now;
                 addEditAnnouncment.EndDate = DP_EndDate.SelectedDate;
                 addEditAnnouncment.City = TxtB_City.Text;
                 App.DataAccess.Update_Announcment(addEditAnnouncment);

@@ -32,6 +32,7 @@ namespace ASProjektWPF
             InitializeComponent();
             Page.Navigate(new Home(Page));
             RB_Profil.Visibility = Visibility.Collapsed;
+            RB_ComapnyProfile.Visibility = Visibility.Collapsed;
         }
         public MainWindow(string Login, bool UserCompanyFlag)
         {
@@ -40,6 +41,7 @@ namespace ASProjektWPF
             if (UserCompanyFlag)
             {
                 GetUser(Login);
+                RB_ComapnyProfile.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -134,6 +136,14 @@ namespace ASProjektWPF
                 Page.Navigate(new CommpanyAccountControl(Page, Company));
             }
             
+        }
+
+        private void RB_ComapnyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            if (Company != null)
+            {
+                Page.Navigate(new CompanyProfile(Page, Company));
+            }
         }
     }
 }

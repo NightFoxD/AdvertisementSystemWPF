@@ -59,6 +59,10 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<Announcment>().ToListAsync().Result;
         }
+        public List<Announcment> GetAnnouncmentList(Company company)
+        {
+            return _database.Table<Announcment>().Where(item=>item.CompanyID == company.CompanyID).ToListAsync().Result;
+        }
         public Task Add_Announcment(Announcment announcment)
         {
             return _database.InsertAsync(announcment);

@@ -29,6 +29,7 @@ namespace ASProjektWPF.Models
         [MaxLength(50)]
         public string? WorkType { get; set; }
         [MaxLength(50)]
+        public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string? Responsibilities { get; set; }
         public string? Requirements { get; set; }

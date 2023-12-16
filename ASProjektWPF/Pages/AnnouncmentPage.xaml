@@ -42,36 +42,126 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Border Grid.Row="1" Background="White" CornerRadius="0,0,5,5" Margin="0,0,0,10" BorderBrush="#dadada" BorderThickness="0.2">
-                    <!--<WrapPanel Background="Transparent">
-                    <ItemsControl>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="20">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border BorderBrush="Transparent" CornerRadius="25">
-                                        <Image Source="/images/app/defaultpfp.png"/>
-                                    </Border>
-                                    <StackPanel Grid.Column="1">
-                                        <Label Content="Opolska 112, Prądnik Czerwony, Kraków" FontSize="20"/>
-                                        <Label Content="Kraków, małopolskie" FontSize="15"/>
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </WrapPanel>-->
+                <Border Grid.Row="1" Background="White" Height="auto" CornerRadius="0,0,5,5" Margin="0,0,0,10" BorderBrush="#dadada" BorderThickness="0.2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/pin.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1">
+                                <Label Content="Opolska 112, Prądnik Czerwony, Kraków" FontSize="15"/>
+                                <Label Content="Kraków, małopolskie" FontSize="10"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/time.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label Content="ważna jeszcze 12 dni" FontSize="15"/>
+                                <Label Content="do: 28 gru 2023" FontSize="10"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="0" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/docs.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label Content="umowa o staż / praktyki" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/clock.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label Content="pełny etat" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="0" Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/position.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label Content="praktykant / stażysta" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/work.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label Content="praca stacjonarna, praca hybrydowa" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="0" Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Transparent" Background="#dadada" CornerRadius="5" Margin="5" Padding="5">
+                                <Image Source="/Images/App/recruitment.png" Height="40"/>
+                            </Border>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label Content="rekrutacja zdalna" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
                 </Border>
                 <Border Grid.Row="2" Background="White" CornerRadius="5" Margin="0,10,0,10" BorderBrush="#dadada" BorderThickness="0.2">
                     <StackPanel>

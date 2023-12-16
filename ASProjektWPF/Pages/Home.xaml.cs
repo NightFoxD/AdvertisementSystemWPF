@@ -153,12 +153,6 @@ namespace ASProjektWPF.Pages
                 BR_Items.Visibility = Visibility.Collapsed;
             else
                 BR_Items.Visibility = Visibility.Visible;
-            //string txt = "";
-            //foreach(CheckedItem item in list)
-            //{
-            //    txt += item.Name;
-            //}
-            //MessageBox.Show("error",txt,MessageBoxButton.OK);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

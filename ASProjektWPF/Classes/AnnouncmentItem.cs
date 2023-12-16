@@ -26,6 +26,7 @@ namespace ASProjektWPF.Classes
         public List<Item> ContractType = new List<Item> { };
         public List<Item> WorkingTime = new List<Item> { };
         public List<Item> WorkType = new List<Item> { };
+        public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public List<Item> Responsibilities = new List<Item> { };
         public List<Item> Requirements = new List<Item> { };
