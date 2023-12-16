@@ -55,9 +55,9 @@ namespace ASProjektWPF.Classes
             return _database.DeleteAsync(accountType);
         }
         //--------- Announcment ---------//
-        public Task<List<Announcment>> GetAnnouncmentList()
+        public List<Announcment> GetAnnouncmentList()
         {
-            return _database.Table<Announcment>().ToListAsync();
+            return _database.Table<Announcment>().ToListAsync().Result;
         }
         public Task Add_Announcment(Announcment announcment)
         {
@@ -72,13 +72,13 @@ namespace ASProjektWPF.Classes
             return _database.DeleteAsync(announcment);
         }
         //--------- Application ---------//
-        public Task<List<Models.Application>> GetApplicationList()
+        public List<Models.Application> GetApplicationList()
         {
-            return _database.Table<Models.Application>().ToListAsync();
+            return _database.Table<Models.Application>().ToListAsync().Result;
         }
-        public Task Add_Application(Models.Application application)
+        public int Add_Application(Models.Application application)
         {
-            return _database.InsertAsync(application);
+            return _database.InsertAsync(application).Result;
         }
         public Task Update_Application(Models.Application application)
         {
@@ -106,13 +106,21 @@ namespace ASProjektWPF.Classes
             return _database.DeleteAsync(category);
         }
         //--------- Company ---------//
-        public Task<List<Company>> GetCompanyList()
+        public List<Company> GetCompanyList()
         {
-            return _database.Table<Company>().ToListAsync();
+            return _database.Table<Company>().ToListAsync().Result;
         }
-        public Task Add_Company(Company company)
+        public Company GetCompanyList(string Login)
         {
-            return _database.InsertAsync(company);
+            return _database.Table<Company>().Where(item=>item.Login == Login).FirstAsync().Result;
+        }
+        public Company GetCompanyFromID(int id)
+        {
+            return _database.Table<Company>().Where(item => item.CompanyID == id).FirstAsync().Result;
+        }
+        public int Add_Company(Company company)
+        {
+            return _database.InsertAsync(company).Result;
         }
         public Task Update_Company(Company company)
         {
@@ -389,13 +397,13 @@ namespace ASProjektWPF.Classes
             }
             return false;
         }
-        public Task<UserData> GetUserFromLogin(string login)
+        public UserData GetUserFromLogin(string login)
         {
-            return Task.FromResult(_database.Table<UserData>().Where(user => user.Login == login).ToListAsync().Result.First());
+            return _database.Table<UserData>().Where(user => user.Login == login).ToListAsync().Result.First();
         }
-        public Task<User> GetUserInformations(UserData user)
+        public User GetUserInformations(UserData user)
         {
-            return Task.FromResult(_database.Table<User>().Where(item => item.UserDataID == user.UserDataID).ToListAsync().Result.First());
+            return _database.Table<User>().Where(item => item.UserDataID == user.UserDataID).ToArrayAsync().Result.First();
         }
         //--------- WorkingDays ---------//
         public Task<List<WorkingDays>> GetWorkingDaysList()

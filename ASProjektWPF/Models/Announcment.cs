@@ -13,14 +13,12 @@ namespace ASProjektWPF.Models
     {
         [PrimaryKey, AutoIncrement]
         public int AnnouncmentID { get; set; }
-        public int? CompanyID { get; set; }
-        public int? CategoryID { get; set; }
-        public int? SubCategoryID { get; set; }
+        public int CompanyID { get; set; }
+        public string? CategoryID { get; set; }
         [MaxLength(50)]
         public string? Name { get; set; }
         [MaxLength(50)]
-        public string? PfpSource { get; set; }
-        [MaxLength(50)]
+        public string? Description { get; set; }
         public string? PositionName { get; set; }
         [MaxLength(50)]
         public string? PositionLevel { get; set; }
@@ -31,7 +29,6 @@ namespace ASProjektWPF.Models
         [MaxLength(50)]
         public string? WorkType { get; set; }
         [MaxLength(50)]
-        public string? WorkHours { get; set; }
         public DateTime? EndDate { get; set; }
         public string? Responsibilities { get; set; }
         public string? Requirements { get; set; }

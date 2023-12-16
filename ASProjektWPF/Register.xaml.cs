@@ -67,13 +67,20 @@ namespace ASProjektWPF
 
         private async void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            UserData NewUserData = new UserData();
-            NewUserData.Login = TxB_Login.Text;
-            NewUserData.Password = PsB_Password_1.Password;
-            NewUserData.AccountTypeID = 1;
-            await App.DataAccess.InsertUserData(NewUserData);
-            NewUserData = await App.DataAccess.GetUserFromLogin(NewUserData.Login);
-            App.DataAccess.InserUser(NewUserData);
+            //UserData NewUserData = new UserData();
+            //NewUserData.Login = TxB_Login.Text;
+            //NewUserData.Password = PsB_Password_1.Password;
+            //NewUserData.AccountTypeID = 1;
+            //await App.DataAccess.InsertUserData(NewUserData);
+            //NewUserData = await App.DataAccess.GetUserFromLogin(NewUserData.Login);
+            //App.DataAccess.InserUser(NewUserData);
+            Company company = new Company();
+            company.Login = TxB_Login.Text;
+            company.Password = PsB_Password_1.Password;
+            if(company != null)
+            {
+                App.DataAccess.Add_Company(company);
+            }
             (new Login()).Show();
             this.Close();
         }

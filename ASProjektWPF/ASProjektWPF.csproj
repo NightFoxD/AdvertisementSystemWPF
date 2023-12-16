@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <None Remove="Images\App\back.png" />
+    <None Remove="Images\App\benefit.png" />
+    <None Remove="Images\App\checkmark.png" />
     <None Remove="Images\App\img1.PNG" />
     <None Remove="Images\App\Swiftlly_transparent_FullName.png" />
     <None Remove="Images\App\Swiftlly_transparent_Logo.png" />
@@ -20,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\App\benefit.png" />
     <Resource Include="Images\App\back.png" />
+    <Resource Include="Images\App\checkmark.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +40,7 @@
 
   <ItemGroup>
     <Folder Include="Files\" />
-    <Folder Include="Images\Uploads\" />
+    <Folder Include="Images\Uploads\Company\" />
   </ItemGroup>
 
 </Project>

@@ -15,5 +15,6 @@
         <Button Content="Dodaj wymiar pracy" Click="Btn_AddWorkTime_Click" Padding="10" Margin="10"/>
         <Button Content="Dodaj tryb pracy" Click="Btn_AddWorkType_Click" Padding="10" Margin="10"/>
         <Button Content="Dodaj ogłoszenie" Click="Btn_AddAnnouncment_Click" Padding="10" Margin="10"/>
+        <Button Content="Edytuj ogłoszenia" Click="Btn_EditAnnouncment_Click" Padding="10" Margin="10"/>
     </WrapPanel>
 </Page>

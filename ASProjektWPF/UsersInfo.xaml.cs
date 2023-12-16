@@ -29,10 +29,10 @@ namespace ASProjektWPF
         public async void GetInformations()
         {
             DG_AccountType.ItemsSource = await App.DataAccess.GetAccountTypeList();
-            DG_Announcment.ItemsSource = await App.DataAccess.GetAnnouncmentList();
-            DG_Application.ItemsSource = await App.DataAccess.GetApplicationList();
+            DG_Announcment.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            DG_Application.ItemsSource =  App.DataAccess.GetApplicationList();
             DG_Category.ItemsSource = App.DataAccess.GetCategoryList();
-            DG_Company.ItemsSource = await App.DataAccess.GetCompanyList();
+            DG_Company.ItemsSource =  App.DataAccess.GetCompanyList();
             DG_Education.ItemsSource = await App.DataAccess.GetEducationList();
             DG_Experience.ItemsSource = await App.DataAccess.GetExperienceList();
             DG_Language.ItemsSource = await App.DataAccess.GetLanguageList();

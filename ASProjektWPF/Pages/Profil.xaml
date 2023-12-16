@@ -66,14 +66,15 @@
                     <Border CornerRadius="5,5,0,0" Background="#dadada" Padding="5">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="105*"/>
+                                <ColumnDefinition Width="280*"/>
+                                <ColumnDefinition Width="384*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Label Content="Dane kontaktowe" Padding="10"/>
-                            <Button x:Name="Btn_ContactData_Edit" Grid.Column="1" Content="Edytuj" Background="White" Foreground="#a4a4a4" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_ContactData_Edit_Click"/>
+                            <Label Content="Dane kontaktowe" Padding="10" Grid.ColumnSpan="2"/>
+                            <Button x:Name="Btn_ContactData_Edit" Grid.Column="2" Content="Edytuj" Background="White" Foreground="#a4a4a4" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_ContactData_Edit_Click" Margin="340,0,0,0"/>
                         </Grid>
                     </Border>
                     <Border Padding="5,10,5,5">
@@ -570,45 +571,45 @@
                             </Grid>
                             <ListView x:Name="Lv_UserLinknList" Background="Transparent" BorderThickness="0">
                                 <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="IsHitTestVisible" Value="True"/>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="ListViewItem">
-                                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                                            <ContentPresenter/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border  BorderBrush="#bfbfbf" Background="#dadada" BorderThickness="1" Margin="4" CornerRadius="5">
-                                                <StackPanel Margin="10">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition/>
-                                                        </Grid.RowDefinitions>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="100"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                                            <TextBlock Text="{Binding Type, StringFormat='{}{0}:'}" Foreground="Black" />
-                                                            <TextBlock Text="{Binding Name}" Foreground="Black" />
-                                                        </StackPanel>
-                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="IsHitTestVisible" Value="True"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ListViewItem">
+                                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border  BorderBrush="#bfbfbf" Background="#dadada" BorderThickness="1" Margin="4" CornerRadius="5">
+                                            <StackPanel Margin="10">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                        <TextBlock Text="{Binding Type, StringFormat='{}{0}:'}" Foreground="Black" />
+                                                        <TextBlock Text="{Binding Name}" Foreground="Black" />
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
                                                         <Button Content="Usuń" HorizontalAlignment="Right" Background="White" Foreground="Red" Margin="0,0,10,0" Style="{StaticResource ProfileDeleteButtonTheme}" Click="Btn_Link_Delete_Click" CommandParameter="{Binding .}"/>
                                                         <Button Content="Edytuj" HorizontalAlignment="Right" Background="White" Foreground="Gray" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_Link_Edit_Click" CommandParameter="{Binding .}"/>
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </StackPanel>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </StackPanel>
                     </Border>
                 </StackPanel>

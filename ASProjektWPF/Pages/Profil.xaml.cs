@@ -61,9 +61,9 @@ namespace ASProjektWPF.Pages
             }
             return countries;
         }
-        public async void GetUserData()
+        public void GetUserData()
         {
-            user = await App.DataAccess.GetUserInformations(userData);
+            user =  App.DataAccess.GetUserInformations(userData);
         }
         public void LoadInformations()
         {

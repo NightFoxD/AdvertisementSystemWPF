@@ -48,11 +48,7 @@
                                 <TextBox x:Name="SearchBar" Background="#dadada" BorderThickness="0" Margin="3,0,0,0" VerticalContentAlignment="Center"/>
                             </Border>
                             <Border Grid.Column="3" BorderBrush="Black" Background="#dadada" BorderThickness="1">
-                                <ComboBox BorderThickness="0" BorderBrush="#dadada" Background="#dadada">
-                                    <ComboBoxItem>
-
-                                    </ComboBoxItem>
-                                </ComboBox>
+                                <ComboBox x:Name="CmB_Category" VerticalContentAlignment="Center" BorderThickness="0" BorderBrush="#dadada" Background="#dadada"/>
                             </Border>
                             <Border Grid.Column="4" BorderBrush="Black" Background="#dadada" BorderThickness="0,1,1,1" CornerRadius="0,5,5,0">
                                 <TextBox x:Name="Localization" Background="#dadada" BorderThickness="0" Padding="10" Margin="0,0,3,0" VerticalContentAlignment="Center"/>
@@ -135,7 +131,7 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black"  Margin="5">
-                                    <Button Padding="10" Background="Transparent" BorderThickness="0" CommandParameter="{Binding .}">
+                                    <Button Padding="10" Background="Transparent" BorderThickness="0" CommandParameter="{Binding .}" Click="Btn_GoToAnnouncment_Click">
                                         <Button.Content>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -166,7 +162,7 @@
                 <TextBlock Text="Pracodawcy, których warto znać" FontWeight="Bold" HorizontalAlignment="Center" FontSize="30" Margin="0,0,0,30"/>
                 <ScrollViewer x:Name="imageScrollView" HorizontalScrollBarVisibility="hidden"  VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" MaxWidth="800">
                     <StackPanel Orientation="Horizontal">
-                        <ItemsControl x:Name="sadf">
+                        <ItemsControl x:Name="IC_Companies">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel Orientation="Horizontal"/>

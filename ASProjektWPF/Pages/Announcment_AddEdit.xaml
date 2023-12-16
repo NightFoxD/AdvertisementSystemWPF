@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ASProjektWPF.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="4500" d:DesignWidth="800"
       Title="Announcment_AddEdit">
     <ScrollViewer>
         <StackPanel>
@@ -32,16 +32,19 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>  
+                        <RowDefinition Height="auto"/>  
+                        <RowDefinition Height="auto"/>  
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Nazwa Ogłoszenia" Margin="10"/>
-                    <TextBox Grid.Column="1" x:Name="Txt_Name" Width="200" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtB_Name" Grid.Column="1" Width="200" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Text="Pozycja: " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="Txt_PositionName" Width="200" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtB_PositionName"  Grid.Column="1" Grid.Row="1" Width="200" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    
                     <TextBlock Grid.Row="2" Text="Poziom stanowiska: " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
                     <ComboBox x:Name="CmB_PositionLevel" Grid.Column="1" Grid.Row="2" Margin="10" SelectedIndex="0"/>
                     <TextBlock Grid.Row="3" Text="Rodzaj umowy: " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
@@ -76,18 +79,18 @@
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="{Binding Content}"/>
-                                            <Button Grid.Column="1" Content="Usuń"  Click="Btn_DeleteItemResponsibiliti_Click" CommandParameter="{Binding .}"/>
+                                            <Button Grid.Column="1" Content="Usuń"  Click="Btn_DeleteItemResponsibility_Click" CommandParameter="{Binding .}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                             <Label Content="Nazwa obowiązku: "/>
                             <TextBox x:Name="TxtB_Responsibility_Content"/>
-                            <Button x:Name="Btn_AddResponsible" Content="Dodaj obowiązek" HorizontalAlignment="Center" Padding="10" Click="Btn_AddResponsible_Click"/>
+                            <Button x:Name="Btn_AddResponsible" Content="Dodaj obowiązek" HorizontalAlignment="Center" Padding="10" Click="Btn_AddResponsibleItem_Click"/>
                         </StackPanel>
                         <TextBlock Text="Wymagania: "/>
                         <StackPanel>
-                            <ListView x:Name="SP_Requirements" BorderThickness="0" Background="Transparent">
+                            <ListView x:Name="LV_Requirements" BorderThickness="0" Background="Transparent">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="IsHitTestVisible" Value="True"/>
@@ -109,17 +112,19 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Text="{Binding Content}"/>
-                                            <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}"/>
+                                            <TextBlock Text="{Binding Content}"/>
+                                            <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}" Click="Btn_DeleteItemRequirement_Click"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <Button Content="Dodaj Wymaganie" HorizontalAlignment="Center" Padding="10"/>
+                            <Label Content="Nazwa wymagania: "/>
+                            <TextBox x:Name="TxtB_Requirement_Content"/>
+                            <Button Content="Dodaj Wymaganie" HorizontalAlignment="Center" Padding="10" Click="Btn_AddRequirementItem_Click"/>
                         </StackPanel>
                         <TextBlock Text="Benefity: "/>
                         <StackPanel>
-                            <ListView x:Name="SP_Benefits" BorderThickness="0" Background="Transparent">
+                            <ListView x:Name="LV_Benefits" BorderThickness="0" Background="Transparent">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="IsHitTestVisible" Value="True"/>
@@ -141,16 +146,49 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Text="{Binding Content}"/>
-                                            <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}"/>
+                                            <TextBlock Text="{Binding Content}"/>
+                                            <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}" Click="Btn_DeleteItemBenefit_Click"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <Button Content="Dodaj Benefity" HorizontalAlignment="Center" Padding="10"/>
+                            <Label Content="Nazwa benefitu: "/>
+                            <TextBox x:Name="TxtB_Benefit_Content"/>
+                            <Button Content="Dodaj Benefity" HorizontalAlignment="Center" Padding="10" Click="Btn_AddBenefitItem_Click"/>
                         </StackPanel>
                     </StackPanel>
+                    <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Margin="10">
+                        <Label Content="Opis ogłoszenia: "/>
+                        <TextBox x:Name="TxtB_Description" HorizontalAlignment="Stretch" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Margin="10" Orientation="Horizontal">
+                        <Label Content="Zakończenie ogłoszenia: " Margin="10"/>
+                        <DatePicker x:Name="DP_EndDate" Margin="10"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="10" Grid.ColumnSpan="2" Margin="10">
+                        <Label Content="Nazwa miasta: " Margin="10"/>
+                        <TextBox x:Name="TxtB_City" Margin="10"/>
+                    </StackPanel>
+                    <Label Content="Kategoria" Grid.Row="11" HorizontalAlignment="Left"/>
+                    <Border x:Name="BR_Items" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Center" BorderThickness="1" Background="White" CornerRadius="10" Margin="10,0,0,0" Padding="1">
+                        <ScrollViewer MaxHeight="300" Padding="10" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="IC_ItemsToChecked" Margin="15,0,0,0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Padding="5" Margin="5">
+                                            <StackPanel Orientation="Horizontal">
+                                                <CheckBox IsChecked="{Binding Checked}" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Name}" Padding="5" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Count,StringFormat='({0})'}" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
                 </Grid>
+
                 <Button Grid.Row="1" x:Name="Btn_AddUpdateAnnouncment" Click="Btn_AddUpdateAnnouncment_Click" HorizontalAlignment="Center" Padding="10"/>
             </Grid>
         </StackPanel>

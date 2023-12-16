@@ -22,10 +22,12 @@ namespace ASProjektWPF.Pages
     public partial class CommpanyAccountControl : Page
     {
         Frame currentPage;
-        public CommpanyAccountControl(Frame currentPage)
+        Company Company;
+        public CommpanyAccountControl(Frame currentPage,Company company)
         {
             InitializeComponent();
             this.currentPage = currentPage;
+            Company = company;
         }
 
         private void Btn_AddCategory_Click(object sender, RoutedEventArgs e)
@@ -55,7 +57,12 @@ namespace ASProjektWPF.Pages
         }        
         private void Btn_AddAnnouncment_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Navigate(new Announcment_AddEdit(currentPage));
+            currentPage.Navigate(new Announcment_AddEdit(currentPage,Company));
+        }        
+        private void Btn_EditAnnouncment_Click(object sender, RoutedEventArgs e)
+        {
+            Announcment? announcment = ((Button)sender).CommandParameter as Announcment;
+            currentPage.Navigate(new CompanyAnnouncmentView(currentPage,Company));
         }
     }
 }

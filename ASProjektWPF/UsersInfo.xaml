@@ -49,13 +49,11 @@
                     <DataGridTextColumn Header="AnnouncmentID" Binding="{Binding AnnouncmentID}"/>
                     <DataGridTextColumn Header="CompanyID" Binding="{Binding CompanyID}"/>
                     <DataGridTextColumn Header="CategoryID" Binding="{Binding CategoryID}"/>
-                    <DataGridTextColumn Header="SubCategoryID" Binding="{Binding SubCategoryID}"/>
                     <DataGridTextColumn Header="PositionName" Binding="{Binding PositionName}"/>
                     <DataGridTextColumn Header="PositionLevel" Binding="{Binding PositionLevel}"/>
                     <DataGridTextColumn Header="ContractType" Binding="{Binding ContractType}"/>
                     <DataGridTextColumn Header="WorkingTime" Binding="{Binding WorkingTime}"/>
                     <DataGridTextColumn Header="WorkType" Binding="{Binding WorkType}"/>
-                    <DataGridTextColumn Header="WorkHours" Binding="{Binding WorkHours}"/>
                     <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"/>
                     <DataGridTextColumn Header="Responsibilities" Binding="{Binding Responsibilities}"/>
                     <DataGridTextColumn Header="Requirements" Binding="{Binding Requirements}"/>
@@ -82,6 +80,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="CompanyID" Binding="{Binding CompanyID}"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
                     <DataGridTextColumn Header="Adress" Binding="{Binding Adress}"/>
                     <DataGridTextColumn Header="LocalizationLink" Binding="{Binding LocalizationLink}"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>

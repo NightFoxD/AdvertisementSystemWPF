@@ -22,77 +22,42 @@ namespace ASProjektWPF.Pages
     /// </summary>
     public partial class Home : Page
     {
-        Frame page;
+        Frame CurrentPage;
+        UserData? user;
+        Company? Company;
         List<CheckedItem> checkedItems_PositionLevel = new List<CheckedItem>() { };
         List<CheckedItem> checkedItems_ContractTypes = new List<CheckedItem>() { };
         List<CheckedItem> checkedItems_WorkTime = new List<CheckedItem>() { };
         List<CheckedItem> checkedItems_WorkType = new List<CheckedItem>() { };
-        List<CheckedItem> workTypes = new List<CheckedItem>
-        {
-            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
-
-        };
-        List<CheckedItem> workTypes2 = new List<CheckedItem>
-        {
-            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
-            new CheckedItem { Checked = false, Name = "2",Count = 10},
-        };
-        List<CheckedItem> workTypes3 = new List<CheckedItem>
-        {
-            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
-            new CheckedItem { Checked = false, Name = "2",Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-        };
-        List<CheckedItem> workTypes4 = new List<CheckedItem>
-        {
-            new CheckedItem { Checked = true, Name = "Kierownik/Koordynator",Count = 10},
-            new CheckedItem { Checked = false, Name = "2",Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-            new CheckedItem { Checked = true, Name = "3", Count = 10},
-        };
-        List<AnnouncmentItem> list = new List<AnnouncmentItem>()
-        {
-            new AnnouncmentItem{ PositionName = "1",  Name = "1", City = "city" },
-            new AnnouncmentItem{ PositionName = "2", Name = "2", City = "city" },
-            new AnnouncmentItem{ PositionName = "3", Name = "3", City = "city" },
-            new AnnouncmentItem{ PositionName = "4", Name = "4", City = "city" },
-            new AnnouncmentItem{ PositionName = "5", Name = "5", City = "city" },
-            new AnnouncmentItem{ PositionName = "6", Name = "6", City = "city" },
-            new AnnouncmentItem{ PositionName = "7", Name = "7", City = "city" },
-            new AnnouncmentItem{ PositionName = "8", Name = "8", City = "city" },
-            new AnnouncmentItem{ PositionName = "9", Name = "9", City = "city" },
-            new AnnouncmentItem{ PositionName = "10", Name = "0", City = "city" },
-            new AnnouncmentItem{ PositionName = "11", Name = "11", City = "city" },
-        };
-        List<AnnouncmentItem> list2 = new List<AnnouncmentItem>()
-        {
-            new AnnouncmentItem{ PositionName = "name1",  Name = "asdf", City = "city" },
-           new AnnouncmentItem{ PositionName = "name1", Name = "asdf", City = "city" },
-        };
-        List<AnnouncmentItem> list3 = new List<AnnouncmentItem>()
-        {
-            new AnnouncmentItem{ PositionName = "name1",  Name = "asdf", City = "city" },
-            new AnnouncmentItem{ PositionName = "name1", Name = "asdf", City = "city" },
-            new AnnouncmentItem{ PositionName = "name1", Name = "asdf", City = "city" },
-        };
-        List<AnnouncmentItem> list4 = new List<AnnouncmentItem>()
-        {
-            new AnnouncmentItem{ PositionName = "name1",  Name = "asdf", City = "city" },
-            new AnnouncmentItem{ PositionName = "name1", Name = "asdf", City = "city" },
-            new AnnouncmentItem{ PositionName = "name1", Name = "asdf", City = "city" },
-            new AnnouncmentItem{ PositionName = "name1", Name = "asdf", City = "city" },
-        };
+       
         public Home(Frame CurrentPage)
         {
             InitializeComponent();
-            page = CurrentPage;
-            Announcments.ItemsSource = list;
-            sadf.ItemsSource = list;
+            this.CurrentPage = CurrentPage;
+            Initialie();
+        }
+        public Home(Frame CurrentPage,UserData user)
+        {
+            InitializeComponent();
+            this.CurrentPage = CurrentPage;
+            this.user = user;
+            Initialie();
+        }
+        public Home(Frame CurrentPage, Company company)
+        {
+            InitializeComponent();
+            this.CurrentPage = CurrentPage;
+            this.Company = company;
+            Initialie();
+        }
+        public void Initialie()
+        {
+            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
+            IC_Companies.ItemsSource = App.DataAccess.GetCompanyList();
+            foreach (var item in App.DataAccess.GetCategoryList())
+            {
+                CmB_Category.Items.Add(item.Name);
+            }
             if (IC_ItemsToChecked.Items.Count <= 0)
                 BR_Items.Visibility = Visibility.Collapsed;
             else
@@ -112,70 +77,106 @@ namespace ASProjektWPF.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            List<CheckedItem> listFromDatabase = new List<CheckedItem>();
             var list = checkedItems_WorkType;
             string? btnContent = ((Button)sender).Name;
             switch (btnContent)
             {
                 case "Btn_PositionLevel":
-                    
-                    list = checkedItems_PositionLevel;
-                    IC_ItemsToChecked.ItemsSource = workTypes;
+
                     checkedItems_PositionLevel = GetCheckedTypeWork();
+                    foreach (var itemFromDatabase in App.DataAccess.GetPositionLevelList())
+                    {
+                        CheckedItem item = new CheckedItem();
+                        item.ID = itemFromDatabase.ID;
+                        item.Name = itemFromDatabase.Name;
+                        if (checkedItems_PositionLevel.Contains(item))
+                        {
+                            item.Checked = true;
+                        }
+                        listFromDatabase.Add(item);
+                    }
+                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
                     break;
                 case "Btn_ContractType":
-                    
-                    list = checkedItems_ContractTypes;
-                    IC_ItemsToChecked.ItemsSource = workTypes2;
+
                     checkedItems_ContractTypes = GetCheckedTypeWork();
+                    foreach (var itemFromDatabase in App.DataAccess.GetContractList())
+                    {
+                        CheckedItem item = new CheckedItem();
+                        item.ID = itemFromDatabase.ID;
+                        item.Name = itemFromDatabase.Name;
+                        if (checkedItems_ContractTypes.Contains(item))
+                        {
+                            item.Checked = true;
+                        }
+                        listFromDatabase.Add(item);
+                    }
+                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
                     break;
                 case "Btn_WorkTime":
-                    
-                    list = checkedItems_WorkTime;
-                    IC_ItemsToChecked.ItemsSource = workTypes3;
+
                     checkedItems_WorkTime = GetCheckedTypeWork();
+                    foreach (var itemFromDatabase in App.DataAccess.GetWorkTimeList())
+                    {
+                        CheckedItem item = new CheckedItem();
+                        item.ID = itemFromDatabase.ID;
+                        item.Name = itemFromDatabase.Name;
+                        if (checkedItems_WorkTime.Contains(item))
+                        {
+                            item.Checked = true;
+                        }
+                        listFromDatabase.Add(item);
+                    }
+                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
                     break;
                 case "Btn_WorkType":
-                    
-                    list = checkedItems_WorkType;
-                    IC_ItemsToChecked.ItemsSource = workTypes4;
+
                     checkedItems_WorkType = GetCheckedTypeWork();
+                    foreach (var itemFromDatabase in App.DataAccess.GetWorkTypeList())
+                    {
+                        CheckedItem item = new CheckedItem();
+                        item.ID = itemFromDatabase.ID;
+                        item.Name = itemFromDatabase.Name;
+                        if (checkedItems_WorkType.Contains(item))
+                        {
+                            item.Checked = true;
+                        }
+                        listFromDatabase.Add(item);
+                    }
+                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
                     break;
                 default:
-                    
-                    list = checkedItems_WorkType;
-                    IC_ItemsToChecked.ItemsSource = workTypes;
-                    checkedItems_WorkType = GetCheckedTypeWork();
                     break;
             }
             if (IC_ItemsToChecked.Items.Count <= 0)
                 BR_Items.Visibility = Visibility.Collapsed;
             else
                 BR_Items.Visibility = Visibility.Visible;
-            string txt = "";
-            foreach(CheckedItem item in list)
-            {
-                txt += item.Name;
-            }
-            MessageBox.Show("error",txt,MessageBoxButton.OK);
+            //string txt = "";
+            //foreach(CheckedItem item in list)
+            //{
+            //    txt += item.Name;
+            //}
+            //MessageBox.Show("error",txt,MessageBoxButton.OK);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Announcments.ItemsSource = list;
+            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Announcments.ItemsSource = list2;
+            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Announcments.ItemsSource = list3;
+            Announcments.ItemsSource = App.DataAccess.GetAnnouncmentList();
         }
         private void PreviousButtonClick(object sender, RoutedEventArgs e)
         {
-            // Przewijamy w lewo
             double scrollAmount = 410;
             imageScrollView.ScrollToHorizontalOffset(imageScrollView.HorizontalOffset - scrollAmount);
         }
@@ -184,6 +185,18 @@ namespace ASProjektWPF.Pages
         {
             double scrollAmount = 410;
             imageScrollView.ScrollToHorizontalOffset(imageScrollView.HorizontalOffset + scrollAmount);
+        }
+
+        private void Btn_GoToAnnouncment_Click(object sender, RoutedEventArgs e)
+        {
+            Announcment? item = ((Button)sender).CommandParameter as Announcment;
+            if (item != null && user != null)
+            {
+                CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, user, item));
+            } else if (item != null)
+            {
+                CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, item));
+            }
         }
     }
 }

@@ -24,25 +24,39 @@ namespace ASProjektWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserData LoggedUserData;
+        UserData? LoggedUserData;
+        Company? Company;
+        bool UserCompanyFlag;
         public MainWindow()
         {
             InitializeComponent();
             Page.Navigate(new Home(Page));
             RB_Profil.Visibility = Visibility.Collapsed;
         }
-        public MainWindow(string Login)
+        public MainWindow(string Login, bool UserCompanyFlag)
         {
             InitializeComponent();
-            GetUser(Login);
-            Page.Navigate(new Home(Page));
+            this.UserCompanyFlag = UserCompanyFlag;
+            if (UserCompanyFlag)
+            {
+                GetUser(Login);
+            }
+            else
+            {
+                Company = App.DataAccess.GetCompanyList(Login);
+            }
+            if(LoggedUserData != null)
+            {
+                Page.Navigate(new Home(Page, LoggedUserData));
+            }
+            
             RB_Register.Visibility = Visibility.Collapsed;
             RB_Login.Visibility = Visibility.Collapsed;
         }
         
-        public async void GetUser(string Login)
+        public void GetUser(string Login)
         {
-            LoggedUserData = await App.DataAccess.GetUserFromLogin(Login);
+            LoggedUserData =  App.DataAccess.GetUserFromLogin(Login);
 
         }
         private void SP_MouseDown(object sender, MouseButtonEventArgs e)
@@ -85,13 +99,21 @@ namespace ASProjektWPF
 
         private void RB_Register_Click(object sender, RoutedEventArgs e)
         {
-            Page.Navigate(new Profil(Page,LoggedUserData));
-            
+            if(LoggedUserData != null)
+            {
+                Page.Navigate(new Profil(Page, LoggedUserData));
+            }
         }
         private void RG_Home_Click(object sender, RoutedEventArgs e)
         {
-            Page.Navigate(new Home(Page));
-
+            if(LoggedUserData != null && UserCompanyFlag)
+            {
+                Page.Navigate(new Home(Page, LoggedUserData));
+            }
+            else if (Company != null && !UserCompanyFlag)
+            {
+                Page.Navigate(new Home(Page, Company));
+            }
         }
         
         private void Btn_ShowUsers(object sender, RoutedEventArgs e)
@@ -107,7 +129,11 @@ namespace ASProjektWPF
 
         private void RG_CompanyAccount_Click(object sender, RoutedEventArgs e)
         {
-            Page.Navigate(new CommpanyAccountControl(Page));
+            if(Company != null)
+            {
+                Page.Navigate(new CommpanyAccountControl(Page, Company));
+            }
+            
         }
     }
 }
