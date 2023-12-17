@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel >
-            <Button Padding="10" Margin="10" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click">
+            <Button Style="{StaticResource TransparentBackButton}" Padding="10" Margin="10" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click">
                 <Image Source="/Images/App/back.png" MaxHeight="20"/>
             </Button>
             <Grid x:Name="G_Page" HorizontalAlignment="Center" Margin="0,100,0,100">
@@ -37,8 +37,8 @@
                         </Grid.ColumnDefinitions>
                         <Image x:Name="I_ComapnyImage" Source="{Binding CompanyImage}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <Label x:Name="Lbl_Name" Content="{Binding Name}" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"/>
-                            <Label x:Name="Lbl_ComanyName" Content="{Binding CompanyName}" VerticalAlignment="Center" FontSize="10"/>
+                            <Label x:Name="Lbl_Name" Content="{Binding Name}" VerticalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+                            <Label x:Name="Lbl_ComanyName" Content="{Binding CompanyName}" VerticalAlignment="Center" FontSize="20"/>
                         </StackPanel>
                     </Grid>
                 </Border>

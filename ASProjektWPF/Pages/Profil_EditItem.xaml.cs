@@ -50,6 +50,10 @@ namespace ASProjektWPF.Pages
             }
             
         }
+        private void Btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.GoBack();
+        }
         public void Btn_Form_Cancel_Click(object sender, EventArgs e)
         {
             currentPage.GoBack();

@@ -9,12 +9,7 @@
       Title="CommpanyAccountControl">
 
     <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500">
-        <Button Content="Dodaj kategorie" Click="Btn_AddCategory_Click" Padding="10" Margin="10"/>
-        <Button Content="Dodaj poziom stanowiska" Click="Btn_AddPositionLevel_Click" Padding="10" Margin="10"/>
-        <Button Content="Dodaj rodzaj umowy" Click="Btn_AddContractType_Click" Padding="10" Margin="10"/>
-        <Button Content="Dodaj wymiar pracy" Click="Btn_AddWorkTime_Click" Padding="10" Margin="10"/>
-        <Button Content="Dodaj tryb pracy" Click="Btn_AddWorkType_Click" Padding="10" Margin="10"/>
-        <Button Content="Dodaj ogłoszenie" Click="Btn_AddAnnouncment_Click" Padding="10" Margin="10"/>
-        <Button Content="Edytuj ogłoszenia" Click="Btn_EditAnnouncment_Click" Padding="10" Margin="10"/>
+        <Button Content="Dodaj ogłoszenie" Click="Btn_AddAnnouncment_Click" Style="{StaticResource SearchButton}" Padding="10" Margin="10"/>
+        <Button Content="Edytuj ogłoszenia" Click="Btn_EditAnnouncment_Click" Style="{StaticResource SearchButton}" Padding="10" Margin="10"/>
     </WrapPanel>
 </Page>

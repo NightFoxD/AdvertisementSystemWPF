@@ -25,30 +25,25 @@ namespace ASProjektWPF.Pages
         Frame CurrentPage;
         UserData? user;
         Company? Company;
-        List<CheckedItem> checkedItems_PositionLevel = new List<CheckedItem>() { };
-        List<CheckedItem> checkedItems_ContractTypes = new List<CheckedItem>() { };
-        List<CheckedItem> checkedItems_WorkTime = new List<CheckedItem>() { };
-        List<CheckedItem> checkedItems_WorkType = new List<CheckedItem>() { };
-       
         public Home(Frame CurrentPage)
         {
             InitializeComponent();
             this.CurrentPage = CurrentPage;
-            Initialie();
+            Initialize();
         }
         public Home(Frame CurrentPage,UserData user)
         {
             InitializeComponent();
             this.CurrentPage = CurrentPage;
             this.user = user;
-            Initialie();
+            Initialize();
         }
         public Home(Frame CurrentPage, Company company)
         {
             InitializeComponent();
             this.CurrentPage = CurrentPage;
             this.Company = company;
-            Initialie();
+            Initialize();
         }
         public List<AnnouncmentItem> GetAnnouncmentAllInformations()
         {
@@ -59,7 +54,7 @@ namespace ASProjektWPF.Pages
             }
             return items;
         }
-        public void Initialie()
+        public void Initialize()
         {
             Announcments.ItemsSource = GetAnnouncmentAllInformations();
             IC_Companies.ItemsSource = App.DataAccess.GetCompanyList();
@@ -67,113 +62,9 @@ namespace ASProjektWPF.Pages
             {
                 CmB_Category.Items.Add(item.Name);
             }
-            if (IC_ItemsToChecked.Items.Count <= 0)
-                BR_Items.Visibility = Visibility.Collapsed;
-            else
-                BR_Items.Visibility = Visibility.Visible;
-        }
-        public List<CheckedItem> GetCheckedTypeWork()
-        {
-            var checkedItems = new List<CheckedItem>() { };
-
-            foreach (CheckedItem item in IC_ItemsToChecked.Items)
-            {
-                if(item.Checked)
-                checkedItems.Add(item as CheckedItem);
-            }
-            return checkedItems;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            List<CheckedItem> listFromDatabase = new List<CheckedItem>();
-            string? btnContent = ((Button)sender).Name;
-            switch (btnContent)
-            {
-                case "Btn_PositionLevel":
-
-                    checkedItems_PositionLevel = GetCheckedTypeWork();
-                    foreach (var itemFromDatabase in App.DataAccess.GetPositionLevelList())
-                    {
-                        CheckedItem item = new CheckedItem();
-                        item.ID = itemFromDatabase.ID;
-                        item.Name = itemFromDatabase.Name;
-                        if (checkedItems_PositionLevel.Contains(item))
-                        {
-                            item.Checked = true;
-                        }
-                        listFromDatabase.Add(item);
-                    }
-                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
-                    break;
-                case "Btn_ContractType":
-
-                    checkedItems_ContractTypes = GetCheckedTypeWork();
-                    foreach (var itemFromDatabase in App.DataAccess.GetContractList())
-                    {
-                        CheckedItem item = new CheckedItem();
-                        item.ID = itemFromDatabase.ID;
-                        item.Name = itemFromDatabase.Name;
-                        if (checkedItems_ContractTypes.Contains(item))
-                        {
-                            item.Checked = true;
-                        }
-                        listFromDatabase.Add(item);
-                    }
-                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
-                    break;
-                case "Btn_WorkTime":
-
-                    checkedItems_WorkTime = GetCheckedTypeWork();
-                    foreach (var itemFromDatabase in App.DataAccess.GetWorkTimeList())
-                    {
-                        CheckedItem item = new CheckedItem();
-                        item.ID = itemFromDatabase.ID;
-                        item.Name = itemFromDatabase.Name;
-                        if (checkedItems_WorkTime.Contains(item))
-                        {
-                            item.Checked = true;
-                        }
-                        listFromDatabase.Add(item);
-                    }
-                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
-                    break;
-                case "Btn_WorkType":
-
-                    checkedItems_WorkType = GetCheckedTypeWork();
-                    foreach (var itemFromDatabase in App.DataAccess.GetWorkTypeList())
-                    {
-                        CheckedItem item = new CheckedItem();
-                        item.ID = itemFromDatabase.ID;
-                        item.Name = itemFromDatabase.Name;
-                        if (checkedItems_WorkType.Contains(item))
-                        {
-                            item.Checked = true;
-                        }
-                        listFromDatabase.Add(item);
-                    }
-                    IC_ItemsToChecked.ItemsSource = listFromDatabase;
-                    break;
-                default:
-                    break;
-            }
-            if (IC_ItemsToChecked.Items.Count <= 0)
-                BR_Items.Visibility = Visibility.Collapsed;
-            else
-                BR_Items.Visibility = Visibility.Visible;
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Announcments.ItemsSource = GetAnnouncmentAllInformations();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            Announcments.ItemsSource = GetAnnouncmentAllInformations();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Btn_NewOfferts_Click(object sender, RoutedEventArgs e)
         {
             Announcments.ItemsSource = GetAnnouncmentAllInformations();
         }
@@ -213,6 +104,31 @@ namespace ASProjektWPF.Pages
             if(item != null)
             {
                 CurrentPage.Navigate(new CompanyProfile(CurrentPage,item, false));
+            }
+        }
+        private void Btn_Search_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (user != null)
+            {
+                CurrentPage.Navigate(new SearchView(CurrentPage, user, TxtB_SearchBar.Text, CmB_Category.Text, TxtB_Localization.Text));
+            }
+            else
+            {
+                CurrentPage.Navigate(new SearchView(CurrentPage, TxtB_SearchBar.Text, CmB_Category.Text, TxtB_Localization.Text));
+            }
+            
+        }
+
+        private void Btn_WatchMore(object sender, RoutedEventArgs e)
+        {
+            if (user != null)
+            {
+                CurrentPage.Navigate(new SearchView(CurrentPage, user, TxtB_SearchBar.Text, CmB_Category.Text, TxtB_Localization.Text));
+            }
+            else
+            {
+                CurrentPage.Navigate(new SearchView(CurrentPage, TxtB_SearchBar.Text, CmB_Category.Text, TxtB_Localization.Text));
             }
         }
     }

@@ -10,10 +10,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="LV_Items" BorderThickness="0" Background="Transparent">
+        <Button x:Name="Btn_Back" Style="{StaticResource TransparentBackButton}"  HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click"/>
+        <ListView x:Name="LV_Items" BorderThickness="0" Grid.Row="1" Background="Transparent">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="IsHitTestVisible" Value="True"/>
@@ -41,7 +43,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="2">
             <TextBlock x:Name="TB_Title"/>
             <TextBox x:Name="Text_Item_Content"/>
             <Button x:Name="Btn_AddItem" Content="Dodaj " HorizontalAlignment="Center" Padding="10" Margin="10" Click="Btn_AddItem_Click"/>

@@ -75,25 +75,36 @@ namespace ASProjektWPF
 
         private void Btn_Login_Clicked(object sender, RoutedEventArgs e)
         {
-
-            LoginUserData.Login = TxtB_Login.Text;
-            LoginUserData.Password = PsB_Password.Password;
-            if (App.DataAccess.SearchUser(TxtB_Login.Text) && Cb_RememberMe.IsChecked == false)
+            if (CustomValidations.IsCorrectTextAndNumbers(TxtB_Login.Text) && CustomValidations.IsCorrectTextAndNumbers(PsB_Password.Password))
             {
-                var MainWindow = new MainWindow(TxtB_Login.Text,true);
-                MainWindow.Show();
-                this.Close();
-            }
-            else if(App.DataAccess.GetCompanyList(TxtB_Login.Text).Login == TxtB_Login.Text && App.DataAccess.GetCompanyList(TxtB_Login.Text).Password == PsB_Password.Password && Cb_RememberMe.IsChecked == true)
-            {
-                var MainWindow = new MainWindow(TxtB_Login.Text, false);
-                MainWindow.Show();
-                this.Close();
+                
+                LoginUserData.Login = TxtB_Login.Text;
+                LoginUserData.Password = HashPassword.Hash(PsB_Password.Password);
+                Company? company = App.DataAccess.GetCompany(LoginUserData.Login, LoginUserData.Password);
+                if (App.DataAccess.SearchUser(LoginUserData.Login, LoginUserData.Password) != null && Cb_Company.IsChecked == false)
+                {
+                    var MainWindow = new MainWindow(TxtB_Login.Text, true);
+                    MainWindow.Show();
+                    this.Close();
+                }
+                else if ( company!= null && Cb_Company.IsChecked == true)
+                {
+                    var MainWindow = new MainWindow(company, false);
+                    MainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Podano błędny login lub hasło dane");
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show("Podano niepoprawne dane");
+                MessageBox.Show("Podano błędny login lub hasło dane");
+                return;
             }
+            
         }
         private void Btn_GoToApp_Clicked(object sender, RoutedEventArgs e)
         {

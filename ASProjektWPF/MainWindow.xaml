@@ -49,16 +49,15 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <RadioButton x:Name="RB_Register" Content="Zarejestruj się" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
-                    <RadioButton x:Name="RB_Login" Content="Zaloguj sie" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}"/>
+                    <RadioButton x:Name="RB_Login" Content="Zaloguj sie" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_Login_Click"/>
                     <RadioButton x:Name="RB_ComapnyProfile" Content="Profil Firmowy" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_ComapnyProfile_Click"/>
                     <RadioButton x:Name="RB_Profil" Content="Profil" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_Register_Click"/>
                     <RadioButton Content="Home" Height="50" FontSize="14" Style="{StaticResource MenuButtomTheme}" IsChecked="True" Click="RG_Home_Click"/>
-                    <RadioButton Content="Ustawienia firmowe " Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RG_CompanyAccount_Click"/>
+                    <RadioButton x:Name="RB_CompanySettings" Content="Ustawienia Firmowe " Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RG_CompanyAccount_Click"/>
+                    <RadioButton x:Name="RB_AdminSettings" Content="Ustawienia Admina " Height="50"  FontSize="14" Style="{StaticResource MenuButtomTheme}" Click="RB_AdminSettings_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
-                    <Button  Click="Btn_LogOut" Content="Wyloguj się"/>
-                    <Button  Click="Btn_ShowUsers" Content="Lista urzytkownikow"/>
+                    <Button x:Name="Btn_Logount" Click="Btn_LogOut" Style="{DynamicResource MenuTransparentButton}" Content="Wyloguj się" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Padding="10"/>
                 </StackPanel>
                
             </Grid>

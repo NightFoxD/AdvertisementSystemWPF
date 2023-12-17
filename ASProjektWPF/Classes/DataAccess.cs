@@ -16,7 +16,6 @@ namespace ASProjektWPF.Classes
         public DataAccess(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<AccountType>().Wait();
             _database.CreateTableAsync<Announcment>().Wait();
             _database.CreateTableAsync<Models.Application>().Wait();
             _database.CreateTableAsync<Category>().Wait();
@@ -33,27 +32,9 @@ namespace ASProjektWPF.Classes
             _database.CreateTableAsync<SubCategory>().Wait();
             _database.CreateTableAsync<User>().Wait();
             _database.CreateTableAsync<UserData>().Wait();
-            _database.CreateTableAsync<WorkingDays>().Wait();
             _database.CreateTableAsync<WorkTime>().Wait();
             _database.CreateTableAsync<WorkType>().Wait();
-        }
-        //--------- AccountType ---------//
-        public Task<List<AccountType>> GetAccountTypeList()
-        {
-            return _database.Table<AccountType>().ToListAsync();
-        }
-        public Task Add_AccountType(AccountType accountType)
-        {
-            return _database.InsertAsync(accountType);
-        }
-        public Task Update_AccountType(AccountType accountType)
-        {
-            return _database.UpdateAsync(accountType);
-        }
-        public Task Delete_AccountType(AccountType accountType)
-        {
-            return _database.DeleteAsync(accountType);
-        }
+        }    
         //--------- Announcment ---------//
         public List<Announcment> GetAnnouncmentList()
         {
@@ -114,9 +95,30 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<Company>().ToListAsync().Result;
         }
-        public Company GetCompanyList(string Login)
+        public Company GetCompany(string Login, string Password)
         {
-            return _database.Table<Company>().Where(item=>item.Login == Login).FirstAsync().Result;
+            try
+            {
+                return _database.Table<Company>().Where(item => item.Login == Login && item.Password == Password).FirstAsync().Result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
+        }
+        public Company GetCompany(string Login)
+        {
+            
+            try
+            {
+                return _database.Table<Company>().Where(item => item.Login == Login).FirstOrDefaultAsync(null).Result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
         public Company GetCompanyFromID(int id)
         {
@@ -380,9 +382,9 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<UserData>().ToListAsync();
         }
-        public Task InsertUserData(UserData newUser)
+        public int InsertUserData(UserData newUser)
         {
-            return _database.InsertAsync(newUser);
+            return _database.InsertAsync(newUser).Result;
         }
         public Task UpdateUserData(UserData newUser)
         {
@@ -401,30 +403,32 @@ namespace ASProjektWPF.Classes
             }
             return false;
         }
+        public UserData SearchUser(string login, string password)
+        {
+            try
+            {
+                return _database.Table<UserData>().Where(user => user.Login == login && user.Password == password).FirstAsync().Result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public UserData GetUserFromLogin(string login)
         {
-            return _database.Table<UserData>().Where(user => user.Login == login).ToListAsync().Result.First();
+            try
+            {
+                return _database.Table<UserData>().Where(user => user.Login == login).ToListAsync().Result.First();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
         public User GetUserInformations(UserData user)
         {
             return _database.Table<User>().Where(item => item.UserDataID == user.UserDataID).ToArrayAsync().Result.First();
-        }
-        //--------- WorkingDays ---------//
-        public Task<List<WorkingDays>> GetWorkingDaysList()
-        {
-            return _database.Table<WorkingDays>().ToListAsync();
-        }
-        public Task Add_WorkingDays(WorkingDays workingDays)
-        {
-            return _database.InsertAsync(workingDays);
-        }
-        public Task Update_WorkingDays(WorkingDays workingDays)
-        {
-            return _database.UpdateAsync(workingDays);
-        }
-        public Task Delete_WorkingDays(WorkingDays workingDays)
-        {
-            return _database.DeleteAsync(workingDays);
         }
         //--------- WorkTime ---------//
         public List<WorkTime> GetWorkTimeList()

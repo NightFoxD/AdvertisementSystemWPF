@@ -65,22 +65,74 @@ namespace ASProjektWPF
             System.Windows.Application.Current.Shutdown();
         }
 
-        private async void Btn_Register_Click(object sender, RoutedEventArgs e)
+        private void Btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            //UserData NewUserData = new UserData();
-            //NewUserData.Login = TxB_Login.Text;
-            //NewUserData.Password = PsB_Password_1.Password;
-            //NewUserData.AccountTypeID = 1;
-            //await App.DataAccess.InsertUserData(NewUserData);
-            //NewUserData = await App.DataAccess.GetUserFromLogin(NewUserData.Login);
-            //App.DataAccess.InserUser(NewUserData);
-            Company company = new Company();
-            company.Login = TxB_Login.Text;
-            company.Password = PsB_Password_1.Password;
-            if(company != null)
+            if (!CustomValidations.IsCorrectTextAndNumbers(TxB_Login.Text) && Cb_Company.IsChecked == false)
             {
-                App.DataAccess.Add_Company(company);
+                MessageBox.Show("Error", "Niepoprawny login", MessageBoxButton.OK);
+                return;
             }
+            if (!CustomValidations.IsCorrectTextAndNumbers(TxB_Login.Text) && Cb_Company.IsChecked == true)
+            {
+                MessageBox.Show("Error", "Nazwa firmy nie może zawierać liczb", MessageBoxButton.OK);
+                return;
+            }
+            if (!CustomValidations.IsCorrectTextAndNumbers(PsB_Password_1.Password) && !CustomValidations.IsCorrectTextAndNumbers(PsB_Password_1.Password)
+                && PsB_Password_1.Password != PsB_Password_2.Password)
+            {
+                MessageBox.Show("Error", "Hasła są niepoprawne albo różnią się od siebie", MessageBoxButton.OK);
+                return;
+            }
+            if (Cb_Company.IsChecked == true && CB_Admin.IsChecked == true)
+            {
+                MessageBox.Show("Error", "Nie można mieć zaznaczone 'Firma' i 'Admin' jednocześnie", MessageBoxButton.OK);
+                return;
+            }
+            if(Cb_Company.IsChecked == true)
+            {
+                Company company = new Company();
+                company.Login = TxB_Login.Text;
+                company.Password = HashPassword.Hash(PsB_Password_1.Password);
+                if(App.DataAccess.GetCompany(company.Login) == null)
+                {
+                    App.DataAccess.Add_Company(company);
+                }
+                else
+                {
+                    MessageBox.Show("Error", "Taka firma już istnieje", MessageBoxButton.OK);
+                    return;
+                }
+
+            }
+            else
+            {
+                UserData NewUserData = new UserData();
+                NewUserData.Login = TxB_Login.Text;
+                NewUserData.Password = HashPassword.Hash(PsB_Password_1.Password);
+                NewUserData.AccountTypeID = 1;
+                if (CB_Admin.IsChecked == true)
+                {
+                    NewUserData.AccountTypeID = 2;
+                }
+                if(App.DataAccess.GetUserFromLogin(NewUserData.Login) == null)
+                {
+                    App.DataAccess.InsertUserData(NewUserData);
+                    NewUserData = App.DataAccess.GetUserFromLogin(NewUserData.Login);
+                    App.DataAccess.InserUser(NewUserData);
+                }
+                else
+                {
+                    MessageBox.Show("Error", "Taki użytkownik już istnieje",MessageBoxButton.OK);
+                    return;
+                }
+                
+            }
+            (new Login()).Show();
+            this.Close();
+        }
+
+        private void Btn_BackToLogin_Click(object sender, RoutedEventArgs e)
+        {
             (new Login()).Show();
             this.Close();
         }

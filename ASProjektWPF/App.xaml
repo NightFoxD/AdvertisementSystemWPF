@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/MenuSearchGroupButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuTramsparentButton.xaml"/>
                 <ResourceDictionary Source="Theme/MenuSearchButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/MenuOffertsButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProfileCancelButtonTheme.xaml"/>
@@ -18,6 +19,7 @@
                 <ResourceDictionary Source="Theme/ProfileTextBoxBorder.xaml"/>
                 <ResourceDictionary Source="Theme/TaskBarButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TransparentBackButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

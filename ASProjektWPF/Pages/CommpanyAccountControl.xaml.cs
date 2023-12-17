@@ -29,32 +29,6 @@ namespace ASProjektWPF.Pages
             this.currentPage = currentPage;
             Company = company;
         }
-
-        private void Btn_AddCategory_Click(object sender, RoutedEventArgs e)
-        {
-            List<Category> itemlist = App.DataAccess.GetCategoryList();
-            currentPage.Navigate(new Categories_Control(currentPage, itemlist));
-        }
-        private void Btn_AddPositionLevel_Click(object sender, RoutedEventArgs e)
-        {
-            List<PositionLevel> itemlist = App.DataAccess.GetPositionLevelList();
-            currentPage.Navigate(new Categories_Control(currentPage, itemlist));
-        }
-        private void Btn_AddContractType_Click(object sender, RoutedEventArgs e)
-        {
-            List<ContractType> itemlist = App.DataAccess.GetContractList();
-            currentPage.Navigate(new Categories_Control(currentPage, itemlist));
-        }
-        private void Btn_AddWorkTime_Click(object sender, RoutedEventArgs e)
-        {
-            List<WorkTime> itemlist = App.DataAccess.GetWorkTimeList();
-            currentPage.Navigate(new Categories_Control(currentPage, itemlist));
-        }
-        private void Btn_AddWorkType_Click(object sender, RoutedEventArgs e)
-        {
-            List<WorkType> itemlist = App.DataAccess.GetWorkTypeList();
-            currentPage.Navigate(new Categories_Control(currentPage, itemlist));
-        }        
         private void Btn_AddAnnouncment_Click(object sender, RoutedEventArgs e)
         {
             currentPage.Navigate(new Announcment_AddEdit(currentPage,Company));

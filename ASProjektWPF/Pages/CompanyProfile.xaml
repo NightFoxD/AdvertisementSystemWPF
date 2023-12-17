@@ -9,24 +9,26 @@
       Title="CompanyProfile">
 
     <ScrollViewer>
-        <Grid HorizontalAlignment="Center">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Btn_Back" Padding="10" Margin="10" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click">
-                    <Image Source="/Images/App/back.png" MaxHeight="20"/>
-                </Button>
+                <Button x:Name="Btn_Back" Style="{StaticResource TransparentBackButton}"  HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click"/>
                 <StackPanel x:Name="SP_CompanyMenu" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" >
                     <Button x:Name="Btn_EditCompany" Content="Edytuj" Background="White" Foreground="#a9a9a9" Style="{StaticResource ProfileEditButtonTheme}"  Click="Btn_EditCompany_Click"/>
                     <Button x:Name="Btn_SaveEditedCompany" Content="Zapisz" Background="White" Foreground="#a9a9a9" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_SaveCompany_Click"/>
                 </StackPanel>
-                
+
             </Grid>
             <Border Grid.Row="1" CornerRadius="5" Padding="10" Height="auto" Margin="0,10,0,0">
                 <Grid>
@@ -53,7 +55,7 @@
                             </Border>
                             <Button x:Name="Btn_EditCompanyPfp" Visibility="Collapsed" Content="Edytuj zdjęcie" Background="White" Foreground="#a9a9a9" Style="{StaticResource ProfileEditButtonTheme}" Click="Btn_EditCompanyPfp_Click" Margin="0,10,0,0"/>
                         </StackPanel>
-                       
+
                         <Label x:Name="Lbl_Company" Grid.Column="1" FontSize="30" Margin="10,0,0,0"/>
                         <TextBox x:Name="TxtB_CompanyEdit" Grid.Column="1" FontSize="30" Margin="10,0,0,0" Visibility="Collapsed"/>
                         <Label x:Name="Lbl_Jobs"  FontSize="15" Grid.Column="1" Grid.Row="1" Margin="10"/>
@@ -119,7 +121,7 @@
                                                 <RowDefinition Height="50"/>
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
-                                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="10"/>
                                             <Image Source="{Binding CompanyImage}" Grid.Row="1"/>
                                             <StackPanel Grid.Column="1" Grid.Row="1">
                                                 <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
@@ -135,6 +137,6 @@
                 </Grid>
             </Border>
         </Grid>
-        
+
     </ScrollViewer>
 </Page>

@@ -36,13 +36,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             
-            <Button Content="Usun AccountType" Click="Btn_DelAccountType_Clicked"/>
-            <DataGrid x:Name="DG_AccountType" AutoGenerateColumns="False" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="AccountTypeID" Binding="{Binding AccountTypeID}"/>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            
             <Button Content="Usun Announcment" Click="Btn_DelAnnouncment_Clicked"/>
             <DataGrid x:Name="DG_Announcment" AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
@@ -172,21 +166,7 @@
                    
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Usun WorkingDays" Click="Btn_DelWorkingDays_Clicked"/>
-            <DataGrid x:Name="DG_WorkingDays" AutoGenerateColumns="False" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="WorkingDaysID" Binding="{Binding WorkingDaysID}"/>
-                    <DataGridTextColumn Header="AnnouncmentID" Binding="{Binding AnnouncmentID}"/>
-                    <DataGridTextColumn Header="Monday" Binding="{Binding Monday}"/>
-                    <DataGridTextColumn Header="Tuesday" Binding="{Binding Tuesday}"/>
-                    <DataGridTextColumn Header="Wednesday" Binding="{Binding Wednesday}"/>
-                    <DataGridTextColumn Header="Thursday" Binding="{Binding Thursday}"/>
-                    <DataGridTextColumn Header="Friday" Binding="{Binding Friday}"/>
-                    <DataGridTextColumn Header="Saturday" Binding="{Binding Saturday}"/>
-                    <DataGridTextColumn Header="Sunday" Binding="{Binding Sunday}"/>
-
-                </DataGrid.Columns>
-            </DataGrid>
+            
         </StackPanel>
 
     </ScrollViewer>

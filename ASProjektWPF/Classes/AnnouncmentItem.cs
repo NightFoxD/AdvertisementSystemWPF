@@ -24,10 +24,10 @@ namespace ASProjektWPF.Classes
         public string? Description { get; set; }
         public string? PositionName { get; set; }
         public string? PositionLevel { get; set; }
-        public List<Item> ContractType = new List<Item> { };
+        public string? ContractType { get; set; }
         public string? WorkingTime { get; set; }
         public string? WorkType { get; set; }
-public DateTime? StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public List<Item> Responsibilities = new List<Item> { };
         public List<Item> Requirements = new List<Item> { };
@@ -40,7 +40,7 @@ public DateTime? StartDate { get; set; }
             Announcment = item;
             CompanyID = item.CompanyID;
             int[] selectedCategories = { };
-            if (item.CategoryID != null)
+            if (item.CategoryID != null && item.CategoryID != "")
             {
                 selectedCategories = item.CategoryID.Split(";").Select(int.Parse).ToArray();
             }
@@ -63,42 +63,37 @@ public DateTime? StartDate { get; set; }
             PositionName = item.PositionName;
             PositionLevel = item.PositionLevel;
             string[] table = { };
-            if (item.Requirements != null)
-            {
-                table = item.Requirements.Split(";");
-            }
-            foreach (var itemRequirement in table)
-            {
-                ContractType.Add(new Item(itemRequirement));
-            }
+            ContractType = item.ContractType;
+            
             WorkingTime = item.WorkingTime;
             WorkType = item.WorkType;
            
             EndDate = item.EndDate;
-            if (item.Responsibilities != null)
+            if (item.Responsibilities != null && item.Responsibilities !="")
             {
                 table = item.Responsibilities.Split(";");
+                foreach (var itemResponsibility in table)
+                {
+                    Responsibilities.Add(new Item(itemResponsibility));
+                }
             }
-            foreach (var itemResponsibility in table)
-            {
-                Responsibilities.Add(new Item(itemResponsibility));
-            }
-            if (item.Requirements != null)
+            if (item.Requirements != null && item.Requirements != "")
             {
                 table = item.Requirements.Split(";");
+                foreach (var itemResponsibility in table)
+                {
+                    Requirements.Add(new Item(itemResponsibility));
+                }
             }
-            foreach (var itemRequirement in table)
-            {
-                Requirements.Add(new Item(itemRequirement));
-            }
-            if (item.Benefits != null)
+            if (item.Benefits != null && item.Benefits !="")
             {
                 table = item.Benefits.Split(";");
+                foreach (var itemBenefit in table)
+                {
+                    Benefits.Add(new Item(itemBenefit));
+                }
             }
-            foreach (var itemBenefit in table)
-            {
-                Benefits.Add(new Item(itemBenefit));
-            }
+            
             City = item.City;
             CompanyName = App.DataAccess.GetCompanyFromID(item.CompanyID).Name;
             Company = App.DataAccess.GetCompanyFromID(item.CompanyID);

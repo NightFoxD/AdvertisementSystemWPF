@@ -56,5 +56,10 @@ namespace ASProjektWPF.Pages
             }
            CurrentPage.Navigate(new Announcment_AddEdit(CurrentPage,item,Company));
         }
+        private void Btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.GoBack();
+        }
+
     }
 }

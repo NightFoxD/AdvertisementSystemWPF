@@ -28,7 +28,6 @@ namespace ASProjektWPF
         }
         public async void GetInformations()
         {
-            DG_AccountType.ItemsSource = await App.DataAccess.GetAccountTypeList();
             DG_Announcment.ItemsSource = App.DataAccess.GetAnnouncmentList();
             DG_Application.ItemsSource =  App.DataAccess.GetApplicationList();
             DG_Category.ItemsSource = App.DataAccess.GetCategoryList();
@@ -42,7 +41,6 @@ namespace ASProjektWPF
             DG_SubCategory.ItemsSource = await App.DataAccess.GetSubcategoryList();
             DG_User.ItemsSource = await App.DataAccess.GetUserList();
             DG_UserData.ItemsSource = await App.DataAccess.GetUserDataList();
-            DG_WorkingDays.ItemsSource = await App.DataAccess.GetWorkingDaysList();
             
         }
 
@@ -68,16 +66,6 @@ namespace ASProjektWPF
                 return;
             }
             App.DataAccess.DelUser((User)DG_User.SelectedItem);
-            GetInformations();
-        }
-        private void Btn_DelAccountType_Clicked(object sender, RoutedEventArgs e)
-        {
-            if (DG_AccountType.SelectedItem == null)
-            {
-                MessageBox.Show("Nie zaznaczonno");
-                return;
-            }
-            App.DataAccess.Delete_AccountType((AccountType)DG_AccountType.SelectedItem);
             GetInformations();
         }
         private void Btn_DelAnnouncment_Clicked(object sender, RoutedEventArgs e)
@@ -198,16 +186,6 @@ namespace ASProjektWPF
                 return;
             }
             App.DataAccess.Delete_SubCategory((SubCategory)DG_SubCategory.SelectedItem);
-            GetInformations();
-        }
-        private void Btn_DelWorkingDays_Clicked(object sender, RoutedEventArgs e)
-        {
-            if (DG_WorkingDays.SelectedItem == null)
-            {
-                MessageBox.Show("Nie zaznaczonno");
-                return;
-            }
-            App.DataAccess.Delete_WorkingDays((WorkingDays)DG_WorkingDays.SelectedItem);
             GetInformations();
         }
     }

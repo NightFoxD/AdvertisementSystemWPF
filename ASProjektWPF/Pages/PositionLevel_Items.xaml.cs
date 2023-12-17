@@ -35,6 +35,11 @@ namespace ASProjektWPF.Pages
             }
             Refresh();
         }
+        private void Btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.GoBack();
+        }
+
         public void Btn_DeleteItem_Click(object sender, RoutedEventArgs e)
         {
             if (((Button)sender).CommandParameter.GetType() == typeof(Category))

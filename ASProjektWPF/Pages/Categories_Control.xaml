@@ -9,9 +9,7 @@
       Title="Categories_Control">
 
     <StackPanel>
-        <Button Padding="10" Margin="10" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click">
-            <Image Source="/Images/App/back.png" MaxHeight="20"/>
-        </Button>
+        <Button Padding="10" Margin="10" Style="{StaticResource TransparentBackButton}" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click"/>
         <TextBlock x:Name="TxtB_CategoryName" HorizontalAlignment="Center" FontSize="25" Margin="20"/>
         <Grid>
             <Grid.RowDefinitions>
@@ -21,7 +19,7 @@
             <StackPanel>
                 <TextBlock x:Name="TB_Title"/>
                 <TextBox x:Name="Text_Item_Content"/>
-                <Button x:Name="Btn_AddItem" Content="Dodaj " HorizontalAlignment="Center" Padding="10" Margin="10" Click="Btn_AddItem_Click"/>
+                <Button x:Name="Btn_AddItem" Content="Dodaj " Style="{StaticResource SearchButton}" HorizontalAlignment="Center" Padding="10" Margin="10" Click="Btn_AddItem_Click"/>
             </StackPanel>
             <ListView x:Name="LV_Items" Grid.Row="1" BorderThickness="0" Background="Transparent">
                 <ListView.ItemContainerStyle>

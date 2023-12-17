@@ -108,7 +108,7 @@ namespace ASProjektWPF.Pages
                 }
             }
             int[] selectedCategories = { };
-            if (announcment.CategoryID!= null)
+            if (announcment.CategoryID!= null && announcment.CategoryID !="")
             {
                 selectedCategories = announcment.CategoryID.Split(";").Select(int.Parse).ToArray();
             }
@@ -127,34 +127,37 @@ namespace ASProjektWPF.Pages
                 itemsCategory.Add(item);
             }
             string[] announcmentRequirements = { };
-            if (announcment.Requirements != null)
+            if (announcment.Requirements != null && announcment.Requirements!= "")
             {
                 announcmentRequirements = announcment.Requirements.Split(";");
+                foreach (var item in announcmentRequirements)
+                {
+                    itemsRequirements.Add(new Item(item));
+                }
             }
-            foreach(var item in announcmentRequirements)
-            {
-                itemsRequirements.Add(new Item(item));
-            }
+            
             LV_Requirements.ItemsSource = itemsRequirements;
             string[] announcmentResponsibilities = { };
-            if (announcment.Responsibilities != null)
+            if (announcment.Responsibilities != null && announcment.Responsibilities != "")
             {
                 announcmentResponsibilities = announcment.Responsibilities.Split(";");
+                foreach (var item in announcmentResponsibilities)
+                {
+                    itemsResponsibilities.Add(new Item(item));
+                }
             }
-            foreach (var item in announcmentResponsibilities)
-            {
-                itemsResponsibilities.Add(new Item(item));
-            }
+            
             LV_Responsibilities.ItemsSource = itemsResponsibilities;
             string[] announcmentBenefits = { };
-            if (announcment.Benefits != null)
+            if (announcment.Benefits != null && announcment.Benefits != "")
             {
                 announcmentBenefits = announcment.Benefits.Split(";");
+                foreach (var item in announcmentBenefits)
+                {
+                    itemsBenefits.Add(new Item(item));
+                }
             }
-            foreach (var item in announcmentBenefits)
-            {
-                itemsBenefits.Add(new Item(item));
-            }
+            
             LV_Benefits.ItemsSource = itemsBenefits;
             IC_ItemsToChecked.ItemsSource = itemsCategory;
             TxtB_Description.Text = announcment.Description;
@@ -275,7 +278,7 @@ namespace ASProjektWPF.Pages
             foreach (CheckedItem item in IC_ItemsToChecked.Items)
             {
                 if (item.Checked)
-                    checkedItems.Add(item as CheckedItem);
+                    checkedItems.Add(item);
             }
             return checkedItems;
         }

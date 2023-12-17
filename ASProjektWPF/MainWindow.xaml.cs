@@ -33,34 +33,61 @@ namespace ASProjektWPF
             Page.Navigate(new Home(Page));
             RB_Profil.Visibility = Visibility.Collapsed;
             RB_ComapnyProfile.Visibility = Visibility.Collapsed;
+            RB_AdminSettings.Visibility = Visibility.Collapsed;
+            RB_ComapnyProfile.Visibility = Visibility.Collapsed;
+            RB_CompanySettings.Visibility = Visibility.Collapsed;
+            Btn_Logount.Visibility = Visibility.Collapsed;
         }
         public MainWindow(string Login, bool UserCompanyFlag)
         {
             InitializeComponent();
             this.UserCompanyFlag = UserCompanyFlag;
+           
             if (UserCompanyFlag)
             {
                 GetUser(Login);
+                
+                
                 RB_ComapnyProfile.Visibility = Visibility.Collapsed;
+                RB_CompanySettings.Visibility = Visibility.Collapsed;
+                RB_AdminSettings.Visibility = Visibility.Collapsed;
+                if (LoggedUserData != null)
+                {
+                    if (LoggedUserData.AccountTypeID == 2)
+                    {
+                        RB_AdminSettings.Visibility = Visibility.Visible;
+                    }
+                }
             }
             else
             {
-                Company = App.DataAccess.GetCompanyList(Login);
+                Company = App.DataAccess.GetCompany(Login);
                 RB_Profil.Visibility= Visibility.Collapsed;
+                RB_AdminSettings.Visibility = Visibility.Collapsed;
             }
             if(LoggedUserData != null)
             {
                 Page.Navigate(new Home(Page, LoggedUserData));
+                RB_ComapnyProfile.Visibility = Visibility.Collapsed;
+                RB_CompanySettings.Visibility = Visibility.Collapsed;
             }
-            
-            RB_Register.Visibility = Visibility.Collapsed;
             RB_Login.Visibility = Visibility.Collapsed;
+            Page.Navigate(new Home(Page));
         }
-        
+        public MainWindow(Company company, bool UserCompanyFlag)
+        {
+            InitializeComponent();
+            this.UserCompanyFlag = UserCompanyFlag;
+            Company = company;
+            RB_Profil.Visibility = Visibility.Collapsed;
+            RB_AdminSettings.Visibility = Visibility.Collapsed;
+            RB_Login.Visibility = Visibility.Collapsed;
+            Page.Navigate(new Home(Page));
+        }
+
         public void GetUser(string Login)
         {
             LoggedUserData =  App.DataAccess.GetUserFromLogin(Login);
-
         }
         private void SP_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -82,7 +109,6 @@ namespace ASProjektWPF
         {
             WindowState = WindowState.Minimized;
         }
-
         private void Btn_FullscreanApp_Clicked(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Maximized)
@@ -145,6 +171,16 @@ namespace ASProjektWPF
             {
                 Page.Navigate(new CompanyProfile(Page, Company,true));
             }
+        }
+        private void RB_AdminSettings_Click(object sender, RoutedEventArgs e)
+        {
+            Page.Navigate(new AdminPage(Page));
+        }
+
+        private void RB_Login_Click(object sender, RoutedEventArgs e)
+        {
+            (new Login()).Show();
+            this.Close();
         }
     }
 }

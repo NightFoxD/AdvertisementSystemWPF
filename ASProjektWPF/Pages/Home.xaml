@@ -34,64 +34,33 @@
                     <Border Padding="10" BorderThickness="1" Background="White" CornerRadius="5">
                         <Grid Margin="10">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300"/>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="200"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Border Grid.ColumnSpan="3" BorderBrush="Black" Background="#dadada" BorderThickness="1,1,0,1" CornerRadius="5,0,0,5">
-                                <TextBox x:Name="SearchBar" Background="#dadada" BorderThickness="0" Margin="3,0,0,0" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="0" Grid.ColumnSpan="3" Content="Wyszukaj stanowisko:" HorizontalAlignment="Left"/>
+                            <Label Grid.Column="3"  Content="Kategoria: " HorizontalAlignment="Left"/>
+                            <Label Grid.Column="4"  Content="Lokalizacja: " HorizontalAlignment="Left"/>
+                            <Border Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Black" Background="#dadada" BorderThickness="1,1,0,1" CornerRadius="5,0,0,5">
+                                <TextBox x:Name="TxtB_SearchBar" Background="#dadada" BorderThickness="0" Margin="3,0,0,0" VerticalContentAlignment="Center"/>
                             </Border>
-                            <Border Grid.Column="3" BorderBrush="Black" Background="#dadada" BorderThickness="1">
+                            <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" Background="#dadada" BorderThickness="1">
                                 <ComboBox x:Name="CmB_Category" VerticalContentAlignment="Center" SelectedIndex="0" BorderThickness="0" BorderBrush="#dadada" Background="#dadada"/>
                             </Border>
-                            <Border Grid.Column="4" BorderBrush="Black" Background="#dadada" BorderThickness="0,1,1,1" CornerRadius="0,5,5,0">
-                                <TextBox x:Name="Localization" Background="#dadada" BorderThickness="0" Padding="10" Margin="0,0,3,0" VerticalContentAlignment="Center"/>
+                            <Border Grid.Row="1" Grid.Column="4" BorderBrush="Black" Background="#dadada" BorderThickness="0,1,1,1" CornerRadius="0,5,5,0">
+                                <TextBox x:Name="TxtB_Localization" Background="#dadada" BorderThickness="0" Padding="10" Margin="0,0,3,0" VerticalContentAlignment="Center"/>
                             </Border>
-                            <Border Grid.Row="1" Margin="0,10,0,0" Padding="10">
-                                <Grid>
-                                    <Button x:Name="Btn_PositionLevel" Content="Poziom stanowiska" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
-                                </Grid>
-                            </Border>
-                            <Border Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" Padding="10">
-                                <Grid>
-                                    <Button x:Name="Btn_ContractType" Content="Rodzaj umowy" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
-                                </Grid>
-                            </Border>
-                            <Border Grid.Row="1" Grid.Column="2" Margin="0,10,0,0" Padding="10">
-                                <Grid>
-                                    <Button x:Name="Btn_WorkTime" Content="Wymiar pracy" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
-                                </Grid>
-                            </Border>
-                            <Border Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Padding="10" HorizontalAlignment="Left">
-                                <Button x:Name="Btn_WorkType" Content="Tryb pracy" Padding="5" Background="#262626" Foreground="White" Style="{StaticResource SearchGroupButton}" Click="Button_Click"/>
-                            </Border>
-                            <Button Grid.Row="1" Grid.Column="4" Content="Szukaj" Margin="10" Padding="10" Style="{StaticResource SearchButton}" Click="Button_Click"/>
+                            <Button Grid.Row="1" Grid.Column="5" Content="Szukaj" Margin="10" Padding="10" Style="{StaticResource SearchButton}" Click="Btn_Search_Click"/>
                         </Grid>
                     </Border>
                 </Grid>
-                <Border x:Name="BR_Items" Grid.Column="1" BorderThickness="1" Background="White" CornerRadius="10" Margin="10,0,0,0" Padding="1" Grid.ColumnSpan="2">
-                    <ScrollViewer MaxHeight="300" Padding="10" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="IC_ItemsToChecked" Margin="15,0,0,0">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Padding="5" Margin="5">
-                                        <StackPanel Orientation="Horizontal">
-                                            <CheckBox IsChecked="{Binding Checked}" VerticalAlignment="Center"/>
-                                            <TextBlock Text="{Binding Name}" Padding="5" VerticalAlignment="Center"/>
-                                            <TextBlock Text="{Binding Count,StringFormat='({0})'}" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Border>
             </Grid>
             <StackPanel Margin="0,120,0,0">
                 <TextBlock Text="Strefa ofert" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" Margin="5"/>
@@ -116,9 +85,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Button Content="Najnowsze oferty" Style="{StaticResource MenuOffertsButton}" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_1"/>
-                        <Button Grid.Column="1" Style="{StaticResource MenuOffertsButton}" Content="Ostation oglądane" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_2"/>
-                        <Button Grid.Column="2" Style="{StaticResource MenuOffertsButton}" Content="Superoferty" VerticalAlignment="Center" Margin="10" Padding="10" Click="Button_Click_3"/>
+                        <Button Content="Najnowsze oferty" Style="{StaticResource MenuOffertsButton}" VerticalAlignment="Center" Margin="10" Padding="10" Click="Btn_NewOfferts_Click"/>
                     </Grid>
                 </Border>
                 <WrapPanel Grid.Row="1" MaxWidth="1400">
@@ -141,7 +108,7 @@
                                             <RowDefinition Height="50"/>
                                             <RowDefinition Height="auto"/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="10"/>
                                         <Image Source="{Binding CompanyImage}" Grid.Row="1"/>
                                         <StackPanel Grid.Column="1" Grid.Row="1">
                                             <TextBlock Text="{Binding PositionName}" TextWrapping="Wrap" FontSize="15"/>
@@ -154,7 +121,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </WrapPanel>
-                <Button Grid.Row="2" HorizontalAlignment="Center" Background="#262626" Style="{StaticResource SearchButton}" Content="Pokaz wiecej"/>
+                <Button Grid.Row="2" HorizontalAlignment="Center" Background="#262626" Style="{StaticResource SearchButton}" Content="Pokaz wiecej" Click="Btn_WatchMore"/>
             </Grid>
             <StackPanel Margin="0,50,0,0">
                 <TextBlock Text="Pracodawcy, których warto znać" FontWeight="Bold" HorizontalAlignment="Center" FontSize="30" Margin="0,0,0,30"/>
@@ -181,12 +148,10 @@
                     </StackPanel>
                 </ScrollViewer>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-
                     <Button Content="Poprzedni" Click="PreviousButtonClick" Background="#262626" Style="{StaticResource SearchButton}" Margin="10"/>
                     <Button Content="Następny" Click="NextButtonClick" Background="#262626" Style="{StaticResource SearchButton}" Margin="10"/>
                 </StackPanel>
             </StackPanel>
-            
         </StackPanel>
         
        

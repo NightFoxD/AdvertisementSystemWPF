@@ -51,14 +51,15 @@
                 </Grid.RowDefinitions>
                 
                 <Label Content="Login:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBox x:Name="TxtB_Login" Grid.Column="1"/>
+                <TextBox x:Name="TxtB_Login" Grid.Column="1" BorderThickness="0" Margin="10" VerticalContentAlignment="Center"/>
                 <Label Grid.Row="1" Content="Haslo:" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <PasswordBox x:Name="PsB_Password" Grid.Column="1" Grid.Row="1" Password=""/>
-                <CheckBox x:Name="Cb_RememberMe" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Zapamiętaj mnie"/>
+                <PasswordBox x:Name="PsB_Password" Grid.Column="1" Grid.Row="1" Password="" BorderThickness="0" Margin="10" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="Cb_Company" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Firma ?"/>
                 <StackPanel Orientation="Vertical" Grid.Row="3" Grid.ColumnSpan="2">
-                    <Button Content="Zaloguj się"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Login_Clicked"/>
-                    <Button Content="Wejdz do aplikacji bez zalogowania"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_GoToApp_Clicked"/>
-                    <Button Content="Zarejestruj się" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Register_Clicked"/>
+                    <Button Content="Zaloguj się"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Login_Clicked" Style="{StaticResource SearchButton}" Margin="10"/>
+                    <Button Content="Zarejestruj się" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_Register_Clicked" Style="{StaticResource SearchButton}" Margin="10"/>
+                    <Button Content="Wejdz bez logowania"  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Click="Btn_GoToApp_Clicked" Style="{StaticResource SearchButton}" Margin="10"/>
+                    
                 </StackPanel>
 
             </Grid>
