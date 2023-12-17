@@ -25,7 +25,7 @@ namespace ASProjektWPF.Pages
     {
         Frame? CurrentPage;
         UserData? user;
-        string LastCategoryClick;
+        string? LastCategoryClick;
         List<CheckedItem> CheckedItems_PositionLevel = new List<CheckedItem>() { };
         List<CheckedItem> CheckedItems_ContractTypes = new List<CheckedItem>() { };
         List<CheckedItem> CheckedItems_WorkTime = new List<CheckedItem>() { };

@@ -63,7 +63,11 @@ namespace ASProjektWPF.Pages
         }
         public void GetUserData()
         {
-            user =  App.DataAccess.GetUserInformations(userData);
+            if(userData != null)
+            {
+                user = App.DataAccess.GetUserInformations(userData);
+            }
+           
         }
         public void LoadInformations()
         {
@@ -114,10 +118,14 @@ namespace ASProjektWPF.Pages
                 Lbl_Country.IsEnabled = true;
                 CB_Country.IsEnabled = true;
                 Btn_AddPfp.Visibility = Visibility.Visible;
-                if(user.Pfp != null)
+                if(user != null)
                 {
-                    Btn_AddPfp.Content = "Edytuj";
+                    if (user.Pfp != null)
+                    {
+                        Btn_AddPfp.Content = "Edytuj";
+                    }
                 }
+                
             }
             else
             {
@@ -137,6 +145,10 @@ namespace ASProjektWPF.Pages
         }
         public void Load_UserData_Form()
         {
+            if(user == null)
+            {
+                return;
+            }
             TxtB_Name.Text = user.Name;
             TxtB_Surname.Text = user.Surname;
             TxtB_City.Text = user.City;
@@ -172,6 +184,10 @@ namespace ASProjektWPF.Pages
         }
         public void Update_UserDataForm()
         {
+            if (user == null)
+            {
+                return;
+            }
             user.Name = TxtB_Name.Text;
             user.Surname = TxtB_Surname.Text;
             user.City = TxtB_City.Text;
@@ -232,12 +248,20 @@ namespace ASProjektWPF.Pages
         }
         private void Load_ContactData_Form()
         {
+            if (userData == null || user == null)
+            {
+                return;
+            }
             TxtB_Email.Text = userData.Email;
             TxtB_PhoneNumber.Text = user.TelephoneNumber.ToString();
             DP_User.SelectedDate = user.BirthDate;
         }
         private void Update_ContactDataForm()
         {
+            if (userData == null || user == null)
+            {
+                return;
+            }
             userData.Email = TxtB_Email.Text;
             user.TelephoneNumber = int.Parse(TxtB_PhoneNumber.Text);
             user.BirthDate = DP_User.SelectedDate;
@@ -269,6 +293,7 @@ namespace ASProjektWPF.Pages
         }
         public async void Load_UserExperienceWorkList()
         {
+            if (user == null) return;
             LV_UserExperience.ItemsSource = await App.DataAccess.GetExperienceList(user);
             if (LV_UserExperience.ItemsSource is null || LV_UserExperience.Items.Count < 1)
             {
@@ -328,6 +353,7 @@ namespace ASProjektWPF.Pages
             DP_startPaymentDate.SelectedDate = null;
             DP_endPaymentDate.SelectedDate = null;
             TxtB_Responsibilities.Text = "";
+            if (user == null) return;
             App.DataAccess.Add_Experience(newExperience,user);
             Load_UserExperienceWorkList();
         }
@@ -353,11 +379,13 @@ namespace ASProjektWPF.Pages
             }
             else
             {
+                if (CurrentPage == null) return;
                 CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateExperience));
             }
         }
         public async void Load_UserEducationList()
         {
+            if (user == null) return;
             Lv_UserEducationList.ItemsSource = await App.DataAccess.GetEducationList(user);
             if (Lv_UserEducationList.ItemsSource is null || Lv_UserEducationList.Items.Count < 1)
             {
@@ -388,6 +416,7 @@ namespace ASProjektWPF.Pages
             newEducation.Direction = TxtB_Education_Direction.Text;
             newEducation.StartPeriod = DP_Education_StartPeriod.SelectedDate;
             newEducation.EndPeriod = DP_Education_EndPeriod.SelectedDate;
+            if (user == null) return;
             App.DataAccess.Add_Education(newEducation,user);
             Load_UserEducationList();
         }
@@ -413,11 +442,13 @@ namespace ASProjektWPF.Pages
             }
             else
             {
+                if (CurrentPage == null) return;
                 CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateEducation));
             }
         }
         private async void Load_UserLanguageList()
         {
+            if (user == null) return;
             LV_UserLeagueList.ItemsSource = await App.DataAccess.GetLanguageList(user);
             if (LV_UserLeagueList.ItemsSource is null || LV_UserLeagueList.Items.Count < 1)
             {
@@ -449,6 +480,7 @@ namespace ASProjektWPF.Pages
             Language newLanguage = new Language();
             newLanguage.Name = CB_LanguageSelected.Text;
             newLanguage.Level = CB_LanguageLevel.Text;
+            if (user == null) return;
             App.DataAccess.Add_Language(newLanguage,user);
             Load_UserLanguageList();
         }
@@ -474,11 +506,13 @@ namespace ASProjektWPF.Pages
             }
             else
             {
+                if (CurrentPage == null) return;
                 CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateLanguage));
             }
         }
         private async void Load_UserSkillList()
         {
+            if (user == null) return;
             IC_UserSkills.ItemsSource = await App.DataAccess.GetSkillList(user);
             if (IC_UserSkills.ItemsSource is null || LV_UserLeagueList.Items.Count < 1)
             {
@@ -493,6 +527,7 @@ namespace ASProjektWPF.Pages
         {
             Skill newSkill = new Skill();
             newSkill.Name = TxtB_SkillName.Text;
+            if (user == null) return;
             App.DataAccess.Add_Skills(newSkill,user);
             TxtB_SkillName.Text = "";
             Load_UserSkillList();
@@ -512,6 +547,7 @@ namespace ASProjektWPF.Pages
         }
         private async void Load_UserLinkList()
         {
+            if (user == null) return;
             Lv_UserLinknList.ItemsSource = await App.DataAccess.GetLinkList(user);
             if (Lv_UserLinknList.ItemsSource is null || Lv_UserLinknList.Items.Count < 1)
             {
@@ -539,6 +575,7 @@ namespace ASProjektWPF.Pages
             Link newLink = new Link();
             newLink.Name = TxtB_URL.Text;
             newLink.Type = CB_Type.Text;
+            if (user == null) return;
             App.DataAccess.Add_Link(newLink,user);
             Load_UserLinkList();
         }
@@ -564,6 +601,7 @@ namespace ASProjektWPF.Pages
             }
             else
             {
+                if (CurrentPage == null) return;
                 CurrentPage.Navigate(new Profil_EditItem(CurrentPage, updateLink));
             }
         }

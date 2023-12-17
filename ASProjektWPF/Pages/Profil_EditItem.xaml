@@ -53,7 +53,7 @@
                     <Label Grid.Column="0" Grid.Row="4" Content="Obowiącki"/>
                     <TextBox x:Name="TxtB_Responsibilities" Text="{Binding Responsibilities}" Grid.Column="1" Grid.Row="4" Height="100" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                        <!--<Button Content="Anuluj" Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Form_Cancel_Click"/>-->
+                        
                         <Button Content="Zaktualizuj" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Form_Update_Click" CommandParameter="{Binding .}"/>
                     </StackPanel>
                 </Grid>
@@ -80,8 +80,8 @@
                     <TextBox x:Name="TxtB_Education_ShoolName" Grid.Column="1" Grid.Row="0" Text="{Binding ShoolName}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
                     <Label Grid.Column="0" Grid.Row="1" Content="Poziom wykrztałcenia"/>
                     <ComboBox x:Name="CB_Education_Level" SelectedValue="Level" Grid.Column="1" Grid.Row="1">
-                        <ComboBoxItem>Sth</ComboBoxItem>
-                        <ComboBoxItem>Level</ComboBoxItem>
+                        <ComboBoxItem>Podstawowe</ComboBoxItem>
+                        <ComboBoxItem>Wyższe</ComboBoxItem>
                     </ComboBox>
                     <Label Grid.Column="0" Grid.Row="2" Content="Kierunek"/>
                     <TextBox x:Name="TxtB_Education_Direction" Grid.Column="1" Grid.Row="2" Text="{Binding Direction}" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
@@ -104,7 +104,7 @@
                         </StackPanel>
                     </Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                        <!--<Button x:Name="Btn_Education_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Form_Cancel_Click"/>-->
+                        
                         <Button x:Name="Btn_Education_Update" Content="Zaktualizuj" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Form_Update_Click"/>
                     </StackPanel>
                 </Grid>
@@ -121,17 +121,20 @@
                         <Label Content="Język: "/>
                         <ComboBox x:Name="CB_LanguageSelected" SelectedIndex="0">
                             <ComboBoxItem>Polski</ComboBoxItem>
+                            <ComboBoxItem>Angielski</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
                         <Label Content="Poziom: "/>
                         <ComboBox x:Name="CB_LanguageLevel"  SelectedIndex="0">
+                            <ComboBoxItem>podstawowy</ComboBoxItem>
                             <ComboBoxItem>zaawansowany</ComboBoxItem>
+                            <ComboBoxItem>ojczysty</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3">
-                        <!--<Button x:Name="Btn_Language_Cancel" Content="Annuluj" HorizontalAlignment="Right" Background="White" Foreground="gray" VerticalAlignment="Center" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Form_Cancel_Click"/>-->
+                       
                         <Button x:Name="Btn_Language_Save" Content="Zapisz" HorizontalAlignment="Right" Background="#414141" Foreground="White" VerticalAlignment="Center" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Form_Update_Click"/>
                     </StackPanel>
                 </Grid>
@@ -150,11 +153,11 @@
                     <TextBox x:Name="TxtB_URL" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource ProfileTextBox}"/>
                     <Label Grid.Row="1" Content="Typ linku"/>
                     <ComboBox x:Name="CB_Type" SelectedValue="{Binding Type}" Grid.Column="1" Grid.Row="1" SelectedIndex="0">
-                        <ComboBoxItem>(Wybierz)</ComboBoxItem>
-                        <ComboBoxItem>(Wybierz)2</ComboBoxItem>
+                        <ComboBoxItem>Facebook</ComboBoxItem>
+                        <ComboBoxItem>GitHub</ComboBoxItem>
                     </ComboBox>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" >
-                        <!--<Button x:Name="Btn_Link_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Form_Cancel_Click"/>-->
+                        
                         <Button x:Name="Btn_Link_Add" Content="Zapisz" Background="#414141" Foreground="White" Style="{StaticResource ProfileSaveButtonTheme}" Click="Btn_Form_Update_Click"/>
                     </StackPanel>
                 </Grid>

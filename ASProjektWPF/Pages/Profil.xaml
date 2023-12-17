@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,100,10,100">
-            <Border CornerRadius="5" Padding="10" Height="200px" Margin="0,10,0,0">
+            <Border CornerRadius="5" Padding="10" Height="200px" Width="750" Margin="0,10,0,0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -55,7 +55,7 @@
                 </Grid>
             </Border>
             <!--llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
-            <Border CornerRadius="5" Margin="0,10,0,0" Padding="0,0,0,10">
+            <Border CornerRadius="5" Margin="0,10,0,0" Padding="0,0,0,10" Width="750">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -68,7 +68,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="105*"/>
                                 <ColumnDefinition Width="280*"/>
-                                <ColumnDefinition Width="384*"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -102,7 +102,7 @@
                 </StackPanel>
             </Border>
             <!--llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
-            <Border Margin="0,10,0,0" CornerRadius="5">
+            <Border Margin="0,10,0,0" CornerRadius="5" Width="750">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -231,7 +231,7 @@
                 </StackPanel>
             </Border>
             <!--llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
-            <Border Margin="0,10,0,0" CornerRadius="5">
+            <Border Margin="0,10,0,0" CornerRadius="5" Width="750">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -242,7 +242,7 @@
                     <Border Background="#dadada" CornerRadius="5,5,0,0" Padding="5">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -260,7 +260,7 @@
                             </Style>
                         </Grid.Resources>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="100"/>
                         </Grid.ColumnDefinitions>
@@ -276,7 +276,8 @@
                         <TextBox x:Name="TxtB_Education_ShoolName" Grid.Column="1" Grid.Row="0" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
                         <Label Grid.Column="0" Grid.Row="1" Content="Poziom wykrztałcenia"/>
                         <ComboBox x:Name="CB_Education_Level" SelectedIndex="0" Grid.Column="1" Grid.Row="1">
-                            <ComboBoxItem>Sth</ComboBoxItem>
+                            <ComboBoxItem>Podstawowe</ComboBoxItem>
+                            <ComboBoxItem>Wyższe</ComboBoxItem>
                         </ComboBox>
                         <Label Grid.Column="0" Grid.Row="2" Content="Kierunek"/>
                         <TextBox x:Name="TxtB_Education_Direction" Grid.Column="1" Grid.Row="2" Style="{StaticResource ProfileTextBox}" HorizontalAlignment="Stretch"/>
@@ -365,7 +366,7 @@
                 </StackPanel>
             </Border>
             <!--kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk-->
-            <Border Margin="0,10,0,0" CornerRadius="5">
+            <Border Margin="0,10,0,0" CornerRadius="5" Width="750">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -409,9 +410,12 @@
                                     </Grid.RowDefinitions>
                                     <ComboBox x:Name="CB_LanguageSelected" SelectedIndex="0">
                                         <ComboBoxItem>Polski</ComboBoxItem>
+                                        <ComboBoxItem>Angielski</ComboBoxItem>
                                     </ComboBox>
                                     <ComboBox x:Name="CB_LanguageLevel" Grid.Column="1" SelectedIndex="0">
+                                        <ComboBoxItem>podstawowy</ComboBoxItem>
                                         <ComboBoxItem>zaawansowany</ComboBoxItem>
+                                        <ComboBoxItem>ojczysty</ComboBoxItem>
                                     </ComboBox>
                                 </Grid>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
@@ -465,7 +469,7 @@
                 </StackPanel>
             </Border>
             <!--kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk-->
-            <Border Margin="0,10,0,0" CornerRadius="5">
+            <Border Margin="0,10,0,0" CornerRadius="5" Width="750">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -522,7 +526,7 @@
                 </StackPanel>
             </Border>
             <!--kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk-->
-            <Border Margin="0,10,0,0" CornerRadius="5">
+            <Border Margin="0,10,0,0" CornerRadius="5" Width="750">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#e0e0e0" Offset="0.0"/>
@@ -561,8 +565,8 @@
                                 <TextBox x:Name="TxtB_URL" Grid.Column="1" Text="Adres URL" Style="{StaticResource ProfileTextBox}"/>
                                 <Label Grid.Row="1" Content="Typ linku"/>
                                 <ComboBox x:Name="CB_Type" Grid.Column="1" Grid.Row="1" SelectedIndex="0">
-                                    <ComboBoxItem>(Wybierz)</ComboBoxItem>
-                                    <ComboBoxItem>(Wybierz)2</ComboBoxItem>
+                                    <ComboBoxItem>Facebook</ComboBoxItem>
+                                    <ComboBoxItem>GitHub</ComboBoxItem>
                                 </ComboBox>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" >
                                     <Button x:Name="Btn_Link_Cancel" Content="Annuluj"  Background="White" Foreground="Gray" Style="{StaticResource ProfileCancelButtonTheme}" Click="Btn_Link_Cancel_Click"/>

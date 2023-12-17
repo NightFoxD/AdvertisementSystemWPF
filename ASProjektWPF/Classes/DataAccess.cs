@@ -362,6 +362,7 @@ namespace ASProjektWPF.Classes
             User newUser = GetUserList().Result.Last();
             newUser.UserDataID = newUserData.UserDataID;
             _database.UpdateAsync(newUser);
+
         }
         public Task UpdateUser(User user)
         {

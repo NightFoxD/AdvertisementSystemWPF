@@ -144,12 +144,6 @@ namespace ASProjektWPF
                 Page.Navigate(new Home(Page, Company));
             }
         }
-        
-        private void Btn_ShowUsers(object sender, RoutedEventArgs e)
-        {
-            (new UsersInfo()).Show();
-        }
-
         private void Btn_LogOut(object sender, RoutedEventArgs e)
         {
             (new Login()).Show();
