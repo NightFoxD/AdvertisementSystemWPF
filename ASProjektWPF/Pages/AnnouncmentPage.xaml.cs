@@ -45,17 +45,23 @@ namespace ASProjektWPF.Pages
             Lbl_WorkTime.Content = item.WorkingTime;
             Lbl_PositionLevel.Content = item.PositionLevel;
             Lbl_WorkType.Content = item.WorkType;
-            try
+            if(App.DataAccess.GetApplicationList().Where(item => item.AnnouncmentID == announcment.AnnouncmentID).Any())
             {
-                if (App.DataAccess.GetApplicationList().Where(item => item.AnnouncmentID == announcment.AnnouncmentID).First().UserID == user.UserDataID)
+                int? id = App.DataAccess.GetApplicationList().Where(item => item.AnnouncmentID == announcment.AnnouncmentID).First().UserID;
+                if (id != null && id == user.UserDataID)
                 {
                     Br_Application.Visibility = Visibility.Collapsed;
                 }
+                else
+                {
+                    Br_Application.Visibility = Visibility.Visible;
+                }
             }
-            catch (Exception)
+            else
             {
                 Br_Application.Visibility = Visibility.Visible;
             }
+           
             
         }
         public AnnouncmentPage(Frame currentPage, Announcment announcment)
@@ -91,8 +97,10 @@ namespace ASProjektWPF.Pages
                 item.AnnouncmentID = this.item.AnnouncmentID;
                 item.UserID = User.UserDataID;
                 App.DataAccess.Add_Application(item);
+                MessageBox.Show("Zaaplikowałeś się do ogłoszenia!");
+                Btn_Application.Visibility = Visibility.Collapsed;
             }
-            CurrentPage.GoBack();
+            
         }
     }
 }

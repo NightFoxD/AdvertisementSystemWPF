@@ -74,7 +74,7 @@ namespace ASProjektWPF.Pages
                 itemsContractType = items;
             }
             TxtB_CategoryName.Text = "Rodzaj umowy";
-            TB_Title.Text = "Nazwa rodzaj umowy: ";
+            TB_Title.Text = "Nazwa rodzaju umowy: ";
             Btn_AddItem.Content = "Dodaj rodzaj umowy";
             Refresh();
         }
@@ -91,7 +91,7 @@ namespace ASProjektWPF.Pages
                 itemsWorkTime = items;
             }
             TxtB_CategoryName.Text = "Wymiar pracy";
-            TB_Title.Text = "Nazwa wymiar pracy: ";
+            TB_Title.Text = "Nazwa wymiaru pracy: ";
             Btn_AddItem.Content = "Dodaj wymiar pracy";
             Refresh();
         } 
@@ -108,7 +108,7 @@ namespace ASProjektWPF.Pages
                 itemsWorkType = items;
             }
             TxtB_CategoryName.Text = "Tryb pracy";
-            TB_Title.Text = "Nazwa tryb stanowiska: ";
+            TB_Title.Text = "Nazwa trybu pracy: ";
             Btn_AddItem.Content = "Dodaj tryb stanowiska";
             Refresh();
         }

@@ -72,7 +72,11 @@ namespace ASProjektWPF
                 RB_CompanySettings.Visibility = Visibility.Collapsed;
             }
             RB_Login.Visibility = Visibility.Collapsed;
-            Page.Navigate(new Home(Page));
+            if(LoggedUserData != null)
+            {
+                Page.Navigate(new Home(Page, LoggedUserData));
+            }
+            
         }
         public MainWindow(Company company, bool UserCompanyFlag)
         {

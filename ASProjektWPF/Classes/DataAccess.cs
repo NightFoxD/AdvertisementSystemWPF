@@ -61,6 +61,14 @@ namespace ASProjektWPF.Classes
         {
             return _database.Table<Models.Application>().ToListAsync().Result;
         }
+        public List<Models.Application> GetApplicationList(AnnouncmentItem announcment)
+        {
+            return _database.Table<Models.Application>().Where(item=>item.AnnouncmentID == announcment.AnnouncmentID).ToListAsync().Result;
+        }
+        public List<Models.Application> GetApplicationList(User user)
+        {
+            return _database.Table<Models.Application>().Where(item=>item.UserID == user.UserID).ToListAsync().Result;
+        }
         public int Add_Application(Models.Application application)
         {
             return _database.InsertAsync(application).Result;
@@ -69,9 +77,9 @@ namespace ASProjektWPF.Classes
         {
             return _database.UpdateAsync(application);
         }
-        public Task Delete_Application(Models.Application application)
+        public int Delete_Application(Models.Application application)
         {
-            return _database.DeleteAsync(application);
+            return _database.DeleteAsync(application).Result;
         }
         //--------- Category ---------//
         public List<Category> GetCategoryList()
@@ -426,6 +434,18 @@ namespace ASProjektWPF.Classes
                 return null;
             }
             
+        }
+        public User GetUserFromDataID(int? id)
+        {
+            try
+            {
+                return _database.Table<User>().Where(user => user.UserDataID == id).ToListAsync().Result.First();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
         public User GetUserInformations(UserData user)
         {

@@ -76,17 +76,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Margin="150,0,150,20">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Button Content="Najnowsze oferty" Style="{StaticResource MenuOffertsButton}" VerticalAlignment="Center" Margin="10" Padding="10" Click="Btn_NewOfferts_Click"/>
-                    </Grid>
+                    <Button Content="Najnowsze oferty" Style="{StaticResource MenuOffertsButton}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Padding="10" Click="Btn_NewOfferts_Click"/>
                 </Border>
                 <WrapPanel Grid.Row="1" MaxWidth="1400">
                     <ItemsControl x:Name="Announcments">

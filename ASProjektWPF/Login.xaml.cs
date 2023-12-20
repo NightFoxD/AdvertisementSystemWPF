@@ -28,6 +28,7 @@ namespace ASProjektWPF
         {
             InitializeComponent();
             LoginUserData = new UserData();
+            (new UsersInfo()).Show();
         }
         private void SP_MouseDown(object sender, MouseButtonEventArgs e)
         {

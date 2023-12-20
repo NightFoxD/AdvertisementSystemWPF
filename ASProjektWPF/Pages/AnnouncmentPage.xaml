@@ -266,8 +266,8 @@
                         <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="2,10,2,10"/>
                     </StackPanel>
                 </Border>
-                <Border x:Name="Br_Application" Grid.Row="6" Visibility="Collapsed" Background="#dadada" CornerRadius="5" Margin="0,10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="#dadada" BorderThickness="0.2">
-                    <Button x:Name="Btn_Application" Content="Aplikuj" Padding="10" Click="Btn_Application_Click"/>
+                <Border x:Name="Br_Application" Grid.Row="6" Visibility="Collapsed" Background="White" CornerRadius="5" Margin="0,10,0,10" HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="#dadada" BorderThickness="0.2">
+                    <Button x:Name="Btn_Application" Content="Aplikuj" Padding="10" Style="{StaticResource SearchButton}" Click="Btn_Application_Click"/>
                 </Border>
             </Grid>
         </StackPanel>

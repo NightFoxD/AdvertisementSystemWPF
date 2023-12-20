@@ -1,0 +1,129 @@
+﻿<Page x:Class="ASProjektWPF.Pages.ApplicatedUsersShow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ASProjektWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ApplicatedUsersShow">
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource TransparentBackButton}" Padding="10" Margin="10" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click">
+                <Image Source="/Images/App/back.png" MaxHeight="20"/>
+            </Button>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock x:Name="TxtB_Application_Info" Text="Firma nie posiada narazie żadnych aplikujących" TextWrapping="Wrap"/>
+                <Grid x:Name="G_TitlesList">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Nazwa ogłoszenia:" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,30,0"/>
+                        <TextBlock Grid.Column="1" Text="Pozycja:" VerticalAlignment="Center" Margin="0,0,30,0"/>
+
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Imię:" VerticalContentAlignment="Center"/>
+                        <Label Grid.Column="1" Content="Nazwisko:" VerticalContentAlignment="Center"/>
+                    </Grid>
+                </Grid>
+                <ListView x:Name="LV_CompanyApplications" Background="Transparent" BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="IsHitTestVisible" Value="True"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="0,1,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="200"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="70"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding AnnouncmentName}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                            <TextBlock  Grid.Column="1" Text="{Binding PositionName}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                            <Button Grid.Column="2" Content="Zobacz ogłoszenie"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SearchButton}" CommandParameter="{Binding Announcment}" Click="Btn_GoToAnnouncment_Click"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="70"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding UserName}" VerticalContentAlignment="Center"/>
+                                            <Label Grid.Column="1" Content="{Binding UserSurname}"  VerticalContentAlignment="Center"/>
+                                        </Grid>
+                                        <Button Grid.Column="2" VerticalAlignment="Center"   HorizontalAlignment="Center" Content="Usuń" Style="{StaticResource ProfileDeleteButtonTheme}" Background="White" Foreground="Red" CommandParameter="{Binding .}" Click="Btn_DeleteApplication"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+   
+</Page>

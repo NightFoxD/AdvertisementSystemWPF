@@ -108,7 +108,6 @@ namespace ASProjektWPF.Pages
         }
         private void Btn_Search_Click(object sender, RoutedEventArgs e)
         {
-            
             if (user != null)
             {
                 CurrentPage.Navigate(new SearchView(CurrentPage, user, TxtB_SearchBar.Text, CmB_Category.Text, TxtB_Localization.Text));
@@ -117,7 +116,6 @@ namespace ASProjektWPF.Pages
             {
                 CurrentPage.Navigate(new SearchView(CurrentPage, TxtB_SearchBar.Text, CmB_Category.Text, TxtB_Localization.Text));
             }
-            
         }
 
         private void Btn_WatchMore(object sender, RoutedEventArgs e)

@@ -11,5 +11,6 @@
     <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="500">
         <Button Content="Dodaj ogłoszenie" Click="Btn_AddAnnouncment_Click" Style="{StaticResource SearchButton}" Padding="10" Margin="10"/>
         <Button Content="Edytuj ogłoszenia" Click="Btn_EditAnnouncment_Click" Style="{StaticResource SearchButton}" Padding="10" Margin="10"/>
+        <Button Content="Zaaplikowani użytkownicy" Click="Btn_ShowUsersApplications_Click" Style="{StaticResource SearchButton}" Padding="10" Margin="10"/>
     </WrapPanel>
 </Page>

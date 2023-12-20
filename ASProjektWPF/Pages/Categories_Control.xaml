@@ -16,12 +16,12 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel>
-                <TextBlock x:Name="TB_Title"/>
-                <TextBox x:Name="Text_Item_Content"/>
-                <Button x:Name="Btn_AddItem" Content="Dodaj " Style="{StaticResource SearchButton}" HorizontalAlignment="Center" Padding="10" Margin="10" Click="Btn_AddItem_Click"/>
+            <StackPanel HorizontalAlignment="Center" Margin="0,50,0,0">
+                <TextBlock x:Name="TB_Title" FontSize="20" Margin="10"/>
+                <TextBox x:Name="Text_Item_Content" BorderThickness="0" Margin="10"/>
+                <Button x:Name="Btn_AddItem" Content="Dodaj " Style="{StaticResource SearchButton}" HorizontalAlignment="Center" Padding="10" Margin="30" Click="Btn_AddItem_Click"/>
             </StackPanel>
-            <ListView x:Name="LV_Items" Grid.Row="1" BorderThickness="0" Background="Transparent">
+            <ListView x:Name="LV_Items" Grid.Row="1" HorizontalAlignment="Center" BorderThickness="0" Background="Transparent">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="IsHitTestVisible" Value="True"/>
@@ -38,14 +38,17 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Name}"/>
-                            <Button Grid.Column="1" Content="Usuń" Click="Btn_DeleteItem_Click" CommandParameter="{Binding .}"/>
-                        </Grid>
+                        <Border Margin="5" BorderBrush="Black" BorderThickness="0,0,0,1">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Content="Usuń" Click="Btn_DeleteItem_Click" CommandParameter="{Binding .}" Background="White" Foreground="red" Style="{StaticResource ProfileDeleteButtonTheme}"/>
+                            </Grid>
+                        </Border>
+                        
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

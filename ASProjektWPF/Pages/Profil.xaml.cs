@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using System.Globalization;
 using System.Drawing;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace ASProjektWPF.Pages
 {
@@ -80,6 +81,7 @@ namespace ASProjektWPF.Pages
             Load_UserEducationList();
             Load_UserLanguageList();
             Load_UserLinkList();
+            Load_UserApplications();
         }
         public void VisibleCollapseUserData(bool VisCol)
         {
@@ -615,6 +617,70 @@ namespace ASProjektWPF.Pages
             }
 
         }
-
+        private void Btn_DeleteApplication(object sender, RoutedEventArgs e)
+        {
+            AnnouncmentItem? item = ((Button)sender).CommandParameter as AnnouncmentItem;
+            if (item != null)
+            {
+                Announcment? itemAnnouncment = item.Announcment;
+                if (itemAnnouncment != null && user != null)
+                {
+                    List<Models.Application> list = App.DataAccess.GetApplicationList();
+                    Models.Application application = new Models.Application();
+                    foreach (var itemList in list)
+                    {
+                        if (itemList.UserID == user.UserDataID && itemList.AnnouncmentID == itemAnnouncment.AnnouncmentID)
+                        {
+                            application = itemList;
+                            break;
+                        }
+                    }
+                    App.DataAccess.Delete_Application(application);
+                }
+            }
+            Load_UserApplications();
+        }        
+        public void Load_UserApplications()
+        {
+            ObservableCollection<AnnouncmentItem> list = new ObservableCollection<AnnouncmentItem>();
+            if(user!= null)
+            {
+                foreach (var application in App.DataAccess.GetApplicationList(user))
+                {
+                    foreach (var announcment in App.DataAccess.GetAnnouncmentList())
+                    {
+                        if(application.AnnouncmentID == announcment.AnnouncmentID)
+                        {
+                            list.Add(new AnnouncmentItem(announcment));
+                        }
+                    }
+                }
+            }
+            if(list.Count == 0)
+            {
+                TxtB_Application_Info.Visibility = Visibility.Visible;
+                G_ApplicationInfo.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TxtB_Application_Info.Visibility = Visibility.Collapsed;
+                G_ApplicationInfo.Visibility = Visibility.Visible;
+            }
+            LV_UserApplications.ItemsSource = list;
+            
+        }
+        private void Btn_GoToAnnouncment_Click(object sender, RoutedEventArgs e)
+        {
+            AnnouncmentItem? item = ((Button)sender).CommandParameter as AnnouncmentItem;
+            if (item != null)
+            {
+                Announcment? itemAnnouncment = item.Announcment;
+                if (itemAnnouncment != null && userData != null && CurrentPage != null)
+                {
+                    CurrentPage.Navigate(new AnnouncmentPage(CurrentPage, userData, itemAnnouncment));
+                }
+            }
+           
+        }
     }
 }

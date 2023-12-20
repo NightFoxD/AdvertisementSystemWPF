@@ -21,22 +21,26 @@ namespace ASProjektWPF.Pages
     /// </summary>
     public partial class CommpanyAccountControl : Page
     {
-        Frame currentPage;
+        Frame CurrentPage;
         Company Company;
         public CommpanyAccountControl(Frame currentPage,Company company)
         {
             InitializeComponent();
-            this.currentPage = currentPage;
+            this.CurrentPage = currentPage;
             Company = company;
         }
         private void Btn_AddAnnouncment_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Navigate(new Announcment_AddEdit(currentPage,Company));
+            CurrentPage.Navigate(new Announcment_AddEdit(CurrentPage,Company));
         }        
         private void Btn_EditAnnouncment_Click(object sender, RoutedEventArgs e)
         {
             Announcment? announcment = ((Button)sender).CommandParameter as Announcment;
-            currentPage.Navigate(new CompanyAnnouncmentView(currentPage,Company));
+            CurrentPage.Navigate(new CompanyAnnouncmentView(CurrentPage,Company));
+        }        
+        private void Btn_ShowUsersApplications_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new ApplicatedUsersShow(CurrentPage, Company));
         }
     }
 }
