@@ -45,6 +45,7 @@ namespace ASProjektWPF.Pages
             Lbl_WorkTime.Content = item.WorkingTime;
             Lbl_PositionLevel.Content = item.PositionLevel;
             Lbl_WorkType.Content = item.WorkType;
+            
             if(App.DataAccess.GetApplicationList().Where(item => item.AnnouncmentID == announcment.AnnouncmentID).Any())
             {
                 int? id = App.DataAccess.GetApplicationList().Where(item => item.AnnouncmentID == announcment.AnnouncmentID).First().UserID;
@@ -59,7 +60,11 @@ namespace ASProjektWPF.Pages
             }
             else
             {
-                Br_Application.Visibility = Visibility.Visible;
+                if (user.AccountTypeID == 1)
+                {
+                    Br_Application.Visibility = Visibility.Visible;
+                }
+                
             }
            
             

@@ -73,14 +73,17 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Content}"/>
-                                            <Button Grid.Column="1" Content="Usuń"  Click="Btn_DeleteItemResponsibility_Click" CommandParameter="{Binding .}"/>
-                                        </Grid>
+                                        <Border BorderBrush="Black" BorderThickness="0,1,0,0" Margin="5">
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Content}" VerticalAlignment="Center"/>
+                                                <Button Grid.Column="1" Content="Usuń"  Click="Btn_DeleteItemResponsibility_Click" Style="{StaticResource ProfileDeleteButtonTheme}" Background="White" Foreground="Red" CommandParameter="{Binding .}"/>
+                                            </Grid>
+                                        </Border>
+                                       
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -107,14 +110,16 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Content}"/>
-                                            <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}" Click="Btn_DeleteItemRequirement_Click"/>
-                                        </Grid>
+                                        <Border BorderBrush="Black" BorderThickness="0,1,0,0" Margin="5">
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Content}" VerticalAlignment="Center"/>
+                                                <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}" Style="{StaticResource ProfileDeleteButtonTheme}" Background="White" Foreground="Red" Click="Btn_DeleteItemRequirement_Click"/>
+                                            </Grid>
+                                        </Border>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -141,14 +146,16 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Content}"/>
-                                            <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}" Click="Btn_DeleteItemBenefit_Click"/>
-                                        </Grid>
+                                        <Border BorderBrush="Black" BorderThickness="0,1,0,0" Margin="5">
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Content}" VerticalAlignment="Center"/>
+                                                <Button Grid.Column="1" Content="Usuń" CommandParameter="{Binding .}" Style="{StaticResource ProfileDeleteButtonTheme}" Background="White" Foreground="Red" Click="Btn_DeleteItemBenefit_Click"/>
+                                            </Grid>
+                                        </Border>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

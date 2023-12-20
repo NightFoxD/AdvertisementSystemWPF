@@ -15,40 +15,56 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Button Padding="10" Margin="10" Style="{StaticResource TransparentBackButton}" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Click="Btn_Back_Click"/>
-            <ListView x:Name="LV_CompanyAnnouncment" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView x:Name="LV_CompanyAnnouncment" Grid.Row="1" HorizontalAlignment="Center" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsHitTestVisible" Value="True"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding PositionName}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding PositionLevel}"/>
-                            <TextBlock Grid.Column="3" Text="{Binding ContractType}"/>
-                            <TextBlock Grid.Column="4" Text="{Binding WorkingTime}"/>
-                            <TextBlock Grid.Column="5" Text="{Binding WorkType}"/>
-                            <TextBlock Grid.Column="6" Text="{Binding EndDate}"/>
-                            <TextBlock Grid.Column="7" Text="{Binding Responsibilities}"/>
-                            <TextBlock Grid.Column="8" Text="{Binding Requirements}"/>
-                            <TextBlock Grid.Column="9" Text="{Binding Benefits}"/>
-                            <Button Grid.Column="10" Content="Edytuj" CommandParameter="{Binding .}" Click="Btn_EditAnnouncment_Click"/>
-                            <Button Grid.Column="11" Content="Usun" CommandParameter="{Binding .}" Click="Btn_DeleteAnnouncment_Clicked"/>
-                        </Grid>
+                        <Border BorderBrush="Black" BorderThickness="0,1,0,0">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding PositionName}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding PositionLevel}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ContractType}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="4" Text="{Binding WorkingTime}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="5" Text="{Binding WorkType}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="6" Text="{Binding EndDate}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="7" Text="{Binding Responsibilities}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="8" Text="{Binding Requirements}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="9" Text="{Binding Benefits}" VerticalAlignment="Center"/>
+                                <Button Grid.Column="10" Content="Edytuj" CommandParameter="{Binding .}" Style="{StaticResource ProfileEditButtonTheme}" Background="White" Click="Btn_EditAnnouncment_Click" Margin="5"/>
+                                <Button Grid.Column="11" Content="Usun" CommandParameter="{Binding .}" Style="{StaticResource ProfileDeleteButtonTheme}" Foreground="Red" Background="White" Margin="5" Click="Btn_DeleteAnnouncment_Clicked"/>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

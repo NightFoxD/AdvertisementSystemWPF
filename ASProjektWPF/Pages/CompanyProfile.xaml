@@ -57,7 +57,7 @@
                         </StackPanel>
 
                         <Label x:Name="Lbl_Company" Grid.Column="1" FontSize="30" Margin="10,0,0,0"/>
-                        <TextBox x:Name="TxtB_CompanyEdit" Grid.Column="1" FontSize="30" Margin="10,0,0,0" Visibility="Collapsed"/>
+                        <TextBox x:Name="TxtB_CompanyEdit" Grid.Column="1" FontSize="30" Margin="10,0,0,0" Visibility="Collapsed" BorderThickness="0"/>
                         <Label x:Name="Lbl_Jobs"  FontSize="15" Grid.Column="1" Grid.Row="1" Margin="10"/>
                     </Grid>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
